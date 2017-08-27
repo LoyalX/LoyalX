@@ -1,0 +1,51 @@
+<!--
+  Generated template for the PointSpendPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-toolbar color="primary">
+
+        <ion-title>
+            Send Points
+        </ion-title>
+
+        <ion-buttons start>
+            <button ion-button (click)="dismiss()">
+        <span ion-text showWhen="ios">Cancel</span>
+        <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+      </button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="onSendTapped()">
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>The Receiver Key</ion-label>
+                <ion-input type="text" value="" formControlName="receiverKey"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Price</ion-label>
+                <ion-input type="text" value="" formControlName="price"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Text Field</ion-label>
+                <ion-input type="text" value="" formControlName="textField"></ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <div padding>
+            <button type="submit" ion-button color="primary" block [disabled]="!isReadyToSend">Send</button>
+        </div>
+    </form>
+
+</ion-content>

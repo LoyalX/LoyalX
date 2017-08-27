@@ -1,6 +1,16 @@
 // Ionic Variables and Theming. For more info, please see:
-// http://ionicframework.com/docs/v2/theming/
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
 $font-path: "../assets/fonts";
+
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
+
 
 @import "ionic.globals";
 
@@ -10,10 +20,9 @@ $font-path: "../assets/fonts";
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-$text-color:        #000;
-$background-color:  #fff;
+
 
 
 // Named Color Variables
@@ -24,12 +33,32 @@ $background-color:  #fff;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$colors: (
+/*$colors: (
   primary:    #488aff,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  favorite:   #69BB7B,
+  twitter:    #1da1f4,
+  google:     #dc4a38,
+  vimeo:      #23b6ea,
+  facebook:   #3b5998,
+  frosted: 	  #008ae6
+);*/
+
+$colors: (
+  primary:    #66b3ff,
+  secondary:  #edf2f7,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  favorite:   #69BB7B,
+  twitter:    #1da1f4,
+  google:     #dc4a38,
+  vimeo:      #23b6ea,
+  facebook:   #3b5998,
+  frosted: 	  #008ae6
 );
 
 
@@ -67,7 +96,7 @@ $colors: (
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/v2/ionicons/
+// http://ionicframework.com/docs/ionicons/
 
 @import "ionic.ionicons";
 
@@ -77,3 +106,16 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+// Overriding Variables
+// --------------------------------------------------
+
+$badge-font-size: 1.7rem;
+
+.selected {
+    background-color: #E8E8E8 !important;
+}
+
+.active {
+    background-color: map-get($colors, light) !important;
+}

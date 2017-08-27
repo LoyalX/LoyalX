@@ -1,0 +1,95 @@
+page-point-spend {
+    .card-background-page {
+        ion-card {
+            position: relative;
+            text-align: center;
+        }
+        .card-title {
+            position: absolute;
+            top: 36%;
+            font-size: 2.0em;
+            width: 100%;
+            font-weight: bold;
+            color: #fff;
+        }
+        .card-subtitle {
+            font-size: 1.0em;
+            position: absolute;
+            top: 52%;
+            width: 100%;
+            color: #fff;
+        }
+    }
+    .card-wrap {
+        height: 100% !important;
+        display: -webkit-box!important;
+        display: -moz-box!important;
+        display: -ms-flexbox!important;
+        display: -webkit-flex!important;
+        display: flex!important;
+        -webkit-box-direction: normal!important;
+        -moz-box-direction: normal!important;
+        -webkit-box-orient: vertical!important;
+        -moz-box-orient: vertical!important;
+        -webkit-flex-direction: column!important;
+        -ms-flex-direction: column!important;
+        flex-direction: column!important;
+        -webkit-flex-wrap: nowrap!important;
+        -ms-flex-wrap: nowrap!important;
+        flex-wrap: nowrap!important;
+        -webkit-box-pack: justify!important;
+        -moz-box-pack: justify!important;
+        -webkit-justify-content: space-between!important;
+        -ms-flex-pack: justify!important;
+        justify-content: space-between!important;
+        -webkit-align-content: space-around!important;
+        -ms-flex-line-pack: distribute!important;
+        align-content: space-around!important;
+        -webkit-box-align: stretch!important;
+        -moz-box-align: stretch!important;
+        -webkit-align-items: stretch!important;
+        -ms-flex-align: stretch!important;
+        align-items: stretch!important;
+    }
+    .full-card {
+        -webkit-box-flex: 1 !important;
+        -moz-box-flex: 1 !important;
+        -webkit-flex: 1 1 auto !important;
+        -ms-flex: 1 1 auto !important;
+        flex: 1 1 auto !important;
+        -webkit-align-self: stretch !important;
+        -ms-flex-item-align: stretch !important;
+        align-self: stretch !important;
+        display: -webkit-box !important;
+        display: -moz-box !important;
+        display: -ms-flexbox !important;
+        display: -webkit-flex !important;
+        display: flex !important;
+        -webkit-box-direction: normal !important;
+        -moz-box-direction: normal !important;
+        -webkit-box-orient: horizontal !important;
+        -moz-box-orient: horizontal !important;
+        -webkit-flex-direction: row !important;
+        -ms-flex-direction: row !important;
+        flex-direction: row !important;
+        -webkit-flex-wrap: nowrap !important;
+        -ms-flex-wrap: nowrap !important;
+        flex-wrap: nowrap !important;
+        -webkit-box-pack: center !important;
+        -moz-box-pack: center !important;
+        -webkit-justify-content: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+        -webkit-align-content: space-between !important;
+        -ms-flex-line-pack: justify !important;
+        align-content: space-between !important;
+        -webkit-box-align: center !important;
+        -moz-box-align: center !important;
+        -webkit-align-items: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+    }
+    .cost-badge {
+        font-size: 1.5rem !important;
+    }
+}
