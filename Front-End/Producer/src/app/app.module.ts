@@ -21,6 +21,8 @@ import { BrandDetailPage } from '../pages/brand-detail/brand-detail';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 
 import { UserData } from '../providers/user-data';
+import { Web3ServiceProvider } from '../providers/web3-service/web3-service';
+import { TokenProvider } from '../providers/token/token';
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import { UserData } from '../providers/user-data';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserData,
     InAppBrowser,
-    SplashScreen
+    SplashScreen,
+    Web3ServiceProvider,
+    TokenProvider
   ]
 })
 export class AppModule { }
