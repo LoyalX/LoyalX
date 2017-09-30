@@ -21,8 +21,10 @@ import { BrandDetailPage } from '../pages/brand-detail/brand-detail';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 
 import { UserData } from '../providers/user-data';
-import { Web3ServiceProvider } from '../providers/web3-service/web3-service';
-import { TokenProvider } from '../providers/token/token';
+import { Web3Provider } from '../providers/web3/web3';
+
+import { LoyaltyTokenProvider } from '../providers/loyalty-token/loyalty-token';
+import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-factory';
 
 
 @NgModule({
@@ -67,8 +69,9 @@ import { TokenProvider } from '../providers/token/token';
     UserData,
     InAppBrowser,
     SplashScreen,
-    Web3ServiceProvider,
-    TokenProvider
+    Web3Provider,
+    LoyaltyTokenProvider,
+    LoyaltyFactoryProvider
   ]
 })
 export class AppModule { }
