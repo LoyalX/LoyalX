@@ -9,18 +9,20 @@ declare var web3: any;
 @Injectable()
 export class Web3Provider {
 
-  private web3: any;
+  private _web3: Web3;
+  private _provider;
 
   constructor(public http: Http) {
     if (typeof web3 !== 'undefined') {
-      this.web3 = new Web3(web3.currentProvider);
+      this._provider = web3.currentProvider;
+      this._web3 = new Web3(web3.currentProvider);
     } else {
-      this.web3 = new Web3(new Web3.providers.HttpProvider(CONFIG.HTTP_PROVIDER));
+      this._provider = new Web3.providers.HttpProvider(CONFIG.HTTP_PROVIDER);
+      this._web3 = new Web3(this._provider);
     }
   }
 
-  get() {
-    return this.web3;
-  }
+  get web3(): Web3 { return this._web3; }
+  get provider(): Web3 { return this._provider; }
 
 }

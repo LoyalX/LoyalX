@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import TruffleContract from 'truffle-contract';
+//import TruffleContract from 'truffle-contract';
 import CONFIG from '../../app.config';
 import 'rxjs/add/operator/map';
 import { Web3Provider } from '../web3/web3';
 
+declare var TruffleContract;
 /*
   Generated class for the LoyaltyFactoryProvider provider.
 
@@ -14,7 +15,7 @@ import { Web3Provider } from '../web3/web3';
 @Injectable()
 export class LoyaltyFactoryProvider {
 
-  Contract: TruffleContract;
+  Contract;
 
   constructor(public http: Http, public Web3Provider: Web3Provider) {
     this._fetchContract();
@@ -24,30 +25,23 @@ export class LoyaltyFactoryProvider {
   private _fetchContract() {
     this.http.get(`${CONFIG.CONTRACTS_URL}/LoyaltyTokenFactory.json`).subscribe(data => {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var LoyaltyFactoryArtifact = data;
+      var LoyaltyFactoryArtifact = data.json();
       this.Contract = TruffleContract(LoyaltyFactoryArtifact);
-
+      //this.Contract = new this.Web3Provider.web3.eth.Contract(LoyaltyFactoryArtifact);
       // Set the provider for our contract.
-      this.Contract.setProvider(this.Web3Provider.get());
+      this.Contract.setProvider(this.Web3Provider.provider);
     });
   }
 
-  handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
-
-    // var retailSymbol = document.getElementById('retail-symbol').value;
-    // var retailName = document.getElementById('retail-name').value;
-    // var retailAmount = parseInt(document.getElementById('retail-amount').value, 10);
-    // var retailDecimal = parseInt(document.getElementById('retail-decimal').value, 10);
-
+  public handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
     retailAmount = retailAmount * 10 ^ retailDecimal;
-
 
     console.log("Sysmbol: ", retailSymbol, "Name: ", retailName, "Amount: ", retailAmount, " Decimal:", retailDecimal);
 
     var loyaltyInstance;
 
-    this.Web3Provider.get().eth.getAccounts((error, accounts) => {
-      if (error) { console.log(error); }
+    this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
+      if (error) { console.warn(error); }
 
       console.log(accounts);
 
@@ -63,6 +57,7 @@ export class LoyaltyFactoryProvider {
         // addToLog("#blockchain", "address : " + result);
       }).catch((err) => console.log(err.message));
     });
+
   }
 
 }

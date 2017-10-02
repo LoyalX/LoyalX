@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import TruffleContract from 'truffle-contract';
+//import TruffleContract from 'truffle-contract';
 import CONFIG from '../../app.config';
 import 'rxjs/add/operator/map';
 import { Web3Provider } from '../web3/web3';
 
+declare var TruffleContract;
 /*
   Generated class for the LoyaltyTokenProvider provider.
 
@@ -14,7 +15,7 @@ import { Web3Provider } from '../web3/web3';
 @Injectable()
 export class LoyaltyTokenProvider {
 
-  Contract: TruffleContract;
+  Contract;
 
   constructor(public http: Http, public Web3Provider: Web3Provider) {
     this._fetchContract();
@@ -24,11 +25,11 @@ export class LoyaltyTokenProvider {
   private _fetchContract() {
     this.http.get(`${CONFIG.CONTRACTS_URL}/LoyaltyToken.json`).subscribe(data => {
       // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var LoyaltyArtifact = data;
+      var LoyaltyArtifact = data.json();
       this.Contract = TruffleContract(LoyaltyArtifact);
 
       // Set the provider for our contract.
-      this.Contract.setProvider(this.Web3Provider.get());
+      this.Contract.setProvider(this.Web3Provider.provider);
     });
   }
 
@@ -40,7 +41,7 @@ export class LoyaltyTokenProvider {
 
     var loyaltyInstance;
 
-    this.Web3Provider.get().eth.getAccounts((error, accounts) => {
+    this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
       if (error) { console.warn(error); }
 
       var account = accounts[0];

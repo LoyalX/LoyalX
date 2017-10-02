@@ -1,5 +1,6 @@
 {
   "server": {
     "baseDir": ["./src", "./build/contracts"]
-  }
+  },
+  "cors":true
 }
