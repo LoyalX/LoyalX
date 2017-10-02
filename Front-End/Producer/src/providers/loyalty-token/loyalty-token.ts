@@ -33,7 +33,7 @@ export class LoyaltyTokenProvider {
     });
   }
 
-  getBalance(retailAddress: any) {
+  public getBalance(retailAddress?: any) {
 
     // var retailAddress = document.getElementById('retail-address').value;
 
@@ -46,15 +46,34 @@ export class LoyaltyTokenProvider {
 
       var account = accounts[0];
 
-      this.Contract.deployed().then((instance) => {
-        loyaltyInstance = instance;
-
-        return loyaltyInstance.balanceOf(retailAddress, { from: account });
+      this.Contract.deployed().then((loyaltyInstance) => {
+        return loyaltyInstance.balanceOf(retailAddress ? retailAddress : account, { from: account });
       }).then(result => {
         // return App.markAdopted();
         console.log("success", result.toNumber());
       }).catch(err => console.warn(err.message));
 
+    });
+  }
+
+  handleTransfer(amount: number, toAddress: any) {
+    console.log('Transfer ' + amount + ' TT to ' + toAddress);
+
+    var loyaltyTokenInstance;
+
+    this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
+      if (error) { console.log(error); }
+
+      var account = accounts[0];
+
+      this.Contract.deployed().then(loyaltyTokenInstance => {
+        return loyaltyTokenInstance.transfer(toAddress, amount, { from: account });
+      }).then(result => {
+        alert('Transfer Successful!');
+        return this.getBalance();
+      }).catch(err => {
+        console.log(err.message);
+      });
     });
   }
 
