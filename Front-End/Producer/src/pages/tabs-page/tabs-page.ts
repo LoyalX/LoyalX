@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
 import { PointListPage } from '../point-list/point-list';
+import { OnBoardPage } from '../on-board/on-board';
 
 @Component({
   templateUrl: 'tabs-page.html'
@@ -10,9 +11,7 @@ import { PointListPage } from '../point-list/point-list';
 export class TabsPage {
   // set the root pages for each tab
   tab1Root: any = PointListPage;
-  tab2Root: any = PointListPage;
-  tab3Root: any = PointListPage;
-  tab4Root: any = PointListPage;
+  tab2Root: any = OnBoardPage;
 
   mySelectedIndex: number;
 

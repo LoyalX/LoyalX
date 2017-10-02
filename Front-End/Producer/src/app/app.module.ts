@@ -17,6 +17,7 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { PointListPage } from '../pages/point-list/point-list';
+import { OnBoardPage } from '../pages/on-board/on-board';
 import { BrandDetailPage } from '../pages/brand-detail/brand-detail';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 
@@ -36,7 +37,8 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     TutorialPage,
     PointListPage,
     BrandDetailPage,
-    OfferCreatePage
+	OfferCreatePage,
+	OnBoardPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },
-        { component: PointListPage, name: 'PointListPage', segment: 'pointList' }
+		{ component: PointListPage, name: 'PointListPage', segment: 'pointList' },
+		{ component: OnBoardPage, name: 'OnBoardPage', segment: 'onBoard' }
 
       ]
     }),
@@ -62,7 +65,8 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     TutorialPage,
     PointListPage,
     BrandDetailPage,
-    OfferCreatePage
+	OfferCreatePage,
+	OnBoardPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
