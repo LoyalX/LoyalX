@@ -58,6 +58,24 @@ export class LoyaltyFactoryProvider {
   public getTokensAddress() {
     var promise = new Promise((resolve, reject) => {
 
+        this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddress())
+          .then((result) => {
+            console.log("tokens Address", result);
+            resolve(result);
+          })
+          .catch((err) => {
+            console.warn(err.message);
+            reject(err);
+          });
+      });
+
+    return promise;
+  }
+
+  public getTokensAddressByOwner() {
+    
+    var promise = new Promise((resolve, reject) => {
+
       this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
         if (error) {
           console.warn(error);
@@ -66,7 +84,7 @@ export class LoyaltyFactoryProvider {
 
         var account = accounts[0];
 
-        this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddress())
+        this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddressByOwner(account))
           .then((result) => {
             console.log("tokens Address", result);
             resolve(result);
@@ -79,33 +97,6 @@ export class LoyaltyFactoryProvider {
 
     });
     return promise;
-  }
-
-  public getTokensAddressByOwner() {
-    // return ownerMap[owner];
-    var promise = new Promise((resolve, reject) => {
-      
-            this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
-              if (error) {
-                console.warn(error);
-                reject(error);
-              }
-      
-              var account = accounts[0];
-      
-              this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddressByOwner(accounts[0]))
-                .then((result) => {
-                  console.log("tokens Address", result);
-                  resolve(result);
-                })
-                .catch((err) => {
-                  console.warn(err.message);
-                  reject(err);
-                });
-            });
-      
-          });
-          return promise;
   }
 
 }
