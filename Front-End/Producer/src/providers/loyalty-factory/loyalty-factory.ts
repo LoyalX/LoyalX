@@ -38,19 +38,14 @@ export class LoyaltyFactoryProvider {
 
     console.log("Sysmbol: ", retailSymbol, "Name: ", retailName, "Amount: ", retailAmount, " Decimal:", retailDecimal);
 
-    var loyaltyInstance;
-
     this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
       if (error) { console.warn(error); }
 
-      console.log(accounts);
-
       var account = accounts[0];
 
-      this.Contract.deployed().then(function (instance) {
-        loyaltyInstance = instance;
+      this.Contract.deployed().then((loyaltyFactoryInstance) => {
 
-        return loyaltyInstance.initialiseRetail(retailAmount, retailName, retailDecimal, retailSymbol, { from: account });
+        return loyaltyFactoryInstance.initialiseRetail(retailAmount, retailName, retailDecimal, retailSymbol, { from: account });
       }).then((result) => {
         // return App.markAdopted();
         console.log("success Address", result);
@@ -58,6 +53,59 @@ export class LoyaltyFactoryProvider {
       }).catch((err) => console.log(err.message));
     });
 
+  }
+
+  public getTokensAddress() {
+    var promise = new Promise((resolve, reject) => {
+
+      this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
+        if (error) {
+          console.warn(error);
+          reject(error);
+        }
+
+        var account = accounts[0];
+
+        this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddress())
+          .then((result) => {
+            console.log("tokens Address", result);
+            resolve(result);
+          })
+          .catch((err) => {
+            console.warn(err.message);
+            reject(err);
+          });
+      });
+
+    });
+    return promise;
+  }
+
+  public getTokensAddressByOwner() {
+    // return ownerMap[owner];
+    var promise = new Promise((resolve, reject) => {
+      
+            this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
+              if (error) {
+                console.warn(error);
+                reject(error);
+              }
+      
+              var account = accounts[0];
+      
+              this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddressByOwner(accounts[0]))
+                .then((result) => {
+                  console.log("tokens Address", result);
+                  resolve(result);
+                })
+                .catch((err) => {
+                  console.warn(err.message);
+                  reject(err);
+                });
+            });
+      
+          });
+          return promise;
   }
 
 }
