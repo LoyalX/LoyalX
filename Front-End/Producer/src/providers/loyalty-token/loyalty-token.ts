@@ -35,44 +35,33 @@ export class LoyaltyTokenProvider {
 
   public getBalance(retailAddress?: any) {
 
-    // var retailAddress = document.getElementById('retail-address').value;
+    return this.Web3Provider.getAccount().then(account => {
 
-    console.log(retailAddress);
-
-    var loyaltyInstance;
-
-    this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
-      if (error) { console.warn(error); }
-
-      var account = accounts[0];
-
-      this.Contract.deployed().then((loyaltyInstance) => {
+      return this.Contract.deployed().then((loyaltyInstance) => {
         return loyaltyInstance.balanceOf(retailAddress ? retailAddress : account, { from: account });
       }).then(result => {
-        // return App.markAdopted();
-        console.log("success", result.toNumber());
-      }).catch(err => console.warn(err.message));
+        console.log("transfered", result);
+        return result;
+      }).catch(err => {
+        console.warn(err.message);
+        return err;
+      });
 
     });
   }
 
-  handleTransfer(amount: number, toAddress: any) {
-    console.log('Transfer ' + amount + ' TT to ' + toAddress);
+  public handleTransfer(amount: number, toAddress: any) {
 
-    var loyaltyTokenInstance;
+    return this.Web3Provider.getAccount().then(account => {
 
-    this.Web3Provider.web3.eth.getAccounts((error, accounts) => {
-      if (error) { console.log(error); }
-
-      var account = accounts[0];
-
-      this.Contract.deployed().then(loyaltyTokenInstance => {
+      return this.Contract.deployed().then(loyaltyTokenInstance => {
         return loyaltyTokenInstance.transfer(toAddress, amount, { from: account });
       }).then(result => {
-        alert('Transfer Successful!');
-        return this.getBalance();
+        console.log("transfered", result);
+        return result;
       }).catch(err => {
-        console.log(err.message);
+        console.warn(err.message);
+        return err;
       });
     });
   }

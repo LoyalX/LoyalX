@@ -25,4 +25,20 @@ export class Web3Provider {
   get web3(): Web3 { return this._web3; }
   get provider(): Web3 { return this._provider; }
 
+  getAccount() {
+    var promise = new Promise((resolve, reject) => {
+
+      this.web3.eth.getAccounts((error, accounts) => {
+        if (error) {
+          console.warn(error);
+          reject(error);
+        } else {
+          var account = accounts[0];
+          resolve(account);
+        }
+      });
+
+    });
+    return promise;
+  }
 }
