@@ -46,7 +46,29 @@ contract LoyaltyToken is StandardToken {
         symbol = _tokenSymbol;                               // Set the symbol for display purposes
     }
 
+  function getSymbol() constant returns (bytes32)
+    {
+        return stringToBytes32(symbol);
+    }
 
+    function getName() constant returns (bytes32)
+    {
+        return stringToBytes32(name);
+    }
+
+   
+  // stolen from: http://ethereum.stackexchange.com/questions/9142/how-to-convert-a-string-to-bytes32
+  function stringToBytes32(string memory source) returns (bytes32 result) {
+    assembly {
+        result := mload(add(source, 32))
+        }
+    }
+
+    function getDecimals() returns (uint8)
+    {
+        return decimals;
+    }
+    
     function initialiseRetail(address address_retail_receiver, uint amount) returns(uint balance) {
         //Validate if it is from the platform
         balances[msg.sender] -= amount;
