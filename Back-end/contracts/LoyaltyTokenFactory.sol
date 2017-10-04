@@ -28,8 +28,7 @@ contract LoyaltyTokenFactory {
         return ownerMap[owner];
     }
 
-    function getTokens() constant returns ( address[], bytes32[], bytes32[], uint8[]) {
-
+    function getTokens() constant returns (address[], bytes32[], bytes32[], uint8[]) {
         bytes32[] memory names = new bytes32[](tokens.length);
         bytes32[] memory symbols = new bytes32[](tokens.length);
         uint8[] memory decimals = new uint8[](tokens.length);
@@ -42,6 +41,22 @@ contract LoyaltyTokenFactory {
         }
 
         return (tokens, names, symbols, decimals);
+    }
+    
+    function getTokensByOwner(address owner) constant returns (address[], bytes32[], bytes32[], uint8[]) {
+        address[] memory ownerTokens = ownerMap[owner];
+        bytes32[] memory names = new bytes32[](ownerTokens.length);
+        bytes32[] memory symbols = new bytes32[](ownerTokens.length);
+        uint8[] memory decimals = new uint8[](ownerTokens.length);
+
+        for (uint i = 0; i < ownerTokens.length; i++) {
+            LoyaltyToken selToken = LoyaltyToken(ownerTokens[i]);
+            names[i] = selToken.getName();
+            symbols[i] = selToken.getSymbol();
+            decimals[i] = selToken.getDecimals();
+        }
+
+        return (ownerTokens, names, symbols, decimals);
     }
 
 }
