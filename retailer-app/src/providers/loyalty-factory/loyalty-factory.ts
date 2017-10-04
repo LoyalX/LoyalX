@@ -5,7 +5,6 @@ import CONFIG from '../../app.config';
 import 'rxjs/add/operator/map';
 import { Web3Provider } from '../web3/web3';
 
-declare var TruffleContract;
 /*
   Generated class for the LoyaltyFactoryProvider provider.
 
@@ -42,7 +41,7 @@ export class LoyaltyFactoryProvider {
 
         return loyaltyFactoryInstance.initialiseRetail(retailAmount, retailName, retailDecimal, retailSymbol, { from: account });
       }).then((result) => {
-        console.log("success Address", result);
+        console.log("handleOnboard", result);
         return result;
       }).catch((err) => {
         console.warn(err.message);
@@ -53,20 +52,16 @@ export class LoyaltyFactoryProvider {
   }
 
   public getTokensAddress() {
-    var promise = new Promise((resolve, reject) => {
 
-      return this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddress())
-        .then((result) => {
-          console.log("tokens Address", result);
-          return result;
-        })
-        .catch((err) => {
-          console.warn(err.message);
-          return err;
-        });
-    });
-
-    return promise;
+    return this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddress())
+      .then((result) => {
+        console.log("getTokensAddress", result);
+        return result;
+      })
+      .catch((err) => {
+        console.warn(err.message);
+        return err;
+      });
   }
 
 
@@ -78,7 +73,7 @@ export class LoyaltyFactoryProvider {
 
         this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensAddressByOwner(account))
           .then((result) => {
-            console.log("tokens Address", result);
+            console.log("getTokensAddressByOwner", result);
             resolve(result);
           })
           .catch((err) => {

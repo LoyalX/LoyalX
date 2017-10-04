@@ -4,13 +4,11 @@ import 'rxjs/add/operator/map';
 import Web3 from 'web3';
 import CONFIG from '../../app.config';
 
-declare var web3: any;
-
 @Injectable()
 export class Web3Provider {
 
   private _web3: Web3;
-  private _provider;
+  private _provider: Web3.providers.HttpProvider;
 
   constructor(public http: Http) {
     if (typeof web3 !== 'undefined') {
@@ -23,9 +21,12 @@ export class Web3Provider {
   }
 
   get web3(): Web3 { return this._web3; }
-  get provider(): Web3 { return this._provider; }
+  get provider(): Web3.providers.HttpProvider { return this._provider; }
 
-  getAccount() {
+  /**
+   * get the first account
+   */
+  getAccount(): Promise<any> {
     var promise = new Promise((resolve, reject) => {
 
       this.web3.eth.getAccounts((error, accounts) => {
@@ -34,6 +35,7 @@ export class Web3Provider {
           reject(error);
         } else {
           var account = accounts[0];
+          console.log("getAccount", account);
           resolve(account);
         }
       });

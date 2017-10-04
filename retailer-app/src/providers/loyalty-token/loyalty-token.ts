@@ -5,7 +5,6 @@ import CONFIG from '../../app.config';
 import 'rxjs/add/operator/map';
 import { Web3Provider } from '../web3/web3';
 
-declare var TruffleContract;
 /*
   Generated class for the LoyaltyTokenProvider provider.
 
@@ -33,14 +32,17 @@ export class LoyaltyTokenProvider {
     });
   }
 
-  public getBalance(retailAddress?: any) {
+  public getBalance(tokenAddress?: any) {
 
     return this.Web3Provider.getAccount().then(account => {
 
-      return this.Contract.deployed().then((loyaltyInstance) => {
-        return loyaltyInstance.balanceOf(retailAddress ? retailAddress : account, { from: account });
+      // if the token address is passed use it else just use the loyalty token address
+      var instancePromice = tokenAddress ? this.Contract.at(tokenAddress) : this.Contract.deployed();
+
+      return instancePromice.then((loyaltyInstance) => {
+        return loyaltyInstance.balanceOf(account);
       }).then(result => {
-        console.log("transfered", result);
+        console.log("getBalance", result);
         return result;
       }).catch(err => {
         console.warn(err.message);
@@ -50,14 +52,17 @@ export class LoyaltyTokenProvider {
     });
   }
 
-  public handleTransfer(amount: number, toAddress: any) {
+  public handleTransfer(amount: number, toAddress: any, tokenAddress?: any) {
 
     return this.Web3Provider.getAccount().then(account => {
 
-      return this.Contract.deployed().then(loyaltyTokenInstance => {
+      // if the token address is passed use it else just use the loyalty token address
+      var instancePromice = tokenAddress ? this.Contract.at(tokenAddress) : this.Contract.deployed();
+
+      return instancePromice.then(loyaltyTokenInstance => {
         return loyaltyTokenInstance.transfer(toAddress, amount, { from: account });
       }).then(result => {
-        console.log("transfered", result);
+        console.log("handleTransfer", result);
         return result;
       }).catch(err => {
         console.warn(err.message);
