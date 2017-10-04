@@ -64,6 +64,29 @@ export class LoyaltyFactoryProvider {
       });
   }
 
+  public getTokens() {
+
+    return this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokens())
+      .then((result) => {
+        var ret = [];
+
+        for (var i = 0; i < result[0].length; i++) {
+          ret.push({
+            address: result[0][i],
+            name: this.Web3Provider.web3.utils.hexToUtf8(result[1][i]),
+            symbol: this.Web3Provider.web3.utils.hexToUtf8(result[2][i]),
+            decimal: result[3][i].toNumber()
+          });
+        }
+
+        console.log("getTokens", ret);
+        return ret;
+      })
+      .catch((err) => {
+        console.warn(err.message);
+        return err;
+      });
+  }
 
   public getTokensAddressByOwner() {
 

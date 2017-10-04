@@ -1,26 +1,21 @@
-import "./LoyaltyToken.sol";
-
 pragma solidity ^0.4.8;
+
+import "./LoyaltyToken.sol";
 
 contract LoyaltyTokenFactory {
 
+    // an array of all tokens addresses
     address[] public tokens;
+    // a map of owener = > array of his tokens
     mapping(address => address[]) ownerMap;
-    
-    //Token Count
-         LoyaltyToken[] tokensArray;
-
 
     function initialiseRetail(uint256 _initialAmount, string _name, uint8 _decimals, string _symbol) returns (address) {
 
         LoyaltyToken newToken = new LoyaltyToken(_initialAmount, _name, _decimals, _symbol);
-        newToken.transfer(msg.sender, _initialAmount);       //the factory will own the created tokens. You must transfer them.
+        newToken.transfer(msg.sender, _initialAmount);  // the factory will own the created tokens. You must transfer them.
 
         ownerMap[msg.sender].push(address(newToken));   // to keep track of who created what
-        tokens.push(address(newToken));   
-        tokensArray.push(newToken);
-
-        // a basic list of all tokens
+        tokens.push(address(newToken));                 // adds the token address to the list
 
         return address(newToken);
     }
@@ -32,20 +27,22 @@ contract LoyaltyTokenFactory {
     function getTokensAddressByOwner(address owner) constant returns (address[]) {
         return ownerMap[owner];
     }
-    
-    //Added for getting Tokens
-    
-    function getNumberOfTokens() returns (uint) {
-    	return tokensArray.length;
+
+    function getTokens() constant returns ( address[], bytes32[], bytes32[], uint8[]) {
+
+        bytes32[] memory names = new bytes32[](tokens.length);
+        bytes32[] memory symbols = new bytes32[](tokens.length);
+        uint8[] memory decimals = new uint8[](tokens.length);
+
+        for (uint i = 0; i < tokens.length; i++) {
+            LoyaltyToken selToken = LoyaltyToken(tokens[i]);
+            names[i] = selToken.getName();
+            symbols[i] = selToken.getSymbol();
+            decimals[i] = selToken.getDecimals();
+        }
+
+        return (tokens, names, symbols, decimals);
     }
 
-    /**
-    * Returns TokenName, Symbol and Amount
-    */
-    function getTokenAtIndex(uint index) returns(bytes32 , bytes32 , uint8 decimal)
- 	 {
- 	 	LoyaltyToken selToken = tokensArray[index];
-    	return (selToken.getName(), selToken.getSymbol() , selToken.getDecimals()) ;
- 	 }
-
 }
+

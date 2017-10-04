@@ -8,9 +8,9 @@ This Token Contract implements the standard token functionality (https://github.
 
 .*/
 
-import "./StandardToken.sol";
-
 pragma solidity ^0.4.8;
+
+import "./StandardToken.sol";
 
 contract LoyaltyToken is StandardToken {
 
@@ -27,10 +27,10 @@ contract LoyaltyToken is StandardToken {
     They allow one to customise the token contract & in no way influences the core functionality.
     Some wallets/interfaces might not even bother to look at this information.
     */
-    string public name = "LOYALTY COIN";                   //fancy name: eg Simon Bucks
-    uint8 public decimals = 18;                //How many decimals to show. ie. There could 1000 base units with 3 decimals. Meaning 0.980 SBX = 980 base units. It's like comparing 1 wei to 1 ether.
-    string public symbol = "LOY";                 //An identifier: eg SBX
-    string public version = '0.1';       //human 0.1 standard. Just an arbitrary versioning scheme.
+    string public name = "LOYALTY COIN";   //fancy name: eg Simon Bucks
+    uint8 public decimals = 18;            //How many decimals to show. ie. There could 1000 base units with 3 decimals. Meaning 0.980 SBX = 980 base units. It's like comparing 1 wei to 1 ether.
+    string public symbol = "LOY";          //An identifier: eg SBX
+    string public version = "0.1";         //human 0.1 standard. Just an arbitrary versioning scheme.
 
     function LoyaltyToken(
         uint256 _initialAmount,
@@ -39,33 +39,30 @@ contract LoyaltyToken is StandardToken {
         string _tokenSymbol
         ) {
         balances[msg.sender] = _initialAmount;    
-      //  users[msg.sender] = _initialAmount;                   // Give the creator all initial tokens
+       // users[msg.sender] = _initialAmount;                   // Give the creator all initial tokens
         totalSupply = _initialAmount;                        // Update total supply
         name = _tokenName;                                   // Set the name for display purposes
         decimals = _decimalUnits;                            // Amount of decimals for display purposes
         symbol = _tokenSymbol;                               // Set the symbol for display purposes
     }
 
-  function getSymbol() constant returns (bytes32)
-    {
+    function getSymbol() constant returns (bytes32) {
         return stringToBytes32(symbol);
     }
 
-    function getName() constant returns (bytes32)
-    {
+    function getName() constant returns (bytes32) {
         return stringToBytes32(name);
     }
 
    
   // stolen from: http://ethereum.stackexchange.com/questions/9142/how-to-convert-a-string-to-bytes32
-  function stringToBytes32(string memory source) returns (bytes32 result) {
-    assembly {
-        result := mload(add(source, 32))
+    function stringToBytes32(string memory source) constant returns (bytes32 result) {
+        assembly {
+            result := mload(add(source, 32))
         }
     }
 
-    function getDecimals() returns (uint8)
-    {
+    function getDecimals() constant returns (uint8) {
         return decimals;
     }
     
