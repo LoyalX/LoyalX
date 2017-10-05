@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform, ViewController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-token';
 
@@ -24,7 +26,8 @@ export class PointTransferPage {
 	isReadyToTransfer: boolean;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
-		public platform: Platform, public viewCtrl: ViewController, formBuilder: FormBuilder, public loyaltyTokenProvider: LoyaltyTokenProvider) {
+		public platform: Platform, public viewCtrl: ViewController, public toastCtrl: ToastController,
+		formBuilder: FormBuilder, public loyaltyTokenProvider: LoyaltyTokenProvider, public qrScanner: QRScanner) {
 
 		this.form = formBuilder.group({
 			amount: ['', Validators.required],
@@ -38,7 +41,37 @@ export class PointTransferPage {
 	}
 
 	extractAddressFromQRCode() {
-		this.form.controls['address'].setValue('0xca6bce95c969c75898770b6059423a187cbc5d10');
+
+		const scanRequestToast = this.toastCtrl.create({
+			message: 'Please place the barcode in front of the web cam',
+			position: 'middle',
+			showCloseButton: true,
+			closeButtonText: 'Ok'
+		})
+		scanRequestToast.present();
+
+		// start scanning
+		let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+
+			scanRequestToast.dismiss();
+
+			this.form.controls['address'].setValue(text);
+
+			this.toastCtrl.create({
+				message: 'Address token scanned successfully',
+				duration: 3000,
+				position: 'middle'
+			}).present();
+
+			this.qrScanner.destroy(); // cleaning up
+			scanSub.unsubscribe(); // stop scanning
+		});
+
+		// show camera preview
+		this.qrScanner.show();
+
+		// wait for user to scan something, then the observable callback will be called
+
 	}
 
 	async onTransferTapped() {

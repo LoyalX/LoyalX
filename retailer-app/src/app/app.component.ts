@@ -11,7 +11,6 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { TokenListPage } from '../pages/token-list/token-list';
-import { PointListPage } from '../pages/point-list/point-list';
 import { OnBoardPage } from '../pages/on-board/on-board';
 
 import { UserData } from '../providers/user-data';
@@ -41,7 +40,6 @@ export class ConferenceApp {
   appPages: PageInterface[] = [
 	{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 0, icon: 'pricetags' },
 	{ title: 'Tokens', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 1, icon: 'basket' },
-	{ title: 'Points', name: 'PointListPage', component: PointListPage, tabComponent: PointListPage, index: 2, icon: 'cash' }
 
   ];
   loggedInPages: PageInterface[] = [

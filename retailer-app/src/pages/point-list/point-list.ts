@@ -50,7 +50,7 @@ export class PointListPage {
 
 	async ionViewDidLoad() {
 
-		this.balance = (await this.loyaltyTokenProvider.getBalance(this.token.address)).toString(10);
+		this.balance = (await this.loyaltyTokenProvider.getBalance(this.token.address)).dividedBy(this.token.decimal).toString(10);
 
 		this.vouchers = [
 			{ price: 25, points: 50 },

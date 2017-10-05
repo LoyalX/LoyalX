@@ -26,27 +26,35 @@
 
     <form *ngIf="form" [formGroup]="form" (ngSubmit)="onTransferTapped()">
         <ion-list>
+            <ion-grid>
 
-            <ion-item>
-                <ion-label stacked>Amount Or Price</ion-label>
-                <ion-input type="number" formControlName="amount"></ion-input>
-            </ion-item>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label stacked>Amount Or Price</ion-label>
+                            <ion-input type="number" formControlName="amount"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
 
-            <ion-item>
 
-                <ion-label stacked>
-                    Address or Destination
-                </ion-label>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label stacked>
+                                Address or Destination
+                            </ion-label>
+                            <ion-input type="text" formControlName="address" ng-value="form.value.amount"></ion-input>
+                            <button ion-button clear icon-only item-right (click)="extractAddressFromQRCode()">
+								<ion-icon name="barcode"></ion-icon>
+								<ion-note margin>Scan Barcode</ion-note>
+							</button>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
 
-                <ion-input type="text" formControlName="address" ng-value="form.value.amount"></ion-input>
 
-                <button ion-button clear icon-only item-right (click)="extractAddressFromQRCode()">
-					<ion-icon name="barcode"></ion-icon>
-					<ion-note margin>Scan Barcode</ion-note>
-				</button>
-
-            </ion-item>
-
+            </ion-grid>
         </ion-list>
 
         <div padding>

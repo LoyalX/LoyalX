@@ -6,6 +6,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -82,7 +83,8 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     SplashScreen,
     Web3Provider,
     LoyaltyTokenProvider,
-    LoyaltyFactoryProvider
+	LoyaltyFactoryProvider,
+	QRScanner
   ]
 })
 export class AppModule { }
