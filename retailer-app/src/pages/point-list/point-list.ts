@@ -3,6 +3,10 @@ import { NavController, NavParams, ModalController, Platform, ViewController } f
 
 import { BrandDetailPage } from '../brand-detail/brand-detail';
 import { OfferCreatePage } from '../offer-create/offer-create';
+import { PointTransferPage } from '../point-transfer/point-transfer';
+
+import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
+import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-token';
 
 /**
  * Generated class for the PointListPage page.
@@ -12,44 +16,55 @@ import { OfferCreatePage } from '../offer-create/offer-create';
  */
 
 @Component({
-  selector: 'page-point-list',
-  templateUrl: 'point-list.html',
+	selector: 'page-point-list',
+	templateUrl: 'point-list.html',
 })
 export class PointListPage {
-  vouchers: Array<{ price: number, points: number }> = [];
-  features: Array<{ name: string, isChecked: boolean }> = [];
+	vouchers: Array<{ price: number, points: number }> = [];
+	features: Array<{ name: string, isChecked: boolean }> = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public platform: Platform, public viewCtrl: ViewController) {
-  }
+	token: any;
+	balance: any;
 
-  presentBrandDetail() {
-    let BrandDetailModal = this.modalCtrl.create(BrandDetailPage, { brandId: 1 });
-    BrandDetailModal.present();
-  }
+	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
+		public platform: Platform, public viewCtrl: ViewController, public loyaltyFactoryProvider: LoyaltyFactoryProvider, public loyaltyTokenProvider: LoyaltyTokenProvider) {
+		this.token = this.navParams.get("token");
+	}
 
-  presentOfferCreate() {
-    let OfferCreateModal = this.modalCtrl.create(OfferCreatePage, { brandId: 1 });
-    OfferCreateModal.present();
-  }
+	presentBrandDetail() {
+		let BrandDetailModal = this.modalCtrl.create(BrandDetailPage, { brandId: 1 });
+		BrandDetailModal.present();
+	}
+
+	presentOfferCreate() {
+		let OfferCreateModal = this.modalCtrl.create(OfferCreatePage, { brandId: 1 });
+		OfferCreateModal.present();
+	}
+
+	presentPointTransfer() {
+		let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { brandId: 1 });
+		PointTransferPageModal.present();
+	}
 
 
 
-  ionViewDidLoad() {
-    this.vouchers = [
-      { price: 25, points: 50 },
-      { price: 50, points: 100 },
-      { price: 100, points: 200 },
-      { price: 25, points: 50 },
-      { price: 25, points: 50 },
-      { price: 25, points: 50 }
-    ];
+	async ionViewDidLoad() {
 
-    this.features = [
-      {name: "Feature 1", isChecked: false},
-      {name: "Feature 2", isChecked: false},
-      {name: "Feature 3", isChecked: false},
-      {name: "Feature 4", isChecked: false}
-    ]
-  }
+		this.balance = (await this.loyaltyTokenProvider.getBalance(this.token.address)).toString(10);
+
+		this.vouchers = [
+			{ price: 25, points: 50 },
+			{ price: 50, points: 100 },
+			{ price: 100, points: 200 },
+			{ price: 25, points: 50 }
+		];
+
+		this.features = [
+			{ name: "Feature 1", isChecked: false },
+			{ name: "Feature 2", isChecked: false },
+			{ name: "Feature 3", isChecked: false }
+		]
+
+	}
 
 }

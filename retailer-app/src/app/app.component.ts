@@ -10,6 +10,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
+import { TokenListPage } from '../pages/token-list/token-list';
 import { PointListPage } from '../pages/point-list/point-list';
 import { OnBoardPage } from '../pages/on-board/on-board';
 
@@ -38,8 +39,10 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-	{ title: 'Points', name: 'PointListPage', component: PointListPage, tabComponent: PointListPage, index: 0, icon: 'cash' },
-	{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 1, icon: 'pricetags' }
+	{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 0, icon: 'pricetags' },
+	{ title: 'Tokens', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 1, icon: 'basket' },
+	{ title: 'Points', name: 'PointListPage', component: PointListPage, tabComponent: PointListPage, index: 2, icon: 'cash' }
+
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
