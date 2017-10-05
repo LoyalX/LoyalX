@@ -33,7 +33,7 @@ export class LoyaltyFactoryProvider {
   }
 
   public handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
-    retailAmount = retailAmount * 10 ^ retailDecimal;
+    retailAmount *= Math.pow(10, retailDecimal);
 
     return this.Web3Provider.getAccount().then((account) => {
 
@@ -114,7 +114,7 @@ export class LoyaltyFactoryProvider {
       });
   }
   public getTokensByOwner() {
-    
+
     return this.Contract.deployed().then((loyaltyFactoryInstance) => loyaltyFactoryInstance.getTokensByOwner())
       .then((result) => {
         var ret = this._parseTokensData(result);
