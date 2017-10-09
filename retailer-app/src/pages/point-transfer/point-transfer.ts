@@ -89,7 +89,8 @@ export class PointTransferPage {
 		if (!this.form.valid) { return; }
 
 		let values = this.form.value;
-		console.log(this.token);
+		values.amount *= Math.pow(10, this.token.decimal);
+		
 		await this.loyaltyTokenProvider.handleTransfer(values.amount, values.address, this.token.address);
 		this.viewCtrl.dismiss(this.form.value);
 	}
