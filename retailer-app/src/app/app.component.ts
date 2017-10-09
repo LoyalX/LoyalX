@@ -66,7 +66,7 @@ export class ConferenceApp {
         if (hasSeenTutorial) {
           this.rootPage = TabsPage;
         } else {
-          this.rootPage = TutorialPage;
+			this.rootPage = TabsPage;
         }
         this.platformReady()
       });
