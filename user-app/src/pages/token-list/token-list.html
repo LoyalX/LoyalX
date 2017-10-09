@@ -1,0 +1,23 @@
+<!--
+	Generated template for the TokenListPage page.
+
+	See http://ionicframework.com/docs/components/#navigation for more info on
+	Ionic pages and navigation.
+  -->
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+		<ion-icon name="menu"></ion-icon>
+	  </button>
+        <ion-title>Tokens</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset>
+        <button ion-item *ngFor="let token of tokens" (click)="navigateToPoints(token)">
+				<h2> {{ token.name }} </h2>
+				<ion-note item-end>{{ token.symbol }}</ion-note>
+			  </button>
+    </ion-list>
+</ion-content>

@@ -52,6 +52,7 @@ export class PointTransferPage {
 
 		// start scanning
 		let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+			// wait for user to scan something, then the observable callback will be called
 
 			scanRequestToast.dismiss();
 
@@ -67,10 +68,12 @@ export class PointTransferPage {
 			scanSub.unsubscribe(); // stop scanning
 		});
 
-		// show camera preview
+		// Make the webview transparent so the video preview is visible behind it.
 		this.qrScanner.show();
 
-		// wait for user to scan something, then the observable callback will be called
+		// Make any opaque HTML elements transparent here to avoid
+		// covering the video.
+		window.document.querySelector('ion-content').classList.add('transparent-background');
 
 	}
 

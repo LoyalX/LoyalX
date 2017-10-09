@@ -2,14 +2,11 @@ page-point-transfer {
     .transparentBody {
         background: transparent !important;
     }
-    .no-background {
-        background: none !important;
+    .transparent-background {
+        background: none transparent !important;
     }
-    .qrscanner {
-        background: none !important;
-        &-area {
+    .qrscanner-area {
             background: url(../../assets/img/scanner.svg) no-repeat center center !important;
             background-size: contain !important;
-        }
     }
 }
