@@ -36,6 +36,7 @@ export class PointListPage {
 		public loyaltyTokenProvider: LoyaltyTokenProvider
 	) {
 		this.token = this.navParams.get("token");
+		console.log(this.token);
 	}
 
 	presentBrandDetail() {
@@ -49,9 +50,10 @@ export class PointListPage {
 	}
 
 	presentPointTransfer() {
-		let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
-		//PointTransferPageModal.present();
-		this.navCtrl.push(PointTransferPage);
+		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
+		PointTransferPageModal.present();*/
+
+		this.navCtrl.push(PointTransferPage, { token: this.token });
 	}
 
 

@@ -28,6 +28,7 @@ export class TokenListPage {
 	}
 
 	navigateToPoints(token) {
+		console.log(token);
 		this.navCtrl.push(PointListPage, { token: token });
 	}
 

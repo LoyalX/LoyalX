@@ -21,13 +21,15 @@ import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-toke
 export class PointTransferPage {
 
 	company: any;
-
+	token: any;
 	form: FormGroup;
 	isReadyToTransfer: boolean;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
 		public platform: Platform, public viewCtrl: ViewController, public toastCtrl: ToastController,
 		formBuilder: FormBuilder, public loyaltyTokenProvider: LoyaltyTokenProvider, public qrScanner: QRScanner) {
+
+		this.token = this.navParams.get("token");
 
 		this.form = formBuilder.group({
 			amount: ['', Validators.required],
@@ -78,7 +80,7 @@ export class PointTransferPage {
 		if (!this.form.valid) { return; }
 
 		let values = this.form.value;
-		await this.loyaltyTokenProvider.handleTransfer(values.amount, values.address);
+		await this.loyaltyTokenProvider.handleTransfer(values.amount, values.address, this.token.address);
 		this.viewCtrl.dismiss(this.form.value);
 	}
 

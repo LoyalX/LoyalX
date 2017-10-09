@@ -36,8 +36,10 @@ export class PointListPage {
 	}
 
 	presentPointTransfer() {
-		let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { brandId: 1 });
-		PointTransferPageModal.present();
+		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
+		PointTransferPageModal.present();*/
+
+		this.navCtrl.push(PointTransferPage, { token: this.token });
 	}
 
 
