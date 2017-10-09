@@ -6,27 +6,27 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>My Code</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>My Code</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content class="padding">
-  <div>
-    <ion-card text-center>
-      <div padding>
-        <qr-code [padding]="20" [background]="'blue'" [foreground]="'white'" [value]="'All QR Code data goes here!'" [size]="350"></qr-code>
-      </div>
-      <ion-card-content>
-        <ion-card-title>
-          You Address barcode.
-        </ion-card-title>
-        <p>
-          Provide it to anyone for easy access to your address.
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </div>
+    <div>
+        <ion-card text-center>
+            <div padding>
+                <qr-code [padding]="20" [value]="address" [size]="350"></qr-code>
+            </div>
+            <ion-card-content>
+                <ion-card-title>
+                    You Address barcode.
+                </ion-card-title>
+                <p>
+                    Provide it to anyone for easy access to your address.
+                </p>
+            </ion-card-content>
+        </ion-card>
+    </div>
 
 </ion-content>
