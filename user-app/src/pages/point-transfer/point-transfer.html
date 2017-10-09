@@ -13,53 +13,62 @@
 
         <ion-buttons start>
             <button ion-button (click)="dismiss()">
-      <span ion-text showWhen="ios">Cancel</span>
-      <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
-    </button>
+                <span ion-text showWhen="ios">Cancel</span>
+                <ion-icon name="md-close" showWhen="android, windows"></ion-icon>
+            </button>
         </ion-buttons>
 
     </ion-toolbar>
 </ion-header>
 
 
-<ion-content>
+<ion-content style="background: none transparent;">
 
-    <form *ngIf="form" [formGroup]="form" (ngSubmit)="onTransferTapped()">
-        <ion-list>
-            <ion-grid>
-
-                <ion-row>
-                    <ion-col>
-                        <ion-item>
-                            <ion-label stacked>Amount Or Price</ion-label>
-                            <ion-input type="number" formControlName="amount"></ion-input>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
-
-
-                <ion-row>
-                    <ion-col>
-                        <ion-item>
-                            <ion-label stacked>
-                                Address or Destination
-                            </ion-label>
-                            <ion-input type="text" formControlName="address" ng-value="form.value.amount"></ion-input>
-                            <button ion-button clear icon-only item-right (click)="extractAddressFromQRCode()">
-								<ion-icon name="barcode"></ion-icon>
-								<ion-note margin>Scan Barcode</ion-note>
-							</button>
-                        </ion-item>
-                    </ion-col>
-                </ion-row>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card no-padding no-marign full>
+                    <form *ngIf="form" [formGroup]="form" (ngSubmit)="onTransferTapped()">
+                        <ion-list>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label stacked>Amount Or Price</ion-label>
+                                        <ion-input type="number" formControlName="amount"></ion-input>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
 
 
-            </ion-grid>
-        </ion-list>
+                            <ion-row>
+                                <ion-col>
+                                    <ion-item>
+                                        <ion-label stacked>
+                                            Address or Destination
+                                        </ion-label>
+                                        <ion-input type="text" formControlName="address" ng-value="form.value.amount"></ion-input>
+                                        <button ion-button clear icon-only item-right (click)="extractAddressFromQRCode()">
+                                            <ion-icon name="barcode"></ion-icon>
+                                            <ion-note margin>Scan Barcode</ion-note>
+                                        </button>
+                                    </ion-item>
+                                </ion-col>
+                            </ion-row>
+                        </ion-list>
 
-        <div padding>
-            <button type="submit" ion-button color="primary" block [disabled]="!isReadyToTransfer">Transfer</button>
-        </div>
-    </form>
+                        <div padding>
+                            <button type="submit" ion-button color="primary" block [disabled]="!isReadyToTransfer">Transfer</button>
+                        </div>
+                    </form>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row text-center>
+            <ion-col text-center>
+                <div text-center class="qrscanner-area" style="height: 500px; width: 500px;"></div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

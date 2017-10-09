@@ -20,14 +20,20 @@ import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-toke
 })
 export class PointTransferPage {
 
-	company: any;
 	token: any;
 	form: FormGroup;
 	isReadyToTransfer: boolean;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams,
-		public platform: Platform, public viewCtrl: ViewController, public toastCtrl: ToastController,
-		formBuilder: FormBuilder, public loyaltyTokenProvider: LoyaltyTokenProvider, public qrScanner: QRScanner) {
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public platform: Platform,
+		public viewCtrl: ViewController,
+		public toastCtrl: ToastController,
+		public formBuilder: FormBuilder,
+		public loyaltyTokenProvider: LoyaltyTokenProvider,
+		public qrScanner: QRScanner,
+	) {
 
 		this.token = this.navParams.get("token");
 
@@ -54,6 +60,7 @@ export class PointTransferPage {
 
 		// start scanning
 		let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+			// wait for user to scan something, then the observable callback will be called
 
 			scanRequestToast.dismiss();
 
@@ -69,10 +76,12 @@ export class PointTransferPage {
 			scanSub.unsubscribe(); // stop scanning
 		});
 
-		// show camera preview
+		// Make the webview transparent so the video preview is visible behind it.
 		this.qrScanner.show();
 
-		// wait for user to scan something, then the observable callback will be called
+		// Make any opaque HTML elements transparent here to avoid
+		// covering the video.
+		window.document.querySelector('ion-content').classList.add('transparent-background');
 
 	}
 
