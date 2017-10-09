@@ -26,23 +26,30 @@ export class PointListPage {
 	token: any;
 	balance: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
-		public platform: Platform, public viewCtrl: ViewController, public loyaltyFactoryProvider: LoyaltyFactoryProvider, public loyaltyTokenProvider: LoyaltyTokenProvider) {
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public modalCtrl: ModalController,
+		public platform: Platform,
+		public viewCtrl: ViewController,
+		public loyaltyFactoryProvider: LoyaltyFactoryProvider,
+		public loyaltyTokenProvider: LoyaltyTokenProvider
+	) {
 		this.token = this.navParams.get("token");
 	}
 
 	presentBrandDetail() {
-		let BrandDetailModal = this.modalCtrl.create(BrandDetailPage, { brandId: 1 });
+		let BrandDetailModal = this.modalCtrl.create(BrandDetailPage, { token: this.token });
 		BrandDetailModal.present();
 	}
 
 	presentOfferCreate() {
-		let OfferCreateModal = this.modalCtrl.create(OfferCreatePage, { brandId: 1 });
+		let OfferCreateModal = this.modalCtrl.create(OfferCreatePage, { token: this.token });
 		OfferCreateModal.present();
 	}
 
 	presentPointTransfer() {
-		let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { brandId: 1 });
+		let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
 		//PointTransferPageModal.present();
 		this.navCtrl.push(PointTransferPage);
 	}

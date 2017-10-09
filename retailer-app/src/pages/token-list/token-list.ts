@@ -14,13 +14,17 @@ import { PointListPage } from '../point-list/point-list';
 
 @IonicPage()
 @Component({
-  selector: 'page-token-list',
-  templateUrl: 'token-list.html',
+	selector: 'page-token-list',
+	templateUrl: 'token-list.html',
 })
 export class TokenListPage {
 	tokens: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public loyaltyFactoryProvider: LoyaltyFactoryProvider) {
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public loyaltyFactoryProvider: LoyaltyFactoryProvider
+	) {
 	}
 
 	navigateToPoints(token) {
@@ -28,8 +32,8 @@ export class TokenListPage {
 	}
 
 
-  async ionViewDidLoad() {
-	this.tokens = await this.loyaltyFactoryProvider.getTokens();
-}
+	async ionViewDidLoad() {
+		this.tokens = await this.loyaltyFactoryProvider.getTokens();
+	}
 
 }

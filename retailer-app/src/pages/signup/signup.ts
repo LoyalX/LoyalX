@@ -18,7 +18,10 @@ export class SignupPage {
   signup: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(public navCtrl: NavController, public userData: UserData) {}
+  constructor(
+    public navCtrl: NavController,
+    public userData: UserData
+  ) { }
 
   onSignup(form: NgForm) {
     this.submitted = true;

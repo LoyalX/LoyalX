@@ -47,6 +47,8 @@ export class OnBoardPage {
 		}
 		let formValues = this.form.value;
 		this.loyaltyFactoryProvider.handleOnboard(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
+		this.loyaltyFactoryProvider.getTokens();
+		this.loyaltyFactoryProvider.getTokensAddress()
 	}
 
 	presentBrandDetail() {
