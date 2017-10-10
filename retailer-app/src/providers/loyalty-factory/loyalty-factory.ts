@@ -33,7 +33,7 @@ export class LoyaltyFactoryProvider {
   }
 
   public async handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
-    
+
     retailAmount *= Math.pow(10, retailDecimal);
     try {
       var contract = <any>await this.getContract();
@@ -46,7 +46,7 @@ export class LoyaltyFactoryProvider {
       return result;
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
 
@@ -63,7 +63,7 @@ export class LoyaltyFactoryProvider {
 
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
 
@@ -81,7 +81,7 @@ export class LoyaltyFactoryProvider {
 
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
 
@@ -112,7 +112,7 @@ export class LoyaltyFactoryProvider {
       return ret;
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
   public async getTokensByOwner() {
@@ -128,7 +128,7 @@ export class LoyaltyFactoryProvider {
       return ret;
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
 

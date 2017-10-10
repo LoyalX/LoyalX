@@ -43,7 +43,7 @@ export class LoyaltyTokenProvider {
       return result;
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
 
@@ -61,7 +61,7 @@ export class LoyaltyTokenProvider {
       return result;
     } catch (err) {
       console.warn(err.message);
-      return err;
+      throw err;
     }
   }
 
