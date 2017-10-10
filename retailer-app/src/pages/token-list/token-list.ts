@@ -34,7 +34,7 @@ export class TokenListPage {
 
 
 	async ionViewDidLoad() {
-		this.tokens = await this.loyaltyFactoryProvider.getTokens();
+		this.tokens = await this.loyaltyFactoryProvider.getTokensByOwner();
 	}
 
 }
