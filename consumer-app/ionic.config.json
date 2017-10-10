@@ -1,8 +1,0 @@
-{
-  "name": "Loyalty-Chain",
-  "app_id": "",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
-}
