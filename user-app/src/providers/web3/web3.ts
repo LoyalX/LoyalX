@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import Web3 from 'web3';
 import CONFIG from '../../app.config';
@@ -10,7 +9,7 @@ export class Web3Provider {
   private _web3: Web3;
   private _provider: Web3.providers.HttpProvider;
 
-  constructor(public http: Http) {
+  constructor() {
     if (typeof web3 !== 'undefined') {
       this._provider = web3.currentProvider;
       this._web3 = new Web3(web3.currentProvider);
@@ -26,7 +25,7 @@ export class Web3Provider {
   /**
    * get the first account
    */
-  getAccount(): Promise<any> {
+  public getAccount(): Promise<any> {
     var promise = new Promise((resolve, reject) => {
 
       this.web3.eth.getAccounts((error, accounts) => {

@@ -5,70 +5,64 @@ import CONFIG from '../../app.config';
 import 'rxjs/add/operator/map';
 import { Web3Provider } from '../web3/web3';
 
-/*
-  Generated class for the LoyaltyTokenProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class LoyaltyTokenProvider {
 
-  Contract;
+  private _contract;
 
-  constructor(public http: Http, public Web3Provider: Web3Provider) {
-    this._fetchContract();
-    console.log('Hello LoyaltyTokenProvider Provider');
-  }
+  constructor(public http: Http, public Web3Provider: Web3Provider) { }
 
-  private _fetchContract() {
-    this.http.get(`${CONFIG.CONTRACTS_URL}/LoyaltyToken.json`).subscribe(data => {
-      // Get the necessary contract artifact file and instantiate it with truffle-contract.
-      var LoyaltyArtifact = data.json();
-      this.Contract = TruffleContract(LoyaltyArtifact);
-
-      // Set the provider for our contract.
-      this.Contract.setProvider(this.Web3Provider.provider);
-    });
-  }
-
-  public getBalance(tokenAddress?: any) {
-
-    return this.Web3Provider.getAccount().then(account => {
-
-      // if the token address is passed use it else just use the loyalty token address
-      var instancePromice = tokenAddress ? this.Contract.at(tokenAddress) : this.Contract.deployed();
-
-      return instancePromice.then((loyaltyInstance) => {
-        return loyaltyInstance.balanceOf(account);
-      }).then(result => {
-        console.log("getBalance", result);
-        return result;
-      }).catch(err => {
-        console.warn(err.message);
-        return err;
-      });
+  async getContract() {
+    var promise = new Promise((resolve, reject) => {
+      if (this._contract) {
+        resolve(this._contract);
+      } else {
+        this.http.get(`${CONFIG.CONTRACTS_URL}/LoyaltyToken.json`).subscribe(data => {
+          // Get the necessary contract artifact file and instantiate it with truffle-contract.
+          var LoyaltyFactoryArtifact = data.json();
+          this._contract = TruffleContract(LoyaltyFactoryArtifact);
+          //this._contract = new this.Web3Provider.web3.eth.Contract(LoyaltyFactoryArtifact);
+          // Set the provider for our contract.
+          this._contract.setProvider(this.Web3Provider.provider);
+          resolve(this._contract);
+        });
+      }
 
     });
+    return promise;
   }
 
-  public handleTransfer(amount: number, toAddress: any, tokenAddress?: any) {
+  public async getBalance(tokenAddress?: any) {
+    try {
+      var contract = <any>await this.getContract();
+      var account = await this.Web3Provider.getAccount();
+      var loyaltyTokenInstance = tokenAddress ? contract.at(tokenAddress) : await contract.deployed();
+      var result = await loyaltyTokenInstance.balanceOf(account);
 
-    return this.Web3Provider.getAccount().then(account => {
+      console.log("getBalance", result);
+      return result;
+    } catch (err) {
+      console.warn(err.message);
+      return err;
+    }
+  }
 
-      // if the token address is passed use it else just use the loyalty token address
-      var instancePromice = tokenAddress ? this.Contract.at(tokenAddress) : this.Contract.deployed();
+  public async handleTransfer(amount: number, toAddress: any, tokenAddress?: any) {
 
-      return instancePromice.then(loyaltyTokenInstance => {
-        return loyaltyTokenInstance.transfer(toAddress, amount, { from: account });
-      }).then(result => {
-        console.log("handleTransfer", result);
-        return result;
-      }).catch(err => {
-        console.warn(err.message);
-        return err;
-      });
-    });
+    try {
+      var contract = <any>await this.getContract();
+      var account = await this.Web3Provider.getAccount();
+      var loyaltyTokenInstance = tokenAddress ? contract.at(tokenAddress) : await contract.deployed();
+
+
+      var result = await loyaltyTokenInstance.transfer(toAddress, amount, { from: account });
+
+      console.log("handleTransfer", result);
+      return result;
+    } catch (err) {
+      console.warn(err.message);
+      return err;
+    }
   }
 
 }
