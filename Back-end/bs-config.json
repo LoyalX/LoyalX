@@ -1,6 +1,9 @@
 {
+  "open": false,
   "server": {
-    "baseDir": ["./src", "./build/contracts"]
+    "baseDir": [
+      "./build/contracts"
+    ]
   },
-  "cors":true
+  "cors": true
 }
