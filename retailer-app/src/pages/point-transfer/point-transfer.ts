@@ -19,9 +19,12 @@ import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-toke
 	templateUrl: 'point-transfer.html',
 })
 export class PointTransferPage {
-
+	loyaltyFactoryProvider: any;
+	tokens: any;
+	tokenIndex: any;
 	token: any;
 	form: FormGroup;
+	scannerStatus: QRScannerStatus;
 	isReadyToTransfer: boolean;
 
 	constructor(
@@ -46,15 +49,16 @@ export class PointTransferPage {
 			this.isReadyToTransfer = this.form.valid;
 		});
 
+		this.qrScanner.getStatus().then(status => this.scannerStatus = status);
+
 	}
 
 	extractAddressFromQRCode() {
 
 		const scanRequestToast = this.toastCtrl.create({
-			message: 'Please place the barcode in front of the web cam',
-			position: 'middle',
-			showCloseButton: true,
-			closeButtonText: 'Ok'
+			message: 'Please place the barcode in front of the cam',
+			duration: 3000,
+			position: 'middle'
 		})
 		scanRequestToast.present();
 
@@ -72,17 +76,37 @@ export class PointTransferPage {
 				position: 'middle'
 			}).present();
 
-			this.qrScanner.destroy(); // cleaning up
+			/* cleaing up */
+			this.qrScanner.pausePreview();
+			this.qrScanner.hide();
+			this.qrScanner.destroy();
+			/* cleaing up */
+
 			scanSub.unsubscribe(); // stop scanning
+
+			this.qrScanner.getStatus().then(status => this.scannerStatus = status);
 		});
 
 		// Make the webview transparent so the video preview is visible behind it.
-		this.qrScanner.show();
+		this.qrScanner.show().then(status => this.scannerStatus = status);
 
-		// Make any opaque HTML elements transparent here to avoid
-		// covering the video.
+		// Make any opaque HTML elements transparent here to avoid covering the video.
 		window.document.querySelector('ion-content').classList.add('transparent-background');
 
+	}
+
+	async ionViewDidLoad() {
+		this.tokenIndex = this.navParams.get("tokenIndex");
+		this.token = this.navParams.get("token");
+
+		if (!this.token && this.tokenIndex) {
+			this.tokens = await this.loyaltyFactoryProvider.getTokensByOwner();
+			this.token = this.tokens[this.tokenIndex];
+		}
+	}
+
+	isReadyToShowScanRec() {
+		return this.scannerStatus.showing;
 	}
 
 	async onTransferTapped() {
@@ -90,7 +114,7 @@ export class PointTransferPage {
 
 		let values = this.form.value;
 		values.amount *= Math.pow(10, this.token.decimal);
-		
+
 		await this.loyaltyTokenProvider.handleTransfer(values.amount, values.address, this.token.address);
 		this.viewCtrl.dismiss(this.form.value);
 	}

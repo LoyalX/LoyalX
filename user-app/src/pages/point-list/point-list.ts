@@ -20,8 +20,9 @@ import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-toke
 })
 export class PointListPage {
 	vouchers: Array<{ price: number, points: number }> = [];
-	features: Array<{ name: string, isChecked: boolean }> = [];
 
+	tokens: any;
+	tokenIndex: any;
 	token: any;
 	balance: any;
 
@@ -39,12 +40,19 @@ export class PointListPage {
 		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
 		PointTransferPageModal.present();*/
 
-		this.navCtrl.push(PointTransferPage, { token: this.token });
+		this.navCtrl.push('PointTransferPage',  { token: this.token, tokenIndex: this.tokenIndex });
 	}
 
 
 
 	async ionViewDidLoad() {
+		this.tokenIndex = this.navParams.get("tokenIndex");
+		this.token = this.navParams.get("token");
+
+		if(!this.token && this.tokenIndex) {
+			this.tokens = await this.loyaltyFactoryProvider.getTokens();
+			this.token = this.tokens[this.tokenIndex];
+		}
 
 		let tempBalance = (await this.loyaltyTokenProvider.getBalance(this.token.address));
 		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);

@@ -1,14 +1,4 @@
-page-point-transfer {
-    .transparentBody {
-        background: transparent !important;
-    }
-    .transparent-background {
-        background: none transparent !important;
-    }
-    .qrscanner-area {
-        background: url(../../assets/img/scanner.svg) no-repeat center center !important;
-        background-size: contain !important;
-    }
+page-error {
     .container {
         display: flex;
         /* establish flex container */

@@ -15,7 +15,7 @@
 
 <ion-content>
     <ion-list inset>
-        <button ion-item *ngFor="let token of tokens" (click)="navigateToPoints(token)">
+        <button ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
 				<h2> {{ token.name }} </h2>
 				<ion-note item-end>{{ token.symbol }}</ion-note>
 			  </button>

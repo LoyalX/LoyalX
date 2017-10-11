@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
-
-import { PointListPage } from '../point-list/point-list';
-
 /**
  * Generated class for the TokenListPage page.
  *
@@ -23,17 +20,27 @@ export class TokenListPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
+		public events: Events,
 		public loyaltyFactoryProvider: LoyaltyFactoryProvider
 	) {
 	}
 
-	navigateToPoints(token) {
-		console.log(token);
-		this.navCtrl.push(PointListPage, { token: token });
+	navigateToPoints(tokenIndex) {
+		this.navCtrl.push('PointListPage', { token: this.tokens[tokenIndex], tokenIndex: tokenIndex });
 	}
 
+	ionViewWillEnter() {
+		// Fire an event to enable back the split plane in this page
+		this.events.publish('errorPage:leave');
+	}
 
-	async ionViewDidLoad() {
+	async ionViewDidEnter() {
+		setTimeout(async () => {
+			let tokens = await this.loyaltyFactoryProvider.getTokensByOwner();
+			if (this.tokens.length !== tokens.length) {
+				this.tokens = tokens;
+			}
+		}, 4000);
 		this.tokens = await this.loyaltyFactoryProvider.getTokensByOwner();
 	}
 

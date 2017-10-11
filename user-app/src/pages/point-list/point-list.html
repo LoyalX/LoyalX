@@ -14,7 +14,7 @@
 
         <ion-row>
             <ion-col text-center>
-                <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ token.symbol }} </span> </h1>
+                <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ (token)?.symbol }} </span> </h1>
                 <button ion-button full color="google" (click)="presentPointTransfer()">Transfer Points</button>
             </ion-col>
         </ion-row>
@@ -27,7 +27,7 @@
                         <ion-grid>
                             <ion-row>
                                 <ion-col ion-text text-center padding>
-                                    <h1 ion-text color="primary"> {{ voucher.price }} {{ token.symbol }} </h1>
+                                    <h1 ion-text color="primary"> {{ voucher.price }} {{ (token)?.symbol }} </h1>
                                 </ion-col>
                             </ion-row>
 

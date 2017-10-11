@@ -17,6 +17,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
+import { ErrorPage } from '../pages/error/error';
 import { TokenListPage } from '../pages/token-list/token-list';
 import { PointListPage } from '../pages/point-list/point-list';
 import { OnBoardPage } from '../pages/on-board/on-board';
@@ -43,7 +44,8 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
 	OfferCreatePage,
 	PointTransferPage,
 	OnBoardPage,
-	TokenListPage
+	TokenListPage,
+	ErrorPage
   ],
   imports: [
     BrowserModule,
@@ -53,10 +55,12 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
-        { component: SignupPage, name: 'SignupPage', segment: 'signup' },
-		{ component: PointListPage, name: 'PointListPage', segment: 'pointList' },
+		{ component: SignupPage, name: 'SignupPage', segment: 'signup' },
+		{ component: ErrorPage, name: 'ErrorPage', segment: 'error' },
 		{ component: OnBoardPage, name: 'OnBoardPage', segment: 'onBoard' },
-		{ component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' }
+		{ component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
+		{ component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
+		{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' }
 
       ]
     }),
@@ -66,7 +70,8 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
   entryComponents: [
     ConferenceApp,
     LoginPage,
-    SignupPage,
+	SignupPage,
+	ErrorPage,
     TabsPage,
     TutorialPage,
     PointListPage,

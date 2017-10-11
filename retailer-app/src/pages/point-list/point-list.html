@@ -1,16 +1,9 @@
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+		<ion-icon name="menu"></ion-icon>
+		</button>
         <ion-title>Points</ion-title>
-
-        <ion-buttons end>
-            <button ion-button icon-only (click)="presentBrandDetail()">
-            <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-          </button>
-        </ion-buttons>
-
     </ion-navbar>
 </ion-header>
 
@@ -21,7 +14,7 @@
 
         <ion-row>
             <ion-col text-center>
-                <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ token.symbol }} </span> </h1>
+                <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ (token)?.symbol }} </span> </h1>
                 <button ion-button full color="google" (click)="presentPointTransfer()">Transfer Points</button>
             </ion-col>
         </ion-row>
@@ -34,7 +27,7 @@
                         <ion-grid>
                             <ion-row>
                                 <ion-col ion-text text-center padding>
-                                    <h1 ion-text color="primary"> {{ voucher.price }} {{ token.symbol }} </h1>
+                                    <h1 ion-text color="primary"> {{ voucher.price }} {{ (token)?.symbol }} </h1>
                                 </ion-col>
                             </ion-row>
 

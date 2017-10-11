@@ -3,7 +3,6 @@ import { NavController, NavParams, ModalController, Platform, ViewController } f
 
 import { BrandDetailPage } from '../brand-detail/brand-detail';
 import { OfferCreatePage } from '../offer-create/offer-create';
-import { PointTransferPage } from '../point-transfer/point-transfer';
 
 import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
 import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-token';
@@ -23,6 +22,8 @@ export class PointListPage {
 	vouchers: Array<{ price: number, points: number }> = [];
 	features: Array<{ name: string, isChecked: boolean }> = [];
 
+	tokens: any;
+	tokenIndex: any;
 	token: any;
 	balance: any;
 
@@ -35,8 +36,6 @@ export class PointListPage {
 		public loyaltyFactoryProvider: LoyaltyFactoryProvider,
 		public loyaltyTokenProvider: LoyaltyTokenProvider
 	) {
-		this.token = this.navParams.get("token");
-		console.log(this.token);
 	}
 
 	presentBrandDetail() {
@@ -53,14 +52,21 @@ export class PointListPage {
 		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
 		PointTransferPageModal.present();*/
 
-		this.navCtrl.push(PointTransferPage, { token: this.token });
+		this.navCtrl.push('PointTransferPage',  { token: this.token, tokenIndex: this.tokenIndex });
 	}
 
-
-
 	async ionViewDidLoad() {
+		this.tokenIndex = this.navParams.get("tokenIndex");
+		this.token = this.navParams.get("token");
+
+		if(!this.token && this.tokenIndex) {
+			this.tokens = await this.loyaltyFactoryProvider.getTokensByOwner();
+			this.token = this.tokens[this.tokenIndex];
+		}
+
 		let tempBalance = (await this.loyaltyTokenProvider.getBalance(this.token.address));
 		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
+
 		this.vouchers = [
 			{ price: 25, points: 50 },
 			{ price: 50, points: 100 },
