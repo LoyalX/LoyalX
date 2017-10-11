@@ -22,7 +22,7 @@ export class AddressCodePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public web3Provider: Web3Provider) {
   }
 
-  asybc ionViewDidLoad() {
+  async ionViewDidLoad() {
     console.log('ionViewDidLoad AddressCodePage');
     this.address = await this.web3Provider.getAccount();
   }
