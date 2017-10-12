@@ -16,6 +16,9 @@
     <div>
         <ion-card text-center>
             <div padding>
+                <ion-note class="selectable">{{ address }}</ion-note>
+            </div>
+            <div>
                 <qr-code [padding]="20" [value]="address" [size]="350"></qr-code>
             </div>
             <ion-card-content>

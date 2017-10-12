@@ -10,8 +10,8 @@ import { TokenListPage } from '../token-list/token-list';
 })
 export class TabsPage {
   // set the root pages for each tab
-  tab1Root: any = AddressCodePage;
-  tab2Root: any = TokenListPage;
+  tab1Root: any = TokenListPage;
+  tab2Root: any = AddressCodePage;
 
   mySelectedIndex: number;
 

@@ -72,6 +72,7 @@ import { ErrorPage } from "../pages/error/error";
 		ConferenceApp,
 		LoginPage,
 		SignupPage,
+		ErrorPage,
 		TabsPage,
 		TutorialPage,
 		PointListPage,

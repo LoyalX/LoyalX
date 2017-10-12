@@ -64,3 +64,10 @@
 .no-scroll .scroll-content {
     overflow: hidden;
 }
+
+.selectable {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
