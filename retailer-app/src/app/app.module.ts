@@ -6,9 +6,13 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { IonicStorageModule } from '@ionic/storage';
+
+import { OnBoardPageModule } from '../pages/on-board/on-board.module';
+import { BrandDetailPageModule } from '../pages/brand-detail/brand-detail.module';
+import { OfferCreatePageModule } from '../pages/offer-create/offer-create.module';
+import { ErrorPageModule } from '../pages/error/error.module';
 
 import { ConferenceApp } from './app.component';
 
@@ -19,7 +23,9 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { ErrorPage } from '../pages/error/error';
 import { TokenListPage } from '../pages/token-list/token-list';
-import { PointListPage } from '../pages/point-list/point-list';
+import { PointListPage } from '../pages/point-list/point-list'
+import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
+import { TokenListPageModule } from '../pages/token-list/token-list.module';
 import { OnBoardPage } from '../pages/on-board/on-board';
 import { BrandDetailPage } from '../pages/brand-detail/brand-detail';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
@@ -40,16 +46,16 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     TabsPage,
     TutorialPage,
     PointListPage,
-    BrandDetailPage,
-	OfferCreatePage,
-	PointTransferPage,
-	OnBoardPage,
-	TokenListPage,
-	ErrorPage
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+	HttpModule,
+	OnBoardPageModule,
+	BrandDetailPageModule,
+	OfferCreatePageModule,
+	PointTransferPageModule,
+	TokenListPageModule,
+	ErrorPageModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -75,7 +81,6 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     TabsPage,
     TutorialPage,
     PointListPage,
-    BrandDetailPage,
 	OfferCreatePage,
 	PointTransferPage,
 	OnBoardPage,
@@ -88,8 +93,7 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     SplashScreen,
     Web3Provider,
     LoyaltyTokenProvider,
-	LoyaltyFactoryProvider,
-	QRScanner
+	LoyaltyFactoryProvider
   ]
 })
 export class AppModule { }

@@ -8,9 +8,12 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { QRScanner } from '@ionic-native/qr-scanner';
 
-import { QRCodeModule } from 'angular2-qrcode';
-
 import { IonicStorageModule } from '@ionic/storage';
+
+import { AddressCodePageModule } from '../pages/address-code/address-code.module';
+import { ErrorPageModule } from '../pages/error/error.module';
+import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
+import { TokenListPageModule } from '../pages/token-list/token-list.module';
 
 import { ConferenceApp } from './app.component';
 
@@ -38,19 +41,17 @@ import { ErrorPage } from "../pages/error/error";
 		ConferenceApp,
 		LoginPage,
 		SignupPage,
-		ErrorPage,
 		TabsPage,
 		TutorialPage,
 		PointListPage,
-		OfferCreatePage,
-		PointTransferPage,
-		TokenListPage,
-		AddressCodePage
 	],
 	imports: [
 		BrowserModule,
 		HttpModule,
-		QRCodeModule,
+		AddressCodePageModule,
+		TokenListPageModule,
+		PointTransferPageModule,
+		ErrorPageModule,
 		IonicModule.forRoot(ConferenceApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -88,8 +89,7 @@ import { ErrorPage } from "../pages/error/error";
 		SplashScreen,
 		Web3Provider,
 		LoyaltyTokenProvider,
-		LoyaltyFactoryProvider,
-		QRScanner
+		LoyaltyFactoryProvider
 	]
 })
 export class AppModule { }
