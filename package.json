@@ -1,0 +1,25 @@
+{
+  "name": "loyalx-jsapi",
+  "version": "0.0.0",
+  "description": "a javascript api to interface with LoyalX protocol",
+  "build": "./lib/main.js",
+  "types": "./lib/main.d.ts",
+  "dependencies": {
+    "truffle-contract": "^3.0.0",
+    "web3": "^1.0.0-beta.24"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcWafik/LoyalX-JSAPI.git"
+  },
+  "author": "Marc Wafik",
+  "license": "GNU LGPLv3",
+  "bugs": {
+    "url": "https://github.com/MarcWafik/LoyalX-JSAPI/issues"
+  },
+  "homepage": "https://github.com/MarcWafik/LoyalX-JSAPI#readme"
+}
