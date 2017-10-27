@@ -1,0 +1,27 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es5",
+		"lib": [
+			"es2015",
+			"dom"
+		],
+		"allowSyntheticDefaultImports": true,
+		"outDir": "lib",
+		"sourceMap": true,
+		"declaration": true,
+		"noImplicitAny": false,
+		"experimentalDecorators": true,
+		"strictNullChecks": true
+	},
+	"exclude": [
+		"node_modules",
+		"dist",
+		"es",
+		"lib"
+	],
+	"include": [
+		"./node_modules/web3-typescript-typings/index.d.ts",
+		"./src/**/*"
+	]
+}
