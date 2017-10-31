@@ -1,6 +1,5 @@
 import Web3 from 'web3';
 import TruffleContract from 'truffle-contract';
-import CONFIG from './config';
 import { Http } from './http';
 
 export class Web3Service {
@@ -8,6 +7,8 @@ export class Web3Service {
 	private static _web3: Web3;
 	private static _provider;
 	private static _contracts: any;
+	public static Server;
+
 
 	public static get web3(): Web3 { return this._web3; }
 	public static get provider() { return this._provider; }
@@ -19,7 +20,7 @@ export class Web3Service {
 				this._provider = web3.currentProvider;
 				this._web3 = new Web3(web3.currentProvider);
 			} else {
-				this._provider = new Web3.providers.HttpProvider(CONFIG.HTTP_PROVIDER);
+				this._provider = new Web3.providers.HttpProvider(this.Server.HTTP_PROVIDER);
 				this._web3 = new Web3(this._provider);
 			}
 		}
@@ -31,7 +32,7 @@ export class Web3Service {
 			return this._contracts[contractName];
 		} else {
 			// Get the necessary contract artifact file and instantiate it with truffle-contract.
-			var contractArtifact = await Http.get(`${CONFIG.CONTRACTS_URL}/${contractName}.json`);
+			var contractArtifact = await Http.get(`${this.Server.CONTRACTS_URL}/${contractName}.json`);
 
 			var contract = TruffleContract(contractArtifact);
 			// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
@@ -60,10 +61,10 @@ export class Web3Service {
 					reject(err);
 				} else {
 					console.log("Network id", netId);
-					if (CONFIG.NETWORK_ID == null) {
+					if (this.Server.NETWORK_ID == null) {
 						console.warn("no network id specified in config, ignoring network check");
 					}
-					resolve((CONFIG.NETWORK_ID == null) || (netId == CONFIG.NETWORK_ID));
+					resolve((this.Server.NETWORK_ID == null) || (netId == this.Server.NETWORK_ID));
 				}
 			});
 
