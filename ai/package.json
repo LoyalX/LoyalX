@@ -1,0 +1,24 @@
+{
+  "name": "l0yalx-ai",
+  "description": "Using Express 4.0 l0yalx AI",
+  "version": "1.0.1",
+  "author": {
+    "name": "Ranjitha",
+    "email": "ranjitha.rezee@gmail.com"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "bugs": {
+  },
+  "main": "server.js",
+  "dependencies": {
+    "express": "~4.0.0",
+    "morgan": "~1.0.0",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1"
+  },
+  "keywords": [
+    "ai"
+  ]
+}
