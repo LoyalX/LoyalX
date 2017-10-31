@@ -3,6 +3,7 @@
 	"version": "0.0.0",
 	"description": "a javascript api to interface with LoyalX protocol",
 	"build": "./lib/index.js",
+	"main": "./lib/index.js",
 	"types": "./lib/index.d.ts",
 	"dependencies": {
 		"truffle-contract": "^3.0.0",
