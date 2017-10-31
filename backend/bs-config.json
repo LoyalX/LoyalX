@@ -1,9 +1,0 @@
-{
-  "open": false,
-  "server": {
-    "baseDir": [
-      "./build/contracts"
-    ]
-  },
-  "cors": true
-}
