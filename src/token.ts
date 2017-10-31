@@ -1,24 +1,26 @@
-import TruffleContract from 'truffle-contract';
 import { Web3Service } from './web3-service';
 
+export class Token {
 
-export class Tokens {
+	private get contractName() { return "LoyaltyToken" };
 
-	private _contract;
-
-	private static get contractName() { return "LoyaltyTokenFactory" };
-
-	public static async getContract() {
+	public async getContract() {
 		return Web3Service.getContract(this.contractName);
 	}
 
+	public async getContractInstance() {
+		var contract = <any>await this.getContract();
+		return this.tokenAddress ? contract.at(this.tokenAddress) : await contract.deployed();
+	}
 
-	public async getBalance(tokenAddress?: any) {
+	constructor(private tokenAddress = null) {
+	}
+
+	public async getBalance() {
 		try {
-			var contract = <any>await Tokens.getContract();
 			var account = await Web3Service.getAccount();
-			var loyaltyTokenInstance = tokenAddress ? contract.at(tokenAddress) : await contract.deployed();
-			var result = await loyaltyTokenInstance.balanceOf(account);
+			var contractInstance = await this.getContractInstance();
+			var result = await contractInstance.balanceOf(account);
 
 			console.log("getBalance", result);
 			return result;
@@ -28,14 +30,12 @@ export class Tokens {
 		}
 	}
 
-	public async handleTransfer(amount: number, toAddress: any, tokenAddress?: any) {
+	public async handleTransfer(amount: number, toAddress: any) {
 
 		try {
-			var contract = <any>await Tokens.getContract();
+			var contractInstance = await this.getContractInstance();
 			var account = await Web3Service.getAccount();
-			var loyaltyTokenInstance = tokenAddress ? contract.at(tokenAddress) : await contract.deployed();
-
-			var result = await loyaltyTokenInstance.transfer(toAddress, amount, { from: account });
+			var result = await contractInstance.transfer(toAddress, amount, { from: account });
 
 			console.log("handleTransfer", result);
 			return result;

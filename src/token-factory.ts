@@ -2,13 +2,13 @@ import { Web3Service } from './web3-service';
 
 export class TokenFactory {
 
-	private static get contractName() { return "LoyaltyTokenFactory" };
+	private get contractName() { return "LoyaltyTokenFactory" };
 
-	public static async getContract() {
+	public async getContract() {
 		return Web3Service.getContract(this.contractName);
 	}
 
-	public static async handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
+	public async handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
 
 		retailAmount *= Math.pow(10, retailDecimal);
 		try {
@@ -26,7 +26,7 @@ export class TokenFactory {
 		}
 	}
 
-	public static async getTokensAddress() {
+	public async getTokensAddress() {
 
 		try {
 			var contract = <any>await this.getContract();
@@ -43,7 +43,7 @@ export class TokenFactory {
 		}
 	}
 
-	public static async getTokensAddressByOwner() {
+	public async getTokensAddressByOwner() {
 
 		try {
 			var contract = <any>await this.getContract();
@@ -61,7 +61,7 @@ export class TokenFactory {
 		}
 	}
 
-	private static _parseTokensData(data) {
+	private _parseTokensData(data) {
 		var ret = <any[]>[];
 
 		for (var i = 0; i < data[0].length; i++) {
@@ -76,7 +76,7 @@ export class TokenFactory {
 		return ret;
 	}
 
-	public static async getTokens() {
+	public async getTokens() {
 		try {
 			var contract = <any>await this.getContract();
 			var loyaltyFactoryInstance = await contract.deployed();
@@ -91,8 +91,8 @@ export class TokenFactory {
 			throw err;
 		}
 	}
-	
-	public static async getTokensByOwner() {
+
+	public async getTokensByOwner() {
 		try {
 			var contract = <any>await this.getContract();
 			var account = await Web3Service.getAccount();

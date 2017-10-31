@@ -26,7 +26,7 @@ export class Web3Service {
 	}
 
 	public static async getContract(contractName: string) {
-
+		this.init();
 		if (this._contracts[contractName]) {
 			return this._contracts[contractName];
 		} else {
@@ -48,14 +48,13 @@ export class Web3Service {
 	}
 
 	public static isOnProperNetwork(): Promise<boolean> {
-
+		this.init();
 		var promise: Promise<boolean> = new Promise((resolve, reject) => {
-			/*
-			//this.web3.eth.getId().then(console.log);
-			this.web3.eth.net.getNetworkType()
+
+			(<any>this.web3.eth.net).getNetworkType()
 				.then(networkType => console.log("Network type", networkType));
 
-			this.web3.version.getNetwork((err, netId) => {
+			(<any>this.web3.version).getNetwork((err, netId) => {
 				if (err) {
 					console.warn(err);
 					reject(err);
@@ -67,7 +66,7 @@ export class Web3Service {
 					resolve((CONFIG.NETWORK_ID == null) || (netId == CONFIG.NETWORK_ID));
 				}
 			});
-			*/
+
 		});
 
 		return promise;
@@ -77,6 +76,7 @@ export class Web3Service {
 	 * get the first account
 	 */
 	public static getAccount(): Promise<any> {
+		this.init();
 		var promise = new Promise((resolve, reject) => {
 
 			this.web3.eth.getAccounts((error, accounts) => {
