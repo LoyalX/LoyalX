@@ -4,8 +4,7 @@ import { NavController, NavParams, ModalController, Platform, ViewController } f
 import { BrandDetailPage } from '../brand-detail/brand-detail';
 import { OfferCreatePage } from '../offer-create/offer-create';
 
-import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
-import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-token';
+import LoyalX from 'loyalx-jsapi';
 
 /**
  * Generated class for the PointListPage page.
@@ -32,9 +31,7 @@ export class PointListPage {
 		public navParams: NavParams,
 		public modalCtrl: ModalController,
 		public platform: Platform,
-		public viewCtrl: ViewController,
-		public loyaltyFactoryProvider: LoyaltyFactoryProvider,
-		public loyaltyTokenProvider: LoyaltyTokenProvider
+		public viewCtrl: ViewController
 	) {
 	}
 
@@ -52,19 +49,19 @@ export class PointListPage {
 		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
 		PointTransferPageModal.present();*/
 
-		this.navCtrl.push('PointTransferPage',  { token: this.token, tokenIndex: this.tokenIndex });
+		this.navCtrl.push('PointTransferPage', { token: this.token, tokenIndex: this.tokenIndex });
 	}
 
 	async ionViewDidLoad() {
 		this.tokenIndex = this.navParams.get("tokenIndex");
 		this.token = this.navParams.get("token");
 
-		if(!this.token && this.tokenIndex) {
-			this.tokens = await this.loyaltyFactoryProvider.getTokensByOwner();
+		if (!this.token && this.tokenIndex) {
+			this.tokens = await LoyalX.TokenFactory.getTokensByOwner();
 			this.token = this.tokens[this.tokenIndex];
 		}
-
-		let tempBalance = (await this.loyaltyTokenProvider.getBalance(this.token.address));
+		let aToken = new LoyalX.Token(this.token.address);
+		let tempBalance = (await aToken.getBalance());
 		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
 
 		this.vouchers = [

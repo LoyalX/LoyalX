@@ -45,15 +45,14 @@
     "ionic-angular": "3.7.1",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "loyalx-jsapi": "git+https://github.com/MarcWafik/LoyalX-JSAPI.git",
     "rxjs": "5.4.3",
     "sw-toolbox": "3.6.0",
-    "truffle-contract": "^3.0.0",
-    "web3": "^1.0.0-beta.22",
     "zone.js": "0.8.18"
   },
   "devDependencies": {
     "@ionic/app-scripts": "^3.0.0",
-    "ionic": "3.13.0",
+    "ionic": "3.15.2",
     "typescript": "2.5.2",
     "web3-typescript-typings": "^0.6.0"
   },
