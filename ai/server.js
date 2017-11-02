@@ -20,6 +20,8 @@ var Activity     = require('./app/models/activity');
 // create our router
 var router = express.Router();
 
+require('./router')(app);
+
 // middleware to use for all requests
 router.use(function(req, res, next) {
 	// do logging
@@ -55,6 +57,8 @@ router.route('/activity')
 		    query.user = req.body.user;
 			query.activity = req.body.activity; 
 			query.vendor = req.body.vendor; 
+			query.category = req.body.category; 
+
 		}
 
 		Activity.find(query).exec(function(err, userActivity){
@@ -117,46 +121,8 @@ router.route('/activity/:user_id')
 	});
 
 
-router.route('/job')
 
-	.post(function(req, res) {
-
-		var query = {
-		};
-		
-		if(req.body.user)
-			query.user = req.body.user;
-
-		if(req.body.activity)	
-			query.activity = req.body.activity; 
-		
-		if(req.body.vendor)
-			query.vendor = req.body.vendor; 
-
-		if(req.body.score)
-			query.score = req.body.score; 
-
-	Activity.find(query).exec(function(err, userActivity){
-			console.log("Error in finding" , err, userActivity);
-			if(err)
-				console.log("Activities for rule1:  Error");
-			if (userActivity && userActivity[0])
-			{
-				console.log("Activities for rule1:  Found",userActivity.length);
-				res.json({ 
-					message: userActivity,
-					status: 200
-				});
-
-			}
-			res.json({ 
-				message: 'Activity not Found!' ,
-				status: 404
-			});
-
-		});
-	});
-
+	
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
