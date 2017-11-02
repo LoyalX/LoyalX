@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
-import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-token';
+import LoyalX from 'loyalx-jsapi';
 
 /**
  * Generated class for the PointTransferPage page.
@@ -34,7 +34,6 @@ export class PointTransferPage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
-		public loyaltyTokenProvider: LoyaltyTokenProvider,
 		public qrScanner: QRScanner,
 	) {
 
@@ -114,8 +113,8 @@ export class PointTransferPage {
 
 		let values = this.form.value;
 		values.amount *= Math.pow(10, this.token.decimal);
-
-		await this.loyaltyTokenProvider.handleTransfer(values.amount, values.address, this.token.address);
+		let aToken = new LoyalX.Token(this.token.address);
+		await aToken.handleTransfer(values.amount, values.address);
 		this.viewCtrl.dismiss(this.form.value);
 	}
 

@@ -4,7 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { BrandDetailPage } from '../brand-detail/brand-detail';
 
-import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
+import LoyalX from 'loyalx-jsapi';
 
 import { TokenListPage } from "../token-list/token-list";
 
@@ -30,8 +30,7 @@ export class OnBoardPage {
 		public platform: Platform,
 		public modalCtrl: ModalController,
 		public viewCtrl: ViewController,
-		public formBuilder: FormBuilder,
-		public loyaltyFactoryProvider: LoyaltyFactoryProvider) {
+		public formBuilder: FormBuilder) {
 
 		this.form = formBuilder.group({
 			retailSymbol: ['', Validators.required],
@@ -52,7 +51,7 @@ export class OnBoardPage {
 		}
 
 		let formValues = this.form.value;
-		await this.loyaltyFactoryProvider.handleOnboard(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
+		await LoyalX.TokenFactory.handleOnboard(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
 
 		this.navCtrl.setRoot('TokenListPage');
 	}

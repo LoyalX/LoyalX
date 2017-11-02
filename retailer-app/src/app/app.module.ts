@@ -32,10 +32,6 @@ import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { PointTransferPage } from '../pages/point-transfer/point-transfer';
 
 import { UserData } from '../providers/user-data';
-import { Web3Provider } from '../providers/web3/web3';
-
-import { LoyaltyTokenProvider } from '../providers/loyalty-token/loyalty-token';
-import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-factory';
 
 
 @NgModule({
@@ -90,10 +86,7 @@ import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-fac
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserData,
     InAppBrowser,
-    SplashScreen,
-    Web3Provider,
-    LoyaltyTokenProvider,
-	LoyaltyFactoryProvider
+    SplashScreen
   ]
 })
 export class AppModule { }
