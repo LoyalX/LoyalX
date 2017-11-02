@@ -1,7 +1,4 @@
-# Building a RESTful API in Node, Express and MongoDB
-
-Using Express 4.0 Router to build an API, Extended version from scotch.io's code with multiple objects/routes
-
+# RESTFUL API for AI Engine for l0yalx
 
 ## Requirements 
 
