@@ -10,23 +10,44 @@ Using Express 4.0 Router to build an API, Extended version from scotch.io's code
 
 ## Installation
 
-- Clone the repo: `git clone git@github.com:shoaibuddin/nodejs-express-mongodb-api.git`
 - Install dependencies: `npm install`
-- Start the server: `node server.js`
+
+MONGODB:
 - Make sure to create account for mongoDB @ mongolab.com for Database
 - Update credentials and db path in server.js mongoose.connect....
+- Create the DB
+
+BLUEMIX WATSON
+- Make sure to create account for Bluemix AI https://github.com/watson-developer-cloud/personality-insights-nodejs
+- Update it in /helpers/personality-insight.js
+
+RUN APP
+- Start the server: `node server.js`
 
 ## Testing the API
 Test your API using [Postman](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop)
+Add the Activity:
+POST /api/activity HTTP/1.1
+Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded
+Cache-Control: no-cache
+Postman-Token: 17d1e49d-7624-ca4a-5d1a-926695e0aa09
+user=john&activity=Purchase&vendor=Amazon&category=gold
+
+Get profile from bluemix for user
+POST /job/profile HTTP/1.1
+Host: localhost:8080
+Content-Type: application/x-www-form-urlencoded
+Cache-Control: no-cache
+Postman-Token: 574a96f5-5327-381e-1eda-660f8adc6236
+user=john&activity=browse
+
+
 
 ## Credit / Thanks
 Thanks to scotch.io for awesome tutorial.
 
-## Demo URL on Heroku
-- https://node-api-rest.herokuapp.com/api
-- https://node-api-rest.herokuapp.com/api/employee
-- https://node-api-rest.herokuapp.com/api/students
 
 
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/shoaibuddin/nodejs-express-mongodb-api/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 
