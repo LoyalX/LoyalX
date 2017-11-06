@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import TruffleContract from 'truffle-contract';
+//import TruffleContract from 'truffle-contract';
 import { Http } from './http';
 
 export class Web3Service {
@@ -7,6 +7,7 @@ export class Web3Service {
 	private static _web3: Web3;
 	private static _provider;
 	private static _contracts: any;
+	public static TruffleContract:any;
 	public static Server;
 
 
@@ -34,7 +35,7 @@ export class Web3Service {
 			// Get the necessary contract artifact file and instantiate it with truffle-contract.
 			var contractArtifact = await Http.get(`${this.Server.CONTRACTS_URL}/${contractName}.json`);
 
-			var contract = TruffleContract(contractArtifact);
+			var contract = this.TruffleContract(contractArtifact);
 			// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
 
 			contract.setProvider(Web3Service.provider); // Set the provider for our contract.

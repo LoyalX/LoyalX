@@ -4,11 +4,14 @@ import { Web3Service } from './web3-service';
 import SERVERS from './Servers';
 
 export default class LoyalX {
-	static TokenFactory = new TokenFactory();
-	static Token = Token;
-	static LoyalXToken = new Token(null);
-	static Web3Service = Web3Service;
-	static SERVERS = SERVERS;
-}
+	TokenFactory = new TokenFactory();
+	Token = Token;
+	LoyalXToken = new Token(null);
+	Web3Service = Web3Service;
+	SERVERS = SERVERS;
 
-LoyalX.Web3Service.Server = LoyalX.SERVERS.LOCALHOST;
+	constructor(TruffleContract, server = SERVERS.LOCALHOST) {
+		this.Web3Service.Server = server;
+		this.Web3Service.TruffleContract = TruffleContract;
+	}
+}
