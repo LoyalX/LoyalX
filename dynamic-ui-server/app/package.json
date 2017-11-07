@@ -1,0 +1,32 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "file-loader": "^1.1.5",
+    "glob": "^7.1.2",
+    "http": "0.0.0",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.10",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^2.0.8",
+    "stylus": "^0.54.5"
+  },
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
+}
