@@ -37,6 +37,16 @@ export class Web3Service {
 			// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
 			contract.setProvider(Web3Service.provider); // Set the provider for our contract.
 			this._contracts[contractName] = contract;
+
+			// workaround stolen from https://github.com/trufflesuite/truffle-contract/issues/57
+			if (typeof contract.currentProvider.sendAsync !== "function") {
+				contract.currentProvider.sendAsync = function() {
+				  return contract.currentProvider.send.apply(
+					contract.currentProvider, arguments
+				  );
+				};
+			}
+
 			return contract;
 		}
 
