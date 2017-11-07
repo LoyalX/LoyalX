@@ -32,7 +32,7 @@ export class Web3Service {
 			return this._contracts[contractName];
 		} else {
 			// Get the necessary contract artifact file and instantiate it with truffle-contract.
-			var contractArtifact = await ContractArtifact.get(contractName);
+			var contractArtifact = await ContractArtifact.get(contractName,Web3Service.Server);
 			var contract = TruffleContract(contractArtifact);
 			// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
 			contract.setProvider(Web3Service.provider); // Set the provider for our contract.
