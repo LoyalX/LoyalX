@@ -115,7 +115,7 @@ export class PointTransferPage {
 		let values = this.form.value;
 		values.amount *= Math.pow(10, this.token.decimal);
 		let aToken = new this.LoyalXProvider.Token(this.token.address);
-		await aToken.handleTransfer(values.amount, values.address);
+		await aToken.transfer(values.amount, values.address);
 		this.viewCtrl.dismiss(this.form.value);
 	}
 

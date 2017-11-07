@@ -53,7 +53,7 @@ export class OnBoardPage {
 		}
 
 		let formValues = this.form.value;
-		await this.LoyalXProvider.TokenFactory.handleOnboard(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
+		await this.LoyalXProvider.TokenFactory.initialiseRetail(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
 
 		this.navCtrl.setRoot('TokenListPage');
 	}
