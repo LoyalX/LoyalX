@@ -1,4 +1,3 @@
-import XMLHttpRequest from "xmlhttprequest";
 export class ContractArtifact {
 
 	private static _contractsJson = {
