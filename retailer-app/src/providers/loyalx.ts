@@ -11,11 +11,15 @@ import LoyalX from 'loyalx-jsapi';
 @Injectable()
 export class LoyalXProvider {
 
-  constructor() {
-    console.log('Hello LoyalXProvider Provider');
-  }
+	private loyal = new LoyalX(
+		TruffleContract,
+		LoyalX.SERVERS.LOCALHOST
+	);
 
-  	get get(){
-		  return new LoyalX("");
-	  }
+	public LoyalXToken = this.loyal.LoyalXToken;
+	public Token = this.loyal.Token;
+	public TokenFactory = this.loyal.TokenFactory;
+	public Web3Service = this.loyal.Web3Service;
+
+	constructor() { }
 }

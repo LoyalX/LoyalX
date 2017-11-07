@@ -59,10 +59,10 @@ export class PointListPage {
 		this.token = this.navParams.get("token");
 
 		if (!this.token && this.tokenIndex) {
-			this.tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
+			this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 			this.token = this.tokens[this.tokenIndex];
 		}
-		let aToken = new this.LoyalXProvider.get.Token(this.token.address);
+		let aToken = new this.LoyalXProvider.Token(this.token.address);
 		let tempBalance = (await aToken.getBalance());
 		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
 

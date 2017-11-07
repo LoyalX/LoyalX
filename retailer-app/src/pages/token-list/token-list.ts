@@ -38,12 +38,13 @@ export class TokenListPage {
 
 	async ionViewDidEnter() {
 		setTimeout(async () => {
-			let tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
+			let tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 			if (this.tokens.length !== tokens.length) {
 				this.tokens = tokens;
 			}
 		}, 4000);
-		this.tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
+		console.log(this.LoyalXProvider.TokenFactory);
+		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 	}
 
 }

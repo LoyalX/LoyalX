@@ -100,7 +100,7 @@ export class PointTransferPage {
 		this.token = this.navParams.get("token");
 
 		if (!this.token && this.tokenIndex) {
-			this.tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
+			this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 			this.token = this.tokens[this.tokenIndex];
 		}
 	}
@@ -114,7 +114,7 @@ export class PointTransferPage {
 
 		let values = this.form.value;
 		values.amount *= Math.pow(10, this.token.decimal);
-		let aToken = new this.LoyalXProvider.get.Token(this.token.address);
+		let aToken = new this.LoyalXProvider.Token(this.token.address);
 		await aToken.handleTransfer(values.amount, values.address);
 		this.viewCtrl.dismiss(this.form.value);
 	}
