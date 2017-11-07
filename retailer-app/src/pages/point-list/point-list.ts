@@ -5,6 +5,7 @@ import { BrandDetailPage } from '../brand-detail/brand-detail';
 import { OfferCreatePage } from '../offer-create/offer-create';
 
 import LoyalX from 'loyalx-jsapi';
+import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
  * Generated class for the PointListPage page.
@@ -31,7 +32,8 @@ export class PointListPage {
 		public navParams: NavParams,
 		public modalCtrl: ModalController,
 		public platform: Platform,
-		public viewCtrl: ViewController
+		public viewCtrl: ViewController,
+		public LoyalXProvider: LoyalXProvider
 	) {
 	}
 
@@ -57,10 +59,10 @@ export class PointListPage {
 		this.token = this.navParams.get("token");
 
 		if (!this.token && this.tokenIndex) {
-			this.tokens = await LoyalX.TokenFactory.getTokensByOwner();
+			this.tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
 			this.token = this.tokens[this.tokenIndex];
 		}
-		let aToken = new LoyalX.Token(this.token.address);
+		let aToken = new this.LoyalXProvider.get.Token(this.token.address);
 		let tempBalance = (await aToken.getBalance());
 		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
 

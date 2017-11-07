@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import LoyalX from 'loyalx-jsapi';
+import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
  * Generated class for the TokenListPage page.
@@ -21,7 +22,8 @@ export class TokenListPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public events: Events
+		public events: Events,
+		public LoyalXProvider: LoyalXProvider
 	) {
 	}
 
@@ -36,12 +38,12 @@ export class TokenListPage {
 
 	async ionViewDidEnter() {
 		setTimeout(async () => {
-			let tokens = await LoyalX.TokenFactory.getTokensByOwner();
+			let tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
 			if (this.tokens.length !== tokens.length) {
 				this.tokens = tokens;
 			}
 		}, 4000);
-		this.tokens = await LoyalX.TokenFactory.getTokensByOwner();
+		this.tokens = await this.LoyalXProvider.get.TokenFactory.getTokensByOwner();
 	}
 
 }
