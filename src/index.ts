@@ -8,10 +8,9 @@ export default class LoyalX {
 	Token = Token;
 	LoyalXToken = new Token(null);
 	Web3Service = Web3Service;
-	SERVERS = SERVERS;
+	static SERVERS = SERVERS;
 
-	constructor(TruffleContract, server = SERVERS.LOCALHOST) {
+	constructor(server = LoyalX.SERVERS.LOCALHOST) {
 		this.Web3Service.Server = server;
-		this.Web3Service.TruffleContract = TruffleContract;
 	}
 }
