@@ -1,6 +1,5 @@
 import { ContractArtifact } from './contract-artifact';
 import Web3 = require('web3');
-import TruffleContract = require('truffle-contract');
 
 export class Web3Service {
 
@@ -8,7 +7,7 @@ export class Web3Service {
 	private static _provider;
 	private static _contracts: any = {};
 	public static Server;
-
+	public static TruffleContract;
 
 	public static get web3(): Web3 { return this._web3; }
 	public static get provider() { return this._provider; }
@@ -33,7 +32,7 @@ export class Web3Service {
 		} else {
 			// Get the necessary contract artifact file and instantiate it with truffle-contract.
 			var contractArtifact = await ContractArtifact.get(contractName,Web3Service.Server);
-			var contract = TruffleContract(contractArtifact);
+			var contract = this.TruffleContract(contractArtifact);
 			// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
 			contract.setProvider(Web3Service.provider); // Set the provider for our contract.
 			this._contracts[contractName] = contract;

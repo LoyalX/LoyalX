@@ -10,7 +10,8 @@ export default class LoyalX {
 	Web3Service = Web3Service;
 	static SERVERS = SERVERS;
 
-	constructor(server = LoyalX.SERVERS.LOCALHOST) {
+	constructor(TruffleContract, server = LoyalX.SERVERS.LOCALHOST) {
 		this.Web3Service.Server = server;
+		this.Web3Service.TruffleContract = TruffleContract;
 	}
 }
