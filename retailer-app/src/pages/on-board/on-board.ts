@@ -7,6 +7,7 @@ import { BrandDetailPage } from '../brand-detail/brand-detail';
 import LoyalX from 'loyalx-jsapi';
 
 import { TokenListPage } from "../token-list/token-list";
+import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
  * Generated class for the OnBoardPage page.
@@ -30,7 +31,8 @@ export class OnBoardPage {
 		public platform: Platform,
 		public modalCtrl: ModalController,
 		public viewCtrl: ViewController,
-		public formBuilder: FormBuilder) {
+		public formBuilder: FormBuilder,
+		public LoyalXProvider: LoyalXProvider) {
 
 		this.form = formBuilder.group({
 			retailSymbol: ['', Validators.required],
@@ -51,7 +53,7 @@ export class OnBoardPage {
 		}
 
 		let formValues = this.form.value;
-		await LoyalX.TokenFactory.handleOnboard(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
+		await this.LoyalXProvider.TokenFactory.handleOnboard(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
 
 		this.navCtrl.setRoot('TokenListPage');
 	}

@@ -62,7 +62,7 @@ export class ConferenceApp {
 		public splashScreen: SplashScreen
 	) {
 
-		if (0 + 0) {//<<<<<<<<<<<<<<<<<<<<<<<
+		if (1+0) {//<<<<<<<<<<<<<<<<<<<<<<<
 			this.rootPage = TokenListPage;
 		} else {
 			this.rootPage = ErrorPage;
