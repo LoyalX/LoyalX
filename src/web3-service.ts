@@ -6,33 +6,41 @@ export class Web3Service {
 	private static _web3: Web3;
 	private static _provider;
 	private static _contracts: any = {};
-	public static Server;
-	public static TruffleContract;
+
+	private static _server;
+	private static _TruffleContract;
 
 	public static get web3(): Web3 { return this._web3; }
 	public static get provider() { return this._provider; }
 	public static get isWeb3Injected() { return (typeof web3 !== 'undefined'); }
 
-	public static init() {
+	public static _init(Server, TruffleContract) {
 		if (this._web3 != null) { return; }
-		
+
+		this._TruffleContract = TruffleContract;
+		this._server = Server;
+
 		if (typeof web3 !== 'undefined') {
 			this._provider = web3.currentProvider;
 			this._web3 = new Web3(web3.currentProvider);
 		} else {
-			this._provider = new Web3.providers.HttpProvider(this.Server.HTTP_PROVIDER);
+			this._provider = new Web3.providers.HttpProvider(this._server.HTTP_PROVIDER);
 			this._web3 = new Web3(this._provider);
 		}
 
 	}
 
+	/**
+	 * get the trufflecontract and cache it in memory
+	 * @param {string} contractName 
+	 */
 	public static async getContract(contractName: string) {
 		if (this._contracts[contractName]) {
 			return this._contracts[contractName];
 		}
 		// Get the necessary contract artifact file and instantiate it with truffle-contract.
-		var contractArtifact = await ContractArtifact.get(contractName, Web3Service.Server);
-		var contract = this.TruffleContract(contractArtifact);
+		var contractArtifact = await ContractArtifact.get(contractName, Web3Service._server);
+		var contract = this._TruffleContract(contractArtifact);
 		// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
 		contract.setProvider(Web3Service.provider); // Set the provider for our contract.
 		this._contracts[contractName] = contract;
@@ -49,6 +57,9 @@ export class Web3Service {
 		return contract;
 	}
 
+	/**
+	 * check if meta mask is used
+	 */
 	public static hasMetaMask() {
 		return ((typeof web3 !== "undefined") && (web3.currentProvider.isMetaMask === true));
 	}
@@ -65,10 +76,10 @@ export class Web3Service {
 					reject(err);
 				} else {
 					console.log("Network id", netId);
-					if (this.Server.NETWORK_ID == null) {
+					if (this._server.NETWORK_ID == null) {
 						console.warn("no network id specified in config, ignoring network check");
 					}
-					resolve((this.Server.NETWORK_ID == null) || (netId == this.Server.NETWORK_ID));
+					resolve((this._server.NETWORK_ID == null) || (netId == this._server.NETWORK_ID));
 				}
 			});
 

@@ -2,17 +2,33 @@ import { Web3Service } from './web3-service';
 
 export class TokenFactory {
 
-	private get contractName() { return "LoyaltyTokenFactory" };
+	/**
+	 * @return {string} the contract name
+	 */
+	private get contractName(): string { return "LoyaltyTokenFactory" };
 
+	/**
+	 * @return {TruffleContract} the contract
+	 */
 	public async getContract() {
 		return Web3Service.getContract(this.contractName);
 	}
 
+	/**
+	 * @return {TruffleContract Instance} the contract instance
+	 */
 	public async getContractInstance() {
 		var contract = await this.getContract();
 		return await contract.deployed();
 	}
 
+	/**
+	 * deploy a new token contract
+	 * @param retailSymbol a short name usualy 3 chars
+	 * @param retailName reward point name
+	 * @param retailAmount total points in circulation
+	 * @param retailDecimal how many decimal point
+	 */
 	public async initialiseRetail(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
 
 		retailAmount *= Math.pow(10, retailDecimal);
@@ -30,6 +46,10 @@ export class TokenFactory {
 		}
 	}
 
+	/**
+	 * get all token's addresses
+	 * @returns {Promise<string[]>}
+	 */
 	public async getTokensAddress(): Promise<string[]> {
 		try {
 			var loyaltyFactoryInstance = await this.getContractInstance();
@@ -45,6 +65,10 @@ export class TokenFactory {
 		}
 	}
 
+	/**
+	 * get all token's addresses created by the user account
+	 * @returns {Promise<string[]>}
+	 */
 	public async getTokensAddressByOwner(): Promise<string[]> {
 		try {
 			var account = await Web3Service.getAccount();
@@ -76,6 +100,10 @@ export class TokenFactory {
 		return ret;
 	}
 
+	/**
+	 *  get all token's data
+	 * @returns {Promise<TokenData[]>}
+	 */
 	public async getTokens(): Promise<TokenData[]> {
 		try {
 			var loyaltyFactoryInstance = await this.getContractInstance();
@@ -91,6 +119,10 @@ export class TokenFactory {
 		}
 	}
 
+	/**
+	 *  get all token's data created by the user account
+	 * @returns {Promise<TokenData[]>}
+	 */
 	public async getTokensByOwner(): Promise<TokenData[]> {
 		try {
 			var account = await Web3Service.getAccount();
