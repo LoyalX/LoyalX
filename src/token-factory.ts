@@ -8,13 +8,17 @@ export class TokenFactory {
 		return Web3Service.getContract(this.contractName);
 	}
 
-	public async handleOnboard(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
+	public async getContractInstance() {
+		var contract = await this.getContract();
+		return await contract.deployed();
+	}
+
+	public async initialiseRetail(retailSymbol: string, retailName: string, retailAmount: number, retailDecimal: number) {
 
 		retailAmount *= Math.pow(10, retailDecimal);
 		try {
-			var contract = <any>await this.getContract();
 			var account = await Web3Service.getAccount();
-			var loyaltyFactoryInstance = await contract.deployed();
+			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = await loyaltyFactoryInstance.initialiseRetail(retailAmount, retailName, retailDecimal, retailSymbol, { from: account });
 
@@ -26,11 +30,9 @@ export class TokenFactory {
 		}
 	}
 
-	public async getTokensAddress() {
-
+	public async getTokensAddress(): Promise<string[]> {
 		try {
-			var contract = <any>await this.getContract();
-			var loyaltyFactoryInstance = await contract.deployed();
+			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = await loyaltyFactoryInstance.getTokensAddress();
 
@@ -43,14 +45,12 @@ export class TokenFactory {
 		}
 	}
 
-	public async getTokensAddressByOwner() {
-
+	public async getTokensAddressByOwner(): Promise<string[]> {
 		try {
-			var contract = <any>await this.getContract();
 			var account = await Web3Service.getAccount();
-			var loyaltyFactoryInstance = await contract.deployed();
+			var loyaltyFactoryInstance = await this.getContractInstance();
 
-			var result = await loyaltyFactoryInstance.getTokensAddressByOwner(account);
+			var result = <string[]>await loyaltyFactoryInstance.getTokensAddressByOwner(account);
 
 			console.log("getTokensAddressByOwner", result);
 			return result;
@@ -61,8 +61,8 @@ export class TokenFactory {
 		}
 	}
 
-	private _parseTokensData(data) {
-		var ret = <any[]>[];
+	private _parseTokensData(data): TokenData[] {
+		var ret = <TokenData[]>[];
 
 		for (var i = 0; i < data[0].length; i++) {
 			ret.push({
@@ -76,10 +76,9 @@ export class TokenFactory {
 		return ret;
 	}
 
-	public async getTokens() {
+	public async getTokens(): Promise<TokenData[]> {
 		try {
-			var contract = <any>await this.getContract();
-			var loyaltyFactoryInstance = await contract.deployed();
+			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = await loyaltyFactoryInstance.getTokens();
 
@@ -92,11 +91,10 @@ export class TokenFactory {
 		}
 	}
 
-	public async getTokensByOwner() {
+	public async getTokensByOwner(): Promise<TokenData[]> {
 		try {
-			var contract = <any>await this.getContract();
 			var account = await Web3Service.getAccount();
-			var loyaltyFactoryInstance = await contract.deployed();
+			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = await loyaltyFactoryInstance.getTokensByOwner(account);
 
@@ -109,4 +107,11 @@ export class TokenFactory {
 		}
 	}
 
+}
+
+export interface TokenData {
+	address: string;
+	name: string;
+	symbol: string;
+	decimal: number;
 }

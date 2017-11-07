@@ -13,50 +13,47 @@ export class Web3Service {
 	public static get provider() { return this._provider; }
 	public static get isWeb3Injected() { return (typeof web3 !== 'undefined'); }
 
-	private static init() {
-		if (this._web3 == null) {
-			if (typeof web3 !== 'undefined') {
-				this._provider = web3.currentProvider;
-				this._web3 = new Web3(web3.currentProvider);
-			} else {
-				this._provider = new Web3.providers.HttpProvider(this.Server.HTTP_PROVIDER);
-				this._web3 = new Web3(this._provider);
-			}
+	public static init() {
+		if (this._web3 != null) { return; }
+		
+		if (typeof web3 !== 'undefined') {
+			this._provider = web3.currentProvider;
+			this._web3 = new Web3(web3.currentProvider);
+		} else {
+			this._provider = new Web3.providers.HttpProvider(this.Server.HTTP_PROVIDER);
+			this._web3 = new Web3(this._provider);
 		}
+
 	}
 
 	public static async getContract(contractName: string) {
-		this.init();
 		if (this._contracts[contractName]) {
 			return this._contracts[contractName];
-		} else {
-			// Get the necessary contract artifact file and instantiate it with truffle-contract.
-			var contractArtifact = await ContractArtifact.get(contractName,Web3Service.Server);
-			var contract = this.TruffleContract(contractArtifact);
-			// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
-			contract.setProvider(Web3Service.provider); // Set the provider for our contract.
-			this._contracts[contractName] = contract;
+		}
+		// Get the necessary contract artifact file and instantiate it with truffle-contract.
+		var contractArtifact = await ContractArtifact.get(contractName, Web3Service.Server);
+		var contract = this.TruffleContract(contractArtifact);
+		// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
+		contract.setProvider(Web3Service.provider); // Set the provider for our contract.
+		this._contracts[contractName] = contract;
 
-			// workaround stolen from https://github.com/trufflesuite/truffle-contract/issues/57
-			if (typeof contract.currentProvider.sendAsync !== "function") {
-				contract.currentProvider.sendAsync = function() {
-				  return contract.currentProvider.send.apply(
+		// workaround stolen from https://github.com/trufflesuite/truffle-contract/issues/57
+		if (typeof contract.currentProvider.sendAsync !== "function") {
+			contract.currentProvider.sendAsync = function () {
+				return contract.currentProvider.send.apply(
 					contract.currentProvider, arguments
-				  );
-				};
-			}
-
-			return contract;
+				);
+			};
 		}
 
+		return contract;
 	}
 
 	public static hasMetaMask() {
-		return ((typeof web3 !== "undefined") && (web3.currentProvider.isMetaMask === true))
+		return ((typeof web3 !== "undefined") && (web3.currentProvider.isMetaMask === true));
 	}
 
 	public static isOnProperNetwork(): Promise<boolean> {
-		this.init();
 		var promise: Promise<boolean> = new Promise((resolve, reject) => {
 
 			(<any>this.web3.eth.net).getNetworkType()
@@ -83,22 +80,14 @@ export class Web3Service {
 	/**
 	 * get the first account
 	 */
-	public static getAccount(): Promise<any> {
-		this.init();
-		var promise = new Promise((resolve, reject) => {
-
-			this.web3.eth.getAccounts((error, accounts) => {
-				if (error) {
-					console.warn(error);
-					reject(error);
-				} else {
-					var account = accounts[0];
-					console.log("getAccount", account);
-					resolve(account);
-				}
-			});
-
-		});
-		return promise;
+	public static async getAccount(): Promise<string> {
+		try {
+			var accounts = await this.web3.eth.getAccounts();
+			console.log("getAccount", accounts[0]);
+			return accounts[0];
+		} catch (err) {
+			console.warn(err.message);
+			throw err;
+		}
 	}
 }

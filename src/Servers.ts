@@ -13,3 +13,9 @@ const SERVERS = {
 };
 
 export default SERVERS;
+
+export interface ServerInfo {
+	HTTP_PROVIDER: string,
+	CONTRACTS_URL: string,
+	NETWORK_ID: number
+}

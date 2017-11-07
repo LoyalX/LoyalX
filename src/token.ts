@@ -2,18 +2,17 @@ import { Web3Service } from './web3-service';
 
 export class Token {
 
+	constructor(private tokenAddress = null) { }
+
 	private get contractName() { return "LoyaltyToken" };
 
 	public async getContract() {
-		return Web3Service.getContract(this.contractName);
+		return await Web3Service.getContract(this.contractName);
 	}
 
 	public async getContractInstance() {
-		var contract = <any>await this.getContract();
+		var contract = await this.getContract();
 		return this.tokenAddress ? contract.at(this.tokenAddress) : await contract.deployed();
-	}
-
-	constructor(private tokenAddress = null) {
 	}
 
 	public async getBalance() {
@@ -30,8 +29,7 @@ export class Token {
 		}
 	}
 
-	public async handleTransfer(amount: number, toAddress: any) {
-
+	public async transfer(amount: number, toAddress: any) {
 		try {
 			var contractInstance = await this.getContractInstance();
 			var account = await Web3Service.getAccount();
