@@ -46,7 +46,7 @@
         .upload-btn:active,
         .upload-btn.active {
             color: #ffffff;
-            background-color: #FA8900;
+            box-shadow: 0 0 3rem 3rem rgba(0, 0, 0, 0.08) inset;
             border: none;
         }
 
@@ -96,7 +96,9 @@
             <div class="col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <span><img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png"></span>
+                        <span>
+                            <img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png">
+                        </span>
                         <h2>App Uploader</h2>
                         <h4>l0yalx.io</h4>
                         <div class="progress">
@@ -144,22 +146,22 @@
                         console.log('upload successful!');
                     },
                     xhr: function () {
-                        
+
                         var xhr = new XMLHttpRequest();
 
-                        
+
                         xhr.upload.addEventListener('progress', function (evt) {
 
                             if (evt.lengthComputable) {
-                               
+
                                 var percentComplete = evt.loaded / evt.total;
                                 percentComplete = parseInt(percentComplete * 100);
 
-                               
+
                                 $('.progress-bar').text(percentComplete + '%');
                                 $('.progress-bar').width(percentComplete + '%');
 
-                                
+
                                 if (percentComplete === 100) {
                                     $('.progress-bar').html('Done');
                                 }
