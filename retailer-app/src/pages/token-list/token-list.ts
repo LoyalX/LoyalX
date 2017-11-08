@@ -37,7 +37,7 @@ export class TokenListPage {
 		this.events.publish('errorPage:leave');
 
 		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
-		this.noTokens = this.tokens.lenth == 0;
+		this.noTokens = this.tokens.length === 0;
 
 		setTimeout(async () => {
 			let tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
