@@ -1,6 +1,5 @@
 
-<img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png" height="50px"/>
-LoyalX Javascript API
+<img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png" height="45px"/> LoyalX Javascript API
 =========================================================================================
 
 Javascript api to interface with LoyalX protocol.
