@@ -145,6 +145,9 @@
                     success: function (data) {
                         console.log('upload successful!');
                     },
+                    error: function (jqXHR, exception) {
+                        $('.progress-bar').html('Upload failed: Invalid .zip File');
+                    },
                     xhr: function () {
 
                         var xhr = new XMLHttpRequest();
