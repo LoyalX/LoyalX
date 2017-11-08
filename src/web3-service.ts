@@ -1,4 +1,4 @@
-import { ServerInfo } from './../lib/Servers.d';
+import { ServerInfo } from './Servers';
 import { ContractArtifact } from './contract-artifact';
 import Web3 = require('web3');
 

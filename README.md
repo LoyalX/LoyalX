@@ -96,8 +96,17 @@ var myToken = new loyalx.Token(tokenAddress);
 var balance = await myToken.getBalance();
 ```
 
+### `Token.getContractInstance()`
+get the truffle contract instance
 
+Alternatively u can use:-
+* `Token.getContract()` to get the contract.   
 
+```javascript
+var tokenAddress = "0xd69d78e1cf0729cad59080820c9931315aba7778";
+var myToken = new loyalx.Token(tokenAddress);
+var contractInstance = await myToken.getContractInstance();
+```
 
 
 
@@ -131,7 +140,7 @@ var symbol = "tst",
 var result = await loyalx.TokenFactory.initialiseRetail(symbol, name, amount, decimal);
 ```
 
-### `TokenFactory.getTokensAddress()`
+### `TokenFactory.getTokens()`
 
 get all token's data.   
 return a promise with an array containing the tokens data.   
@@ -142,7 +151,7 @@ Alternatively u can use:-
 * `TokenFactory.getTokensAddressByOwner()` to get only the addresses.  
 
 ```javascript
-var tokensData = await loyalx.getTokensAddress();
+var tokensData = await loyalx.TokenFactory.getTokensAddress();
 console.log(tokensData);
 ```
 
@@ -156,4 +165,14 @@ TokensData : [
     },
     ...
 ];
+```
+
+### `TokenFactory.getContractInstance()`
+get the truffle contract instance
+
+Alternatively u can use:-
+* `TokenFactory.getContract()` to get the contract.   
+
+```javascript
+var contractInstance = await loyalx.TokenFactory.getContractInstance();
 ```
