@@ -14,7 +14,6 @@ $ npm install git+https://github.com/MarcWafik/LoyalX-JSAPI.git
 
 ## Node Usage
 
-
 ```typescript
 import TruffleContract = require("truffle-contract");
 
@@ -26,6 +25,7 @@ var loyalx = new LoyalX(
 You now have access to the following 
 
 ## Browser Usage ( builds coming soon )
+
 minified version and non minified version will be avalble at [Releases](https://github.com/MarcWafik/LoyalX-JSAPI/releases)   
 In your `head` element, include Web3, truffle-contract then loyalx-jsapi:
 
@@ -43,34 +43,12 @@ With this usage, it will be available via the `Loyalx` object:
 var loyalx = new LoyalX(...);
 ```
 
-## Transfer token example
-
-transfer tokens from the current user to the provided address
-
-```javascript
-var toAddress = "0xb3cc2d1bbe6b87edfcd3b4c1c394f35caf0593be",
-    tokenAddress = "0xd69d78e1cf0729cad59080820c9931315aba7778",
-    amount = 123;
-var myToken = new loyalx.Token(tokenAddress);
-myToken.transfer(amount, toAddress);
-```
-
-
-
 
 
 
 
 
 # APIs
-
-
-
-
-
-
-
-
 
 
 
@@ -169,12 +147,12 @@ console.log(tokensData);
 ```
 
 ```json
-TokensData = [
+TokensData : [
     {
-        address: Address,
-        name: string,
-        symbol: string,
-        decimal: number,
+        "address": "0xd69d78e1cf0729cad59080820c9931315aba7778",
+        "name": "test",
+        "symbol": "tst",
+        "decimal": 2,
     },
     ...
 ];
