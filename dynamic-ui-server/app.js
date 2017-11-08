@@ -1,9 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const morgan = require('morgan');
-const methodOverride = require('method-override')
 
 const http = require('http');
 const path = require('path');
@@ -18,9 +16,7 @@ app.set('view engine', 'ejs');
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride());
-app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(__dirname + '/public'));
 
