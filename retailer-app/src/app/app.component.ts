@@ -62,7 +62,7 @@ export class ConferenceApp {
 		public splashScreen: SplashScreen
 	) {
 
-		if (1+0) {//<<<<<<<<<<<<<<<<<<<<<<<
+		if (typeof web3 == 'undefined') {//<<<<<<<<<<<<<<<<<<<<<<<
 			this.rootPage = TokenListPage;
 		} else {
 			this.rootPage = ErrorPage;

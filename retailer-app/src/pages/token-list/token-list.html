@@ -5,19 +5,24 @@
 	Ionic pages and navigation.
   -->
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-		<ion-icon name="menu"></ion-icon>
-	  </button>
-        <ion-title>Tokens</ion-title>
-    </ion-navbar>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Tokens</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-list inset>
-        <button ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
-				<h2> {{ token.name }} </h2>
-				<ion-note item-end>{{ token.symbol }}</ion-note>
-			  </button>
-    </ion-list>
+
+	<div class="container" *ngIf="noTokens">
+		<h2>No tokens found, may be you should start making tokens </h2>
+	</div>
+
+	<ion-list inset>
+		<button ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
+			<h2> {{ token.name }} </h2>
+			<ion-note item-end>{{ token.symbol }}</ion-note>
+		</button>
+	</ion-list>
 </ion-content>

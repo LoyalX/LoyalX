@@ -18,6 +18,7 @@ import { LoyalXProvider } from '../../providers/loyalx';
 })
 export class TokenListPage {
 	tokens: any;
+	noTokens = false;
 
 	constructor(
 		public navCtrl: NavController,
@@ -45,6 +46,7 @@ export class TokenListPage {
 		}, 4000);
 		console.log(this.LoyalXProvider.TokenFactory);
 		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
+		this.noTokens = this.tokens.lenth != 0;
 	}
 
 }
