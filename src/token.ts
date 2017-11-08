@@ -7,7 +7,7 @@ export class Token {
 	 * 
 	 * @param tokenAddress the token contract address OR null for the main loyalX tokens
 	 */
-	constructor(private tokenAddress = null) { }
+	constructor(private tokenAddress: string) { }
 
 	/**
 	 * @return {string} the contract name

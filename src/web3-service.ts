@@ -1,3 +1,4 @@
+import { ServerInfo } from './../lib/Servers.d';
 import { ContractArtifact } from './contract-artifact';
 import Web3 = require('web3');
 
@@ -7,14 +8,14 @@ export class Web3Service {
 	private static _provider;
 	private static _contracts: any = {};
 
-	private static _server;
+	private static _server: ServerInfo;
 	private static _TruffleContract;
 
 	public static get web3(): Web3 { return this._web3; }
 	public static get provider() { return this._provider; }
 	public static get isWeb3Injected() { return (typeof web3 !== 'undefined'); }
 
-	public static _init(Server, TruffleContract) {
+	public static _init(Server: ServerInfo, TruffleContract) {
 		if (this._web3 != null) { return; }
 
 		this._TruffleContract = TruffleContract;
