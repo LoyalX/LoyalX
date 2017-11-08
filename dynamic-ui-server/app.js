@@ -25,7 +25,8 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 
 app.get('/apps', (req, res) => {
-    fs.readdir(__dirname + '/public', (err, files) => res.json(files));
+    const getDirectories = sourceName => fs.readdirSync(sourceName).filter(folderName => fs.statSync(path.join(sourceName, folderName)).isDirectory());
+    res.json(getDirectories(__dirname + '/public'));
 });
 
 app.get('/apps/upload', (req, res) => {
@@ -51,7 +52,7 @@ app.post('/apps/upload', (req, res) => {
                 // unzip/extract the app file then delete it from the disk storage on the close event
                 fs.createReadStream('./public/' + newFileName)
                     .pipe(unzip.Extract({ path: './public/' }))
-                    .on('close', () => { fs.unlink('./public/' + newFileName, () => { res.status(200).send(true) } ) });
+                    .on('close', () => { fs.unlink('./public/' + newFileName, () => { res.status(200).send(true) }) });
             })
         }
         else {
