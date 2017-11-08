@@ -4,6 +4,7 @@
     "description": "arduino server socket",
     "dependencies": {
         "express": "^4.15.2",
+        "serialport": "^6.0.4",
         "socket.io": "^2.0.4"
     }
 }
