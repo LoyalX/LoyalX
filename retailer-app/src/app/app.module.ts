@@ -33,6 +33,7 @@ import { PointTransferPage } from '../pages/point-transfer/point-transfer';
 
 import { UserData } from '../providers/user-data';
 import { LoyalXProvider } from '../providers/loyalx';
+import { SocketIoService } from '../providers/socketIo';
 
 
 @NgModule({
@@ -88,7 +89,8 @@ import { LoyalXProvider } from '../providers/loyalx';
     UserData,
     InAppBrowser,
     SplashScreen,
-    LoyalXProvider
+    LoyalXProvider,
+    SocketIoService
   ]
 })
 export class AppModule { }

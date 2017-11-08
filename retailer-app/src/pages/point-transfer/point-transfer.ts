@@ -6,6 +6,7 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 import LoyalX from 'loyalx-jsapi';
 import { LoyalXProvider } from '../../providers/loyalx';
+import { SocketIoService } from '../../providers/socketIo';
 
 /**
  * Generated class for the PointTransferPage page.
@@ -26,6 +27,7 @@ export class PointTransferPage {
 	form: FormGroup;
 	scannerStatus: QRScannerStatus;
 	isReadyToTransfer: boolean;
+	showForm: boolean;
 
 	constructor(
 		public navCtrl: NavController,
@@ -35,7 +37,8 @@ export class PointTransferPage {
 		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
 		public qrScanner: QRScanner,
-		public LoyalXProvider: LoyalXProvider
+		public loyalXProvider: LoyalXProvider,
+		public socketIoService: SocketIoService
 	) {
 
 		this.token = this.navParams.get("token");
@@ -85,6 +88,8 @@ export class PointTransferPage {
 			scanSub.unsubscribe(); // stop scanning
 
 			this.qrScanner.getStatus().then(status => this.scannerStatus = status);
+
+			this.socketIoService.onPublicKeySent(key => this.form.controls['address'].setValue(key));
 		});
 
 		// Make the webview transparent so the video preview is visible behind it.
@@ -100,7 +105,7 @@ export class PointTransferPage {
 		this.token = this.navParams.get("token");
 
 		if (!this.token && this.tokenIndex) {
-			this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
+			this.tokens = await this.loyalXProvider.TokenFactory.getTokensByOwner();
 			this.token = this.tokens[this.tokenIndex];
 		}
 	}
@@ -114,8 +119,17 @@ export class PointTransferPage {
 
 		let values = this.form.value;
 		values.amount *= Math.pow(10, this.token.decimal);
-		let aToken = new this.LoyalXProvider.Token(this.token.address);
+		let aToken = new this.loyalXProvider.Token(this.token.address);
 		await aToken.transfer(values.amount, values.address);
+
+		this.toastCtrl.create({
+			message: 'Token transferred successfully',
+			duration: 3000,
+			position: 'middle'
+		}).present();
+
+		this.form.reset();
+		this.showForm = false;
 		this.viewCtrl.dismiss(this.form.value);
 	}
 

@@ -1,9 +1,12 @@
 const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const SerialPort = require("serialport");
 
-var serialPort = new SerialPort("COM5");
+const socketPort = 4040;
+const server = app.listen(socketPort, () => console.log(`server is listening on port ${socketPort}!`));
+
+const io = require('socket.io').listen(server);
+
+const SerialPort = require("serialport");
+const serialPort = new SerialPort("COM5");
 
 io.on('connection', socket => {
 	console.log('client connected');
@@ -38,8 +41,3 @@ io.on('connection', socket => {
 		console.log('client disconnected');
 	});
 });
-
-let socketPort = process.env.PORT || 4040;
-app.listen(socketPort, () => {
-	console.log(`server is listening on port ${socketPort}!`);
-})

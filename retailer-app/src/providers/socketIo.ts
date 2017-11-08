@@ -6,13 +6,13 @@ export class SocketIoService {
 	private socket: SocketIOClient.Socket; // The client instance of socket.io
 	// Constructor with an injection of ToastService
 	constructor() {
-		this.socket = io();
+		this.socket = io('http://localhost:4040');
 	}
 
 	// Consume: on public key sent event
-	onPublicKeySent() {
+	onPublicKeySent(callback) {
 		this.socket.on('public-key:sent', (data) => {
-			console.log(data.publicKey); // data = { publicKey: 'key' }
+			callback(data.publicKey);
 		});
 	}
 }

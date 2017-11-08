@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { BrandDetailPage } from '../brand-detail/brand-detail';
@@ -31,6 +31,7 @@ export class OnBoardPage {
 		public platform: Platform,
 		public modalCtrl: ModalController,
 		public viewCtrl: ViewController,
+		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
 		public LoyalXProvider: LoyalXProvider) {
 
@@ -54,6 +55,12 @@ export class OnBoardPage {
 
 		let formValues = this.form.value;
 		await this.LoyalXProvider.TokenFactory.initialiseRetail(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
+
+		this.toastCtrl.create({
+			message: 'Token created successfully',
+			duration: 3000,
+			position: 'bottom'
+		}).present();
 
 		this.navCtrl.setRoot('TokenListPage');
 	}

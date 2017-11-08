@@ -32,21 +32,20 @@ export class TokenListPage {
 		this.navCtrl.push('PointListPage', { token: this.tokens[tokenIndex], tokenIndex: tokenIndex });
 	}
 
-	ionViewWillEnter() {
+	async ionViewWillEnter() {
 		// Fire an event to enable back the split plane in this page
 		this.events.publish('errorPage:leave');
-	}
 
-	async ionViewDidEnter() {
+		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
+		this.noTokens = this.tokens.lenth == 0;
+
 		setTimeout(async () => {
 			let tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 			if (this.tokens.length !== tokens.length) {
 				this.tokens = tokens;
 			}
 		}, 4000);
-		console.log(this.LoyalXProvider.TokenFactory);
-		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
-		this.noTokens = this.tokens.lenth != 0;
+
 	}
 
 }
