@@ -1,4 +1,6 @@
-![](http://l0yalx.io/uploads/MusicKings_logo%202-nji.png "LoyalX") LoyalX Javascript API
+
+<img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png" height="50px"/>
+LoyalX Javascript API
 =========================================================================================
 
 Javascript api to interface with LoyalX protocol.
@@ -92,8 +94,11 @@ loyalx.LoyalXToken;
 ### `Token.transfer(amount, toAddress)`
 
 transfer tokens from the selected account to the recipient account   
-`amount` the amount to be transferred   
-`toAddress` the recipient account address   
+
+Param       | Type    | Description
+-----------:|---------| :-----------------------------
+`amount`    | number  | the amount to be transferred   
+`toAddress` | address |the recipient account address   
 
 ```javascript
 var tokenAddress = "0xd69d78e1cf0729cad59080820c9931315aba7778",
@@ -133,10 +138,13 @@ loyalx.TokenFactory;
 ### `TokenFactory.initialiseRetail(symbol, name, amount, decimal)`
 
 deploy a new token contract instance.   
-`symbol` a short name usually 3 chars   
-`name` reward point name   
-`amount` total points in circulation  
-`decimal` how many decimal point  
+
+Param     | Type   | Description
+---------:|--------| :-----------------------------
+`symbol`  | string |  a short name usually 3 chars   
+`name`    | string |  reward point name   
+`amount`  | number |  total points in circulation  
+`decimal` | number |  how many decimal point  
 
 ```javascript
 var symbol = "tst",
