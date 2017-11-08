@@ -19,6 +19,7 @@ import { LoyalXProvider } from '../../providers/loyalx';
 export class TokenListPage {
 	tokens: any;
 	noTokens = false;
+	isTokensLoading = false;
 
 	constructor(
 		public navCtrl: NavController,
@@ -39,11 +40,17 @@ export class TokenListPage {
 		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 		this.noTokens = this.tokens.length === 0;
 
+		this.isTokensLoading = this.navParams.get("isTokensLoading");
+		this.isTokensLoading = typeof this.isTokensLoading === 'undefined' ? false : this.isTokensLoading;
+
 		setTimeout(async () => {
 			let tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 			if (this.tokens.length !== tokens.length) {
 				this.tokens = tokens;
+				this.noTokens = this.tokens.length === 0;
 			}
+			this.isTokensLoading = false;
+
 		}, 4000);
 
 	}

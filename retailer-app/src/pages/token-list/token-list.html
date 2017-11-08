@@ -21,8 +21,15 @@
 
 	<ion-list inset>
 		<button ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
+			<ion-icon name="ios-basket" item-left></ion-icon>
 			<h2> {{ token.name }} </h2>
 			<ion-note item-end>{{ token.symbol }}</ion-note>
 		</button>
 	</ion-list>
+
+	<div class="spinner-container" *ngIf="isTokensLoading">
+		<p>Loading New Tokens...</p>
+		<ion-spinner></ion-spinner>
+	</div>
+
 </ion-content>

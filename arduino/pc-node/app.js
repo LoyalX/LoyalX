@@ -6,7 +6,7 @@ const server = app.listen(socketPort, () => console.log(`server is listening on 
 const io = require('socket.io').listen(server);
 
 const SerialPort = require("serialport");
-const serialPort = new SerialPort("COM5");
+const serialPort = new SerialPort("COM3");
 
 io.on('connection', socket => {
 	console.log('client connected');
@@ -21,14 +21,15 @@ io.on('connection', socket => {
 				if (data[i] == "%") {
 					if (output.length > 1) {
 						console.log(output);
+						output = "";
 					}
 
-					output = "";
+
 				} else if (data[i] == "&") {
 					let serial = output;
 					console.log(`serial: ${serial}`);
 
-					io.emit('public-key:sent', { publicKey: serial }); // send the key to the tcp socket
+					io.emit('keySent', { publicKey: serial }); // send the key to the tcp socket
 				} else {
 					output += data[i];
 				}
@@ -36,7 +37,6 @@ io.on('connection', socket => {
 
 		});
 	});
-
 	socket.on('disconnect', () => {
 		console.log('client disconnected');
 	});

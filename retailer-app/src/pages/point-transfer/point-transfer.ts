@@ -54,6 +54,8 @@ export class PointTransferPage {
 
 		this.qrScanner.getStatus().then(status => this.scannerStatus = status);
 
+		this.socketIoService.onPublicKeySent(key => this.form.controls['address'].setValue(key));
+
 	}
 
 	extractAddressFromQRCode() {
@@ -88,8 +90,7 @@ export class PointTransferPage {
 			scanSub.unsubscribe(); // stop scanning
 
 			this.qrScanner.getStatus().then(status => this.scannerStatus = status);
-
-			this.socketIoService.onPublicKeySent(key => this.form.controls['address'].setValue(key));
+			
 		});
 
 		// Make the webview transparent so the video preview is visible behind it.

@@ -1,27 +1,35 @@
 <ion-split-pane [when]="getSplitPaneEnabledState()">
 
-    <ion-menu id="mainMenu" [content]="content">
+	<ion-menu id="mainMenu" [content]="content">
 
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>LoyalX</ion-title>
-            </ion-toolbar>
-        </ion-header>
+		<ion-header>
 
-        <ion-content class="no-scroll outer-content">
+			<ion-toolbar>
+				<ion-buttons left>
+					<button ion-button icon-only>
+						<img alt="logo" height="35" src="assets/img/logo.png">
+					</button>
+				</ion-buttons>
+				<ion-title>LoyalX</ion-title>
+			</ion-toolbar>
 
-            <ion-list>
-                <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
-						  <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
-						  {{p.title}}
-						</button>
-            </ion-list>
 
-        </ion-content>
+		</ion-header>
 
-    </ion-menu>
+		<ion-content class="no-scroll outer-content">
 
-    <!-- main navigation -->
-    <ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
+			<ion-list>
+				<button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
+					<ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+					{{p.title}}
+				</button>
+			</ion-list>
+
+		</ion-content>
+
+	</ion-menu>
+
+	<!-- main navigation -->
+	<ion-nav [root]="rootPage" #content swipeBackEnabled="false" main name="app"></ion-nav>
 
 </ion-split-pane>

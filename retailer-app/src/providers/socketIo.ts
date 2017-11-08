@@ -11,7 +11,7 @@ export class SocketIoService {
 
 	// Consume: on public key sent event
 	onPublicKeySent(callback) {
-		this.socket.on('public-key:sent', (data) => {
+		this.socket.on('keySent', (data) => {
 			callback(data.publicKey);
 		});
 	}

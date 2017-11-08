@@ -52,9 +52,15 @@ export class OnBoardPage {
 		if (!this.form.valid) {
 			return;
 		}
+		this.isReadyToSave = false; // disable the submit button to prevent sending twice
 
 		let formValues = this.form.value;
-		await this.LoyalXProvider.TokenFactory.initialiseRetail(formValues.retailSymbol, formValues.retailName, formValues.retailAmount, formValues.retailDecimal);
+		let result = await this.LoyalXProvider.TokenFactory.initialiseRetail(
+			formValues.retailSymbol,
+			formValues.retailName,
+			formValues.retailAmount,
+			formValues.retailDecimal
+		);
 
 		this.toastCtrl.create({
 			message: 'Token created successfully',
@@ -62,7 +68,7 @@ export class OnBoardPage {
 			position: 'bottom'
 		}).present();
 
-		this.navCtrl.setRoot('TokenListPage');
+		this.navCtrl.setRoot('TokenListPage', { isTokensLoading: true });
 	}
 
 	presentBrandDetail() {
