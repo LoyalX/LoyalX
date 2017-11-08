@@ -1,11 +1,10 @@
-# Loyalty Chain Applications
+# <img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png" height="45px"/> LoyalX Applications
 
-This is purely a demo of Loyalty Chain Applications. It is still in development.
+A demo of LoyalX Applications. It is still in development.
 
 
 ## Table of Contents
  - [Getting Started](#getting-started)
- - [Backend](#backend)
  - [Retailer Application](#retailer-application)
  - [User Application](#user-application)
 
@@ -23,25 +22,11 @@ This is purely a demo of Loyalty Chain Applications. It is still in development.
 
 **Note:** Is your build slow? Update `npm` to 3.x: `npm install -g npm`.
 
-## Backend
 
-### Steps to run
-For reference: http://truffleframework.com/tutorials/pet-shop
 
-### Install:
-```
-npm install
-```
 
-### For compile and run:
-```
-testrpc
-truffle compile
-truffle migrate
-npm run dev
-```
 
-* For contracts: localhost:3000/{contract name}.json
+
 
 ## Retailer Application
 
@@ -56,6 +41,10 @@ npm run dev
 * Browser - Run `ionic cordova run browser --prod`
 * Android - Run `ionic cordova run android --prod`
 * iOS - Run `ionic cordova run ios --prod`
+
+
+
+
 
 
 ## User Application
