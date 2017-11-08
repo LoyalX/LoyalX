@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors')
 const morgan = require('morgan');
 
-const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
@@ -57,7 +56,7 @@ app.post('/apps/upload', (req, res) => {
     })
 })
 
-const port = process.env.PORT || 8888
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
     console.log(`server is listening on port ${port}!`);
 })
