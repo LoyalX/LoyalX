@@ -1,6 +1,6 @@
-# Loyalty Chain User Application
+# <img src="https://avatars1.githubusercontent.com/u/33500684" height="45px"/> LoyalX User Application
 
-This is purely a demo of Loyalty Chain User Application. It is still in development.
+This is a demo of LoyalX User Application. It is still in development.
 
 ## Table of Contents
  - [Getting Started](#getting-started)
