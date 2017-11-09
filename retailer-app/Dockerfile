@@ -6,7 +6,7 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 ADD . /app
 
-RUN mv ./src/app.config.production.ts ./src/app.config.ts
+RUN cp ./src/config.production.ts ./src/config.ts
 
 RUN npm install -g cordova ionic
 RUN npm install -g bower
