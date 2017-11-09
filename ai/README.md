@@ -39,6 +39,38 @@ Cache-Control: no-cache
 Postman-Token: 574a96f5-5327-381e-1eda-660f8adc6236
 user=john&activity=browse
 
+How AI and recommendation Works:
+Once the user logsin , get the profile of teh user from IBM watson based on his past activities.
+the profile which describes the user as described below. Based on teh traits , one can recommend the user with the categories that are best described by these traits.
+
+"personality": [
+        {
+            "trait_id": "big5_openness",
+            "name": "Openness",
+            "category": "personality",
+            "percentile": 0.3939352165353622,
+            "children": [
+                {
+                    "trait_id": "facet_artistic_interests",
+                    "name": "Artistic interests",
+                    "category": "personality",
+                    "percentile": 0.1426287298262099
+                },
+                {
+                    "trait_id": "facet_excitement_seeking",
+                    "name": "Excitement-seeking",
+                    "category": "personality",
+                    "percentile": 0.002038120626615292
+                },
+                  {
+            "trait_id": "need_challenge",
+            "name": "Challenge",
+            "category": "needs",
+            "percentile": 0.08331187428291764
+        }
+            ]
+        },
+             
 
 
 ## Credit / Thanks
