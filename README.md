@@ -9,7 +9,7 @@ Javascript api to interface with LoyalX protocol.
 will be published soon to npm for now you can use our git repo
 
 ```
-$ npm install git+https://github.com/MarcWafik/LoyalX-JSAPI.git
+$ npm install git+https://github.com/LoyalX/LoyalX-JSAPI.git
 ```
 
 ## Node Usage
@@ -156,12 +156,12 @@ console.log(tokensData);
 ```
 
 ```json
-TokensData : [
+"TokensData" : [
     {
         "address": "0xd69d78e1cf0729cad59080820c9931315aba7778",
         "name": "test",
         "symbol": "tst",
-        "decimal": 2,
+        "decimal": 2
     },
     ...
 ];
