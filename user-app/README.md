@@ -26,7 +26,7 @@ This is a demo of LoyalX User Application. It is still in development.
 
 ## Deploying
 
-* PWA - Un-comment [this](https://github.com/MarcWafik/Loyalty-Chain/blob/master/user-app/src/index.html#L19,L20,L21,L22,L23,L24,L25), run `npm run ionic:build --prod` and then push the `www` folder to your favorite hosting service
+* PWA - Un-comment [this](https://github.com/LoyalX/LoyalX-App/blob/master/user-app/src/index.html#L19,L20,L21,L22,L23,L24,L25), run `npm run ionic:build --prod` and then push the `www` folder to your favorite hosting service
 * Browser - Run `ionic cordova run browser --prod`
 * Android - Run `ionic cordova run android --prod`
 * iOS - Run `ionic cordova run ios --prod`
