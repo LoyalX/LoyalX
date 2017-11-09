@@ -73,9 +73,6 @@ the profile which describes the user as described below. Based on teh traits , o
              
 
 
-## Credit / Thanks
-Thanks to scotch.io for awesome tutorial.
-
 
 
 
