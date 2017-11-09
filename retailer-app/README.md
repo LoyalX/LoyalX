@@ -1,6 +1,6 @@
-# Loyalty Chain Retailer Application
+# <img src="https://avatars1.githubusercontent.com/u/33500684" height="45px"/> LoyalX Retailer Application
 
-This is purely a demo of Loyalty Chain Retailer Application. It is still in development.
+This is a demo of Loyalty Chain Retailer Application. It is still in development.
 
 ## Table of Contents
  - [Getting Started](#getting-started)
@@ -26,7 +26,7 @@ This is purely a demo of Loyalty Chain Retailer Application. It is still in deve
 
 ## Deploying
 
-* PWA - Un-comment [this](https://github.com/MarcWafik/Loyalty-Chain/blob/master/retailer-app/src/index.html#L19,L20,L21,L22,L23,L24,L25), run `npm run ionic:build --prod` and then push the `www` folder to your favorite hosting service
+* PWA - Un-comment [this](https://github.com/LoyalX/LoyalX-App/blob/master/retailer-app/src/index.html#L19,L20,L21,L22,L23,L24,L25), run `npm run ionic:build --prod` and then push the `www` folder to your favorite hosting service
 * Browser - Run `ionic cordova run browser --prod`
 * Android - Run `ionic cordova run android --prod`
 * iOS - Run `ionic cordova run ios --prod`
