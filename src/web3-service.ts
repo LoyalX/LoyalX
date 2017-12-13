@@ -1,18 +1,18 @@
+import Web3 = require('web3');
+
 import { ServerInfo } from './Servers';
 import { ContractArtifact } from './contract-artifact';
-import Web3 = require('web3');
 
 export class Web3Service {
 
 	private static _web3: Web3;
-	private static _provider;
 	private static _contracts: any = {};
 
 	private static _server: ServerInfo;
 	private static _TruffleContract;
 
 	public static get web3(): Web3 { return this._web3; }
-	public static get provider() { return this._provider; }
+	public static get provider() { return this._web3.currentProvider; }
 	public static get isWeb3Injected() { return (typeof web3 !== 'undefined'); }
 
 	public static _init(Server: ServerInfo, TruffleContract) {
@@ -21,14 +21,7 @@ export class Web3Service {
 		this._TruffleContract = TruffleContract;
 		this._server = Server;
 
-		if (typeof web3 !== 'undefined') {
-			this._provider = web3.currentProvider;
-			this._web3 = new Web3(web3.currentProvider);
-		} else {
-			this._provider = new Web3.providers.HttpProvider(this._server.HTTP_PROVIDER);
-			this._web3 = new Web3(this._provider);
-		}
-
+		this._web3 = new Web3(Web3.givenProvider || this._server.HTTP_PROVIDER);
 	}
 
 	/**
@@ -95,7 +88,7 @@ export class Web3Service {
 	public static async getAccount(): Promise<string> {
 		try {
 			var accounts = await this.web3.eth.getAccounts();
-			console.log("getAccount", accounts[0]);
+			console.log("getAccount", accounts);
 			return accounts[0];
 		} catch (err) {
 			console.warn(err.message);

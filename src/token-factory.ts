@@ -36,7 +36,10 @@ export class TokenFactory {
 			var account = await Web3Service.getAccount();
 			var loyaltyFactoryInstance = await this.getContractInstance();
 
-			var result = await loyaltyFactoryInstance.initialiseRetail(retailAmount, retailName, retailDecimal, retailSymbol, { from: account });
+			var result = await loyaltyFactoryInstance.initialiseRetail(
+				retailAmount, retailName, retailDecimal, retailSymbol,
+				{ from: account, gas: 5000000 }
+			);
 
 			console.log("handleOnboard", result);
 			return result;
