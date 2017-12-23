@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import LoyalX from 'loyalx-jsapi';
+import CONFIG from '../config';
 
 /*
   Generated class for the LoyalXProvider provider.
@@ -13,7 +14,7 @@ export class LoyalXProvider {
 
 	private loyal = new LoyalX(
 		TruffleContract,
-		LoyalX.SERVERS.LOCALHOST
+		CONFIG.IS_PRODUCTION ? LoyalX.SERVERS.PRODUCTION : LoyalX.SERVERS.LOCALHOST
 	);
 
 	public LoyalXToken = this.loyal.LoyalXToken;
