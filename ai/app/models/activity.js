@@ -16,7 +16,7 @@ var ActivitySchema   = new Schema({
 	},
     vendor: {
         type:String
-	},  
+	},
 	category: {
         type:String
 	},
@@ -26,6 +26,7 @@ var ActivitySchema   = new Schema({
     }
 });
 
+
+
+
 module.exports = mongoose.model('Activity', ActivitySchema);
-
-

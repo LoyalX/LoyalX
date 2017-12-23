@@ -31,7 +31,7 @@ router.use(function(req, res, next) {
 
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-	res.json({ message: 'Thanks for accesing l0yalx' });	
+	res.json({ message: 'Thanks for accesing l0yalx' });
 });
 
 //=============================================================================
@@ -43,21 +43,21 @@ router.route('/activity')
 	.post(function(req, res) {
 
 		console.log("Post Activity");
-		
+
 		var activity = new Activity();		// create a new instance
 		activity.user = req.body.user;  // set the activity name
-		activity.activity = req.body.activity; 
-		activity.vendor = req.body.vendor; 
-		activity.category = req.body.category; 
+		activity.activity = req.body.activity;
+		activity.vendor = req.body.vendor;
+		activity.category = req.body.category;
 
 		var query = {
 		};
 
 		if (req.body.user) {
 		    query.user = req.body.user;
-			query.activity = req.body.activity; 
-			query.vendor = req.body.vendor; 
-			query.category = req.body.category; 
+			query.activity = req.body.activity;
+			query.vendor = req.body.vendor;
+			query.category = req.body.category;
 
 		}
 
@@ -73,8 +73,8 @@ router.route('/activity')
 						if (err)
 							res.send(err);
 						res.json({ message: 'Activity Updated with score!',score });
-					});		
-				
+					});
+
 			}
 			else
 				{
@@ -84,7 +84,7 @@ router.route('/activity')
 						if (err)
 							res.send(err);
 						res.json({ message: 'Activity created!' });
-						});			
+						});
 				}
 		});
 	})
@@ -122,7 +122,7 @@ router.route('/activity/:user_id')
 
 
 
-	
+
 
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', router);
