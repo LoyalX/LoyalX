@@ -34,6 +34,7 @@ import { Web3Provider } from '../providers/web3/web3';
 import { LoyaltyTokenProvider } from '../providers/loyalty-token/loyalty-token';
 import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-factory';
 import { ErrorPage } from "../pages/error/error";
+import { UportProvider } from '../providers/uport/uport';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { ErrorPage } from "../pages/error/error";
 		SplashScreen,
 		Web3Provider,
 		LoyaltyTokenProvider,
-		LoyaltyFactoryProvider
+		LoyaltyFactoryProvider,
+    UportProvider
 	]
 })
 export class AppModule { }
