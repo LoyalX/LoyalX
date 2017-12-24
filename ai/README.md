@@ -1,7 +1,7 @@
 <img src="http://l0yalx.io/uploads/MusicKings_logo%202-nji.png" height="45px"/> LoyalX REST API for AI Engine
 =========================================================================================
 
-## Requirements 
+## Requirements
 
 - Node and npm
 - Download NodeJS from http://nodejs.org/
@@ -52,9 +52,52 @@ Postman-Token: 574a96f5-5327-381e-1eda-660f8adc6236
 user=john&activity=browse
 ```
 
+### Dynamic Rule creations
+1. New Rule that needs to be created can be added to any retail. A unique key needs to exist for the retail
+Eg: Retail: uaegov
+Sample JS Command:
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8080/addRule",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "cache-control": "no-cache",
+    "postman-token": "9cfbd1bd-0c18-b26a-734d-8623a9206ec4"
+  },
+  "data": {
+    "domain": "uaegov",
+    "rule": "{ \"numberOfTransactions\":1, \"points\":5, \"ruleJSON\":{ \"vendor\":\"Amazon\",\"activity\":\"Browse\" } }"
+  }
+}
 
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
 
+2. How to execute Rule for a user:
+eg: user="Jeff"
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://localhost:8080/executeRule",
+  "method": "POST",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "cache-control": "no-cache",
+    "postman-token": "ac287bad-c4a3-f3b6-0f1a-810f47a158f4"
+  },
+  "data": {
+    "user": "Jeff",
+    "domain": "uaegov"
+  }
+}
 
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+Currently only one rule per retail is considered.
 
 ### How AI and recommendation Works:
 Once the user logsin , get the profile of teh user from IBM watson based on his past activities.   
@@ -90,5 +133,5 @@ the profile which describes the user as described below. Based on teh traits , o
     },
     ...
 ]
-             
+
 ```
