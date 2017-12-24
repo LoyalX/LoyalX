@@ -26,14 +26,17 @@ import { TokenListPage } from '../pages/token-list/token-list';
 import { PointListPage } from '../pages/point-list/point-list'
 import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
 import { TokenListPageModule } from '../pages/token-list/token-list.module';
+import { ProfilePageModule } from '../pages/profile/profile.module';
 import { OnBoardPage } from '../pages/on-board/on-board';
 import { BrandDetailPage } from '../pages/brand-detail/brand-detail';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { PointTransferPage } from '../pages/point-transfer/point-transfer';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { UserData } from '../providers/user-data';
 import { LoyalXProvider } from '../providers/loyalx';
 import { SocketIoService } from '../providers/socketIo';
+//import { UportProvider } from '../providers/uport/uport';
 
 
 @NgModule({
@@ -47,24 +50,26 @@ import { SocketIoService } from '../providers/socketIo';
   ],
   imports: [
     BrowserModule,
-	HttpModule,
-	OnBoardPageModule,
-	BrandDetailPageModule,
-	OfferCreatePageModule,
-	PointTransferPageModule,
-	TokenListPageModule,
-	ErrorPageModule,
+    HttpModule,
+    OnBoardPageModule,
+    BrandDetailPageModule,
+    OfferCreatePageModule,
+    PointTransferPageModule,
+    TokenListPageModule,
+    ErrorPageModule,
+    ProfilePageModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
-		{ component: SignupPage, name: 'SignupPage', segment: 'signup' },
-		{ component: ErrorPage, name: 'ErrorPage', segment: 'error' },
-		{ component: OnBoardPage, name: 'OnBoardPage', segment: 'onBoard' },
-		{ component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
-		{ component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
-		{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' }
+        { component: SignupPage, name: 'SignupPage', segment: 'signup' },
+        { component: ErrorPage, name: 'ErrorPage', segment: 'error' },
+        { component: OnBoardPage, name: 'OnBoardPage', segment: 'onBoard' },
+        { component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
+        { component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
+        { component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' },
+        { component: ProfilePage, name: 'ProfilePage', segment: 'profile' }
 
       ]
     }),
@@ -74,15 +79,15 @@ import { SocketIoService } from '../providers/socketIo';
   entryComponents: [
     ConferenceApp,
     LoginPage,
-	SignupPage,
-	ErrorPage,
+    SignupPage,
+    ErrorPage,
     TabsPage,
     TutorialPage,
     PointListPage,
-	OfferCreatePage,
-	PointTransferPage,
-	OnBoardPage,
-	TokenListPage
+    OfferCreatePage,
+    PointTransferPage,
+    OnBoardPage,
+    TokenListPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -90,7 +95,8 @@ import { SocketIoService } from '../providers/socketIo';
     InAppBrowser,
     SplashScreen,
     LoyalXProvider,
-    SocketIoService
+    SocketIoService,
+    // UportProvider
   ]
 })
 export class AppModule { }

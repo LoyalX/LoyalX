@@ -1,0 +1,60 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Profile</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce class="bg-modal">
+    <div class="header-image"></div>
+    <div class="main-content" text-wrap text-center>
+        <div class="circular"></div>
+        <h2>{{user.name}}</h2>
+        <p>{{user.occupation}} &bull; {{user.location}}</p>
+        <p class="profile-description">{{user.description}}</p>
+        <hr>
+        <ion-list no-lines>
+            <ion-item>
+                <!-- <ion-icon name="mail" color="primary" item-start></ion-icon> -->
+                <p>Address</p>
+                <p>{{user.address}}</p>
+                <!-- <a button ion-button href="#" color="primary" item-end large>requestCredentials</a> -->
+            </ion-item>
+            <ion-item>
+                <!-- <ion-icon item-start name="call" color="danger"></ion-icon> -->
+                <p>Network</p>
+                {{user.network}}
+                <!-- <a button ion-button href="#" color="secondary" item-end large>getCredentials</a> -->
+            </ion-item>
+            <ion-item>
+                <!-- <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon> -->
+                <p>Country</p>
+                {{user.country}}
+            </ion-item>
+            <ion-item>
+                <!-- <ion-icon item-start name="pin" color="twitter"></ion-icon> -->
+                <p>Public Key</p>
+                <p>{{user.publicKey}}</p>
+            </ion-item>
+            <ion-item>
+                <!-- <ion-icon item-start name="pin" color="twitter"></ion-icon> -->
+                <p>Public Encrypted Key</p>
+                <p>{{user.publicEncKey}}</p>
+            </ion-item>
+        </ion-list>
+        <h2>Credentials</h2>
+        <hr>
+        <button ion-button icon-start color="primary" (click)="getCredentials()">
+            <!-- <ion-icon name="star"></ion-icon> -->
+            Get Credentials
+        </button>
+
+        <button ion-button icon-start color="secondary" (click)="requestCredentials()">
+            <!-- <ion-icon name="star"></ion-icon> -->
+            Request Credentials
+        </button>
+    </div>
+
+</ion-content>

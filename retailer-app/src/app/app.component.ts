@@ -13,6 +13,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ErrorPage } from '../pages/error/error';
 import { TokenListPage } from '../pages/token-list/token-list';
 import { OnBoardPage } from '../pages/on-board/on-board';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { UserData } from '../providers/user-data';
 
@@ -40,7 +41,8 @@ export class ConferenceApp {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ title: 'Tokens', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
-		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 1, icon: 'pricetags' }
+		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 1, icon: 'pricetags' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 2, icon: 'person' }
 
 	];
 	loggedInPages: PageInterface[] = [
