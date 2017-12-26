@@ -7,7 +7,7 @@ import { ServerInfo } from './Servers';
 import * as TruffleContract from 'truffle-contract';
 
 export default class LoyalX {
-	static web3ServiceInstance: Web3Service = null;
+	static web3ServiceInstance: Web3Service;
 	static TokenFactory = new TokenFactory();
 	static Token = Token;
 	static LoyalXToken = new Token(<any>null);

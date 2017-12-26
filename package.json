@@ -18,6 +18,7 @@
 		"postinstall": "npm run build"
 	},
 	"dependencies": {
+		"@types/node": "^8.5.2",
 		"bignumber.js": "^4.1.0",
 		"eth-lightwallet": "^3.0.0",
 		"request": "^2.83.0",
@@ -26,7 +27,6 @@
 		"web3-provider-engine": "^13.4.0"
 	},
 	"devDependencies": {
-		"@types/node": "^8.5.2",
 		"typescript": "^2.6.1"
 	},
 	"repository": {
