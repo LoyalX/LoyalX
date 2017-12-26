@@ -1,24 +1,28 @@
 import { Web3Service } from './web3-service';
 import SERVERS from './Servers';
 import { ServerInfo } from './Servers';
-import * as TruffleContract from 'truffle-contract';
+
+import { Badge } from './contract-wraper/badge';
+import { ExtendedRewardProgram } from './contract-wraper/extended-reward-program';
+import { OrganizationFactory } from './contract-wraper/organization-factory';
+import { Organization } from './contract-wraper/organization';
+import { RewardProgram } from './contract-wraper/reward-program';
 
 export default class LoyalX {
-	static web3ServiceInstance: Web3Service;
-	static Web3Service = Web3Service;
-	static SERVERS = SERVERS;
+	public Web3Service;
+	public static SERVERS = SERVERS;
 
-	constructor(TruffleContract, server: ServerInfo = LoyalX.SERVERS.LOCALHOST) {
-		LoyalX.Web3Service.getInstance(server, TruffleContract)
-			.then(web3ServiceInstance => LoyalX.web3ServiceInstance = web3ServiceInstance);
-	}
+	public Badge = Badge;
+	public ExtendedRewardProgram = ExtendedRewardProgram;
+	public OrganizationFactory = new OrganizationFactory();
+	public Organization = Organization;
+	public RewardProgram = RewardProgram;
 
-	public static async init(TruffleContract, server: ServerInfo = LoyalX.SERVERS.LOCALHOST) {
-		LoyalX.web3ServiceInstance = LoyalX.web3ServiceInstance ? LoyalX.web3ServiceInstance : (await (Web3Service.getInstance(server, TruffleContract)));
-		return this;
-	}
+	private constructor() { }
 
-	public static async getWeb3ServiceInstance(TruffleContract, server: ServerInfo = LoyalX.SERVERS.LOCALHOST) {
-		return LoyalX.web3ServiceInstance || (LoyalX.web3ServiceInstance = (await (Web3Service.getInstance(server, TruffleContract))));
+	public static async init(TruffleContract, server: ServerInfo = SERVERS.LOCALHOST) {
+		var ret = new LoyalX();
+		ret.Web3Service = await Web3Service.getInstance();
+		return ret;
 	}
 }

@@ -8,6 +8,8 @@ export class OrganizationFactory extends Contract {
 	 */
 	public get contractName(): string { return "OrganizationFactory" };
 
+	constructor() { super(); }
+
 	/**
 	 * deploy a new token contract
 	 * @param retailSymbol a short name usualy 3 chars

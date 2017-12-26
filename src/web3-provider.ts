@@ -8,18 +8,15 @@ let HookedWalletSubprovider = require('web3-provider-engine/subproviders/hooked-
 let NonceSubprovider = require('web3-provider-engine/subproviders/nonce-tracker.js');
 let RpcSubprovider = require('web3-provider-engine/subproviders/rpc.js');
 
-import { ServerInfo } from './Servers';
-import SERVERS from './Servers';
+import Config from './config';
 
 
 export class Web3Provider {
 	private static _instance: Web3Provider;
 
 	private _engine: any;
-	private _server: ServerInfo;
 
 	private constructor() {
-		this._server = SERVERS.LOCALHOST;
 		this._engine = new ProviderEngine();
 		this.init();
 	}
@@ -48,7 +45,7 @@ export class Web3Provider {
 
 		// data source
 		this._engine.addProvider(new RpcSubprovider({
-			rpcUrl: this._server.HTTP_PROVIDER
+			rpcUrl: Config.server.HTTP_PROVIDER
 		}));
 
 		// log new blocks
@@ -68,14 +65,10 @@ export class Web3Provider {
 		this._engine.start();
 	}
 
-	setServer(server: ServerInfo) {
-		this._server = server;
-	}
-
-	setRpcSubprovider(server: ServerInfo) {
+	setRpcSubprovider() {
 		// data source
 		this._engine.addProvider(new RpcSubprovider({
-			rpcUrl: server.HTTP_PROVIDER
+			rpcUrl: Config.server.HTTP_PROVIDER
 		}));
 
 	}
@@ -106,10 +99,6 @@ export class Web3Provider {
 
 	public get engine() {
 		return this._engine;
-	}
-
-	public get server() {
-		return this._server;
 	}
 
 	public static get Instance() {

@@ -3,10 +3,9 @@ let Web3 = require('web3');
 import { Web3Provider } from './web3-provider';
 import { Web3Wallet } from './web3-wallet';
 
-import { ServerInfo } from './Servers';
 import { ContractArtifact } from './contract-artifact';
 
-import SERVERS from './Servers';
+import Config from './config';
 
 export class Web3Service {
 
@@ -15,16 +14,14 @@ export class Web3Service {
 	private _wallet: Web3Wallet;
 	private _web3: any;
 	private _contracts: any = {};
-	private _server: ServerInfo;
-	private _TruffleContract;
 
-	private constructor() {
+	private constructor() {}
+
+	public static async getInstance() {
+		return this._instance || (this._instance = (await new this().init()));
 	}
 
-	public async init(server?, TruffleContract?) {
-		this._server = server;
-		this._TruffleContract = TruffleContract;
-
+	private async init() {
 		try {
 			this._wallet = await (Web3Wallet.getInstance());
 			this._web3 = new Web3(this._wallet.provider.engine);
@@ -69,8 +66,8 @@ export class Web3Service {
 			return this._contracts[contractName];
 		}
 		// Get the necessary contract artifact file and instantiate it with truffle-contract.
-		var contractArtifact = await ContractArtifact.get(contractName, this._server);
-		var contract = this._TruffleContract(contractArtifact);
+		var contractArtifact = await ContractArtifact.get(contractName);
+		var contract = Config.TruffleContract(contractArtifact);
 		// var contract = new this.Web3Provider.web3.eth.Contract(contractArtifact);
 		contract.setProvider(this.provider); // Set the provider for our contract.
 		this._contracts[contractName] = contract;
@@ -106,10 +103,10 @@ export class Web3Service {
 					reject(err);
 				} else {
 					console.log("Network id", netId);
-					if (this._server.NETWORK_ID == null) {
+					if (Config.server.NETWORK_ID == null) {
 						console.warn("no network id specified in config, ignoring network check");
 					}
-					resolve((this._server.NETWORK_ID == null) || (netId == this._server.NETWORK_ID));
+					resolve((Config.server.NETWORK_ID == null) || (netId == Config.server.NETWORK_ID));
 				}
 			});
 
@@ -137,9 +134,5 @@ export class Web3Service {
 	public get web3(): any { return this._web3; }
 	public get provider() { return this._web3.currentProvider; }
 	public get wallet() { return this._wallet; }
-
-	public static async getInstance(server?, TruffleContract?) {
-		return this._instance || (this._instance = (await new this().init(server, TruffleContract)));
-	}
 
 }

@@ -1,7 +1,6 @@
 import lightwallet = require("eth-lightwallet");
-
 import { Web3Provider } from './web3-provider';
-
+import Config from './config';
 
 export class Web3Wallet {
 
@@ -31,7 +30,7 @@ export class Web3Wallet {
 				password: password,
 				seedPhrase: randomSeed,
 				//random salt 
-				hdPathString: this._provider.server.HD_PATH
+				hdPathString: Config.server.HD_PATH
 			}, (err, keyStore) => {
 				if (err) return reject(err);
 				else resolve(keyStore);
