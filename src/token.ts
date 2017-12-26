@@ -18,7 +18,8 @@ export class Token {
 	 * @return {TruffleContract} the contract
 	 */
 	public async getContract() {
-		return await Web3Service.getContract(this.contractName);
+		var web3ServiceInstance = await (Web3Service.getInstance());
+		return await web3ServiceInstance.getContract(this.contractName);
 	}
 
 	/**
@@ -35,7 +36,8 @@ export class Token {
 	 */
 	public async getBalance(): Promise<BigNumber> {
 		try {
-			var account = await Web3Service.getAccount();
+			var web3ServiceInstance = await (Web3Service.getInstance());
+			var account = await web3ServiceInstance.getAccount();
 			var contractInstance = await this.getContractInstance();
 			var result = await contractInstance.balanceOf(account);
 
@@ -55,7 +57,8 @@ export class Token {
 	public async transfer(amount: number, toAddress: string) {
 		try {
 			var contractInstance = await this.getContractInstance();
-			var account = await Web3Service.getAccount();
+			var web3ServiceInstance = await (Web3Service.getInstance());
+			var account = await web3ServiceInstance.getAccount();
 			var result = await contractInstance.transfer(toAddress, amount, { from: account });
 
 			console.log("transfer", result);

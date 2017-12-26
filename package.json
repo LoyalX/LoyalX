@@ -19,11 +19,14 @@
 	},
 	"dependencies": {
 		"bignumber.js": "^4.1.0",
+		"eth-lightwallet": "^3.0.0",
 		"request": "^2.83.0",
 		"truffle-contract": "^3.0.1",
-		"web3": "^1.0.0-beta.24"
+		"web3": "^1.0.0-beta.26",
+		"web3-provider-engine": "^13.4.0"
 	},
 	"devDependencies": {
+		"@types/node": "^8.5.2",
 		"typescript": "^2.6.1"
 	},
 	"repository": {

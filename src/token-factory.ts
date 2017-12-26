@@ -11,7 +11,8 @@ export class TokenFactory {
 	 * @return {TruffleContract} the contract
 	 */
 	public async getContract() {
-		return Web3Service.getContract(this.contractName);
+		var web3ServiceInstance = await (Web3Service.getInstance());
+		return web3ServiceInstance.getContract(this.contractName);
 	}
 
 	/**
@@ -33,7 +34,8 @@ export class TokenFactory {
 
 		retailAmount *= Math.pow(10, retailDecimal);
 		try {
-			var account = await Web3Service.getAccount();
+			var web3ServiceInstance = await (Web3Service.getInstance());
+			var account = await web3ServiceInstance.getAccount();
 			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = await loyaltyFactoryInstance.initialiseRetail(
@@ -74,7 +76,8 @@ export class TokenFactory {
 	 */
 	public async getTokensAddressByOwner(): Promise<string[]> {
 		try {
-			var account = await Web3Service.getAccount();
+			var web3ServiceInstance = await (Web3Service.getInstance());
+			var account = await web3ServiceInstance.getAccount();
 			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = <string[]>await loyaltyFactoryInstance.getTokensAddressByOwner(account);
@@ -88,14 +91,15 @@ export class TokenFactory {
 		}
 	}
 
-	private _parseTokensData(data): TokenData[] {
+	private async _parseTokensData(data): Promise<TokenData[]> {
+		var web3ServiceInstance = await (Web3Service.getInstance());
 		var ret = <TokenData[]>[];
 
 		for (var i = 0; i < data[0].length; i++) {
 			ret.push({
 				address: data[0][i],
-				name: Web3Service.web3.utils.hexToUtf8(data[1][i]),
-				symbol: Web3Service.web3.utils.hexToUtf8(data[2][i]),
+				name: web3ServiceInstance.web3.utils.hexToUtf8(data[1][i]),
+				symbol: web3ServiceInstance.web3.utils.hexToUtf8(data[2][i]),
 				decimal: data[3][i].toNumber()
 			});
 		}
@@ -128,7 +132,8 @@ export class TokenFactory {
 	 */
 	public async getTokensByOwner(): Promise<TokenData[]> {
 		try {
-			var account = await Web3Service.getAccount();
+			var web3ServiceInstance = await (Web3Service.getInstance());
+			var account = await web3ServiceInstance.getAccount();
 			var loyaltyFactoryInstance = await this.getContractInstance();
 
 			var result = await loyaltyFactoryInstance.getTokensByOwner(account);
