@@ -9,6 +9,7 @@
 		],
 		"allowSyntheticDefaultImports": true,
 		"outDir": "lib",
+		"rootDir": "./src",
 		"sourceMap": true,
 		"declaration": true,
 		"noImplicitAny": false,

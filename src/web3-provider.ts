@@ -1,15 +1,15 @@
 //Provider Engine sub-modules
-import ProviderEngine = require('web3-provider-engine');
-import CacheSubprovider = require('web3-provider-engine/subproviders/cache.js');
-import FixtureSubprovider = require('web3-provider-engine/subproviders/fixture.js');
-import FilterSubprovider = require('web3-provider-engine/subproviders/filters.js');
-import VmSubprovider = require('web3-provider-engine/subproviders/vm.js');
-import HookedWalletSubprovider = require('web3-provider-engine/subproviders/hooked-wallet.js');
-import NonceSubprovider = require('web3-provider-engine/subproviders/nonce-tracker.js');
-import RpcSubprovider = require('web3-provider-engine/subproviders/rpc.js');
+let ProviderEngine = require('web3-provider-engine');
+let CacheSubprovider = require('web3-provider-engine/subproviders/cache.js');
+let FixtureSubprovider = require('web3-provider-engine/subproviders/fixture.js');
+let FilterSubprovider = require('web3-provider-engine/subproviders/filters.js');
+let VmSubprovider = require('web3-provider-engine/subproviders/vm.js');
+let HookedWalletSubprovider = require('web3-provider-engine/subproviders/hooked-wallet.js');
+let NonceSubprovider = require('web3-provider-engine/subproviders/nonce-tracker.js');
+let RpcSubprovider = require('web3-provider-engine/subproviders/rpc.js');
 
 import { ServerInfo } from './Servers';
-import SERVERS from '../lib/Servers';
+import SERVERS from './Servers';
 
 
 export class Web3Provider {

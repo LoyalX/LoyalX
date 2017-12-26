@@ -1,15 +1,5 @@
 let Web3 = require('web3');
 
-//Provider Engine sub-modules
-let ProviderEngine = require('web3-provider-engine');
-let CacheSubprovider = require('web3-provider-engine/subproviders/cache.js');
-let FixtureSubprovider = require('web3-provider-engine/subproviders/fixture.js');
-let FilterSubprovider = require('web3-provider-engine/subproviders/filters.js');
-let VmSubprovider = require('web3-provider-engine/subproviders/vm.js');
-let HookedWalletSubprovider = require('web3-provider-engine/subproviders/hooked-wallet.js');
-let NonceSubprovider = require('web3-provider-engine/subproviders/nonce-tracker.js');
-let RpcSubprovider = require('web3-provider-engine/subproviders/rpc.js');
-
 import { Web3Provider } from './web3-provider';
 import { Web3Wallet } from './web3-wallet';
 
