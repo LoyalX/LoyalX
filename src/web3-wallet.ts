@@ -1,10 +1,11 @@
-import lightwallet = require("eth-lightwallet");
+// import lightwallet = require("eth-lightwallet");
 import { Web3Provider } from './web3-provider';
 import Config from './config';
 
 export class Web3Wallet {
 
 	private static _instance: Web3Wallet;
+	private lightwallet
 
 	private _provider: Web3Provider = Web3Provider.Instance;
 	private _keyStore: any;
@@ -14,6 +15,7 @@ export class Web3Wallet {
 	}
 
 	private async _init(password: string, randomSeed: string) {
+		this.lightwallet = Config.lightwallet;
 		try {
 			this._keyStore = await (this._createKeyStore(password, randomSeed));
 			this._address = await (this._generateAddresses(password)) ? this._keyStore.getAddresses()[0] : "";
@@ -26,7 +28,7 @@ export class Web3Wallet {
 
 	private _createKeyStore(password: string, randomSeed: string) {
 		return new Promise((resolve, reject) => {
-			lightwallet.keystore.createVault({
+			this.lightwallet.keystore.createVault({
 				password: password,
 				seedPhrase: randomSeed,
 				//random salt 

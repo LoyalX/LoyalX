@@ -7,6 +7,7 @@ import { ExtendedRewardProgram } from './contract-wraper/extended-reward-program
 import { OrganizationFactory } from './contract-wraper/organization-factory';
 import { Organization } from './contract-wraper/organization';
 import { RewardProgram } from './contract-wraper/reward-program';
+import Config from './config';
 
 export default class LoyalX {
 	public Web3Service;
@@ -20,7 +21,11 @@ export default class LoyalX {
 
 	private constructor() { }
 
-	public static async init(TruffleContract, server: ServerInfo = SERVERS.LOCALHOST) {
+	public static async init(TruffleContract, lightwallet, server: ServerInfo = SERVERS.LOCALHOST) {
+		Config.TruffleContract = TruffleContract;
+		Config.lightwallet = lightwallet;
+		Config.server = server;
+		
 		var ret = new LoyalX();
 		ret.Web3Service = await Web3Service.getInstance();
 		return ret;
