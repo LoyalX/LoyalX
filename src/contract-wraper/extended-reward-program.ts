@@ -4,15 +4,6 @@ import { RewardProgram } from './reward-program';
 
 export class ExtendedRewardProgram extends RewardProgram {
 
-	/**
-	 * 
-	 * @param tokenAddress the token contract address OR null for the main loyalX tokens
-	 */
-	constructor(address: string) {
-		super(address);
-		this._address = address;
-	}
-
 	public get contractName() { return "ExtendedRewardProgram"; }
 
 	public async increaseSupply(value: number, to: string): Promise<boolean> {

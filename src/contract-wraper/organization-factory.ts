@@ -1,14 +1,10 @@
 import { Web3Service } from '../web3-service';
 import { Contract } from './contract';
+import { Organization } from './organization';
 
 export class OrganizationFactory extends Contract {
 
-	/**
-	 * @return {string} the contract name
-	 */
 	public get contractName(): string { return "OrganizationFactory" };
-
-	constructor() { super(); }
 
 	/**
 	 * deploy a new token contract
@@ -28,7 +24,7 @@ export class OrganizationFactory extends Contract {
 		tokenName,
 		tokenDecimal = 0,
 		tokenSymbol
-	}) {
+	}): Promise<Organization> {
 		tokenInitialAmount *= Math.pow(10, tokenDecimal);
 		try {
 			var web3ServiceInstance = await (Web3Service.getInstance());
@@ -50,7 +46,7 @@ export class OrganizationFactory extends Contract {
 			);
 
 			console.log("createOrganization", result);
-			return result;
+			return new Organization(result);
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
@@ -61,47 +57,40 @@ export class OrganizationFactory extends Contract {
 	 * get all token's addresses
 	 * @returns {Promise<string[]>}
 	 */
-	public async getOrganizationsAddresses(): Promise<string[]> {
+	public async getOrganizationsAddresses(): Promise<Organization[]> {
 		try {
 			var organizationFactoryInst = await this.getContractInstance();
-
 			var result = await organizationFactoryInst.getOrganizationsAddresses();
 
 			console.log("getOrganizationsAddresses", result);
+			for (const key in result) {
+				result[key] = new Organization(result[key]);
+			}
 			return result;
-
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
 		}
 	}
+
 
 	/**
 	 * get all token's addresses created by the user account
 	 * @returns {Promise<string[]>}
 	 */
-	public async findOrganizationsAddressByOwner(): Promise<string> {
+	public async findOrganizationByOwner(_account?: string): Promise<Organization> {
 		try {
 			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
+			var account = _account ? _account : (await web3ServiceInstance.getAccount());
 			var organizationFactoryInst = await this.getContractInstance();
 
-			var result = <string>await organizationFactoryInst.findOrganizationsAddressByOwner(account);
+			var result = <string>await organizationFactoryInst.ownerMap(account);
 
-			console.log("findOrganizationsAddressByOwner", result);
-			return result;
-
+			console.log("findAddressByOwner", result);
+			return new Organization(result);
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
 		}
 	}
-
-}
-
-export interface TokenData {
-	address: string;
-	name: string;
-	symbol: string;
-	decimal: number;
 }
