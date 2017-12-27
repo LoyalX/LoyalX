@@ -19,14 +19,14 @@ export class OrganizationFactory extends Contract {
 	 */
 	public async createOrganization({
         name,
-		website,
-		email,
-		logoURL,
-		tokenIconURL,
-		about,
-		tokenInitialAmount,
+		website = "",
+		email = "",
+		logoURL = "",
+		tokenIconURL = "",
+		about = "",
+		tokenInitialAmount = 1000000000,
 		tokenName,
-		tokenDecimal,
+		tokenDecimal = 0,
 		tokenSymbol
 	}) {
 		tokenInitialAmount *= Math.pow(10, tokenDecimal);
@@ -35,8 +35,17 @@ export class OrganizationFactory extends Contract {
 			var account = await web3ServiceInstance.getAccount();
 			var organizationFactoryInst = await this.getContractInstance();
 
-			var result = await organizationFactoryInst.initialiseRetail(
-				tokenInitialAmount, tokenName, tokenDecimal, tokenSymbol,
+			var result = await organizationFactoryInst.createOrganization(
+				name,
+				website,
+				email,
+				logoURL,
+				tokenIconURL,
+				about,
+				tokenInitialAmount,
+				tokenName,
+				tokenDecimal,
+				tokenSymbol,
 				{ from: account, gas: 5000000 }
 			);
 
