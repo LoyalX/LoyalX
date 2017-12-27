@@ -3,6 +3,6 @@ import { ServerInfo } from './Servers';
 export default class Config {
 
     static TruffleContract;
-    static lightwallet;
+    static LightWallet;
     static server: ServerInfo;
 }

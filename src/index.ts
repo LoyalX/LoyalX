@@ -23,7 +23,7 @@ export default class LoyalX {
 
 	public static async init(TruffleContract, lightwallet, server: ServerInfo = SERVERS.LOCALHOST) {
 		Config.TruffleContract = TruffleContract;
-		Config.lightwallet = lightwallet;
+		Config.LightWallet = lightwallet;
 		Config.server = server;
 		
 		var ret = new LoyalX();

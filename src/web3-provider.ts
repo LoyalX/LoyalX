@@ -1,12 +1,11 @@
+const ProviderEngine = require("web3-provider-engine");
 //Provider Engine sub-modules
-let ProviderEngine = require('web3-provider-engine');
-let CacheSubprovider = require('web3-provider-engine/subproviders/cache.js');
-let FixtureSubprovider = require('web3-provider-engine/subproviders/fixture.js');
-let FilterSubprovider = require('web3-provider-engine/subproviders/filters.js');
-let VmSubprovider = require('web3-provider-engine/subproviders/vm.js');
-let HookedWalletSubprovider = require('web3-provider-engine/subproviders/hooked-wallet.js');
-let NonceSubprovider = require('web3-provider-engine/subproviders/nonce-tracker.js');
-let RpcSubprovider = require('web3-provider-engine/subproviders/rpc.js');
+const  CacheSubprovider = require('web3-provider-engine/subproviders/cache.js');
+const  FixtureSubprovider = require('web3-provider-engine/subproviders/fixture.js');
+const  FilterSubprovider = require('web3-provider-engine/subproviders/filters.js');
+const  HookedWalletSubprovider = require('web3-provider-engine/subproviders/hooked-wallet.js');
+const  NonceSubprovider = require('web3-provider-engine/subproviders/nonce-tracker.js');
+const  RpcSubprovider = require('web3-provider-engine/subproviders/rpc.js');
 
 import Config from './config';
 
@@ -39,9 +38,6 @@ export class Web3Provider {
 
 		// pending nonce
 		this._engine.addProvider(new NonceSubprovider());
-
-		// vm
-		this._engine.addProvider(new VmSubprovider());
 
 		// data source
 		this._engine.addProvider(new RpcSubprovider({
