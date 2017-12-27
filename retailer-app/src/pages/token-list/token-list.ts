@@ -37,14 +37,14 @@ export class TokenListPage {
 		// Fire an event to enable back the split plane in this page
 		this.events.publish('errorPage:leave');
 
-		this.tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
+		this.tokens = [] || await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 		this.noTokens = this.tokens.length === 0;
 
 		this.isTokensLoading = this.navParams.get("isTokensLoading");
 		this.isTokensLoading = typeof this.isTokensLoading === 'undefined' ? false : this.isTokensLoading;
 
 		setTimeout(async () => {
-			let tokens = await this.LoyalXProvider.TokenFactory.getTokensByOwner();
+			let tokens = [] || await this.LoyalXProvider.TokenFactory.getTokensByOwner();
 			if (this.tokens.length !== tokens.length) {
 				this.tokens = tokens;
 				this.noTokens = this.tokens.length === 0;
