@@ -19,6 +19,8 @@ export class Web3Wallet {
 		try {
 			this._keyStore = await (this._createKeyStore(password, randomSeed));
 			this._address = await (this._generateAddresses(password)) ? this._keyStore.getAddresses()[0] : "";
+
+			this._provider.setHookedWallet(this._keyStore);
 		}
 		catch (err) {
 			console.warn(err);
@@ -40,7 +42,7 @@ export class Web3Wallet {
 		});
 	}
 
-	private _keyFromPassword(password: string) {
+	public _keyFromPassword(password: string) {
 		return new Promise((resolve, reject) => {
 			this._keyStore.keyFromPassword(password, (err, pwDerivedKey) => {
 				if (err) return reject(err);

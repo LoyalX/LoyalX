@@ -15,7 +15,7 @@ export class Web3Service {
 	private _web3: any;
 	private _contracts: any = {};
 
-	private constructor() {}
+	private constructor() { }
 
 	public static async getInstance() {
 		return this._instance || (this._instance = (await new this().init()));
@@ -24,6 +24,8 @@ export class Web3Service {
 	private async init() {
 		try {
 			this._wallet = await (Web3Wallet.getInstance());
+			this._wallet.provider.setRpc(Config.server.HTTP_PROVIDER);
+			this._wallet.provider.startPolling();
 			this._web3 = new Web3(this._wallet.provider.engine);
 		}
 		catch (err) {
@@ -115,15 +117,23 @@ export class Web3Service {
 		return promise;
 	}
 
+	public async getAddress() {
+		try {
+			let address = await (this._wallet.getAddress());
+			return address;
+		} catch (err) {
+			console.warn(err);
+			throw err;
+		}
+	}
 
 	/**
  	* get the first account
  	*/
 	public async getAccount(): Promise<string> {
 		try {
-			var accounts = await this._web3.eth.getAccounts();
-			console.log("getAccount", accounts[0]);
-			return accounts[0];
+			let address = await (this._wallet.getAddress());
+			return address;
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
