@@ -1,0 +1,62 @@
+<!--
+  Generated template for the TransactionsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Transactions</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+
+    <ion-card-header>
+      Vodafone
+      <ion-note>VOD</ion-note>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-note>Points in circulation:</ion-note> 500
+      <br>
+      <ion-note>Decimal point:</ion-note> 2
+      <br>
+      <ion-note>Transcations count :</ion-note> 2
+      <br>
+      <ion-note>No of users:</ion-note> 2
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list inset>
+
+    <div *ngFor="let tr of transactions; let i = index">
+      <button ion-item>
+        <ion-row>
+          <div col-3>
+            <ion-note>Time</ion-note>
+            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.time | date : "H:mm M/d/yy"}}</h2>
+          </div>
+          <div col-4>
+            <ion-note>From</ion-note>
+            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.from}}</h2>
+          </div>
+          <div col-4>
+            <ion-note>To</ion-note>
+            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.to}}</h2>
+          </div>
+          <div col-1>
+            <ion-note>Amount</ion-note>
+            <h2>{{tr.amount}}</h2>
+          </div>
+        </ion-row>
+
+      </button>
+    </div>
+
+  </ion-list>
+</ion-content>
