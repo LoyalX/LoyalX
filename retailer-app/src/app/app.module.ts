@@ -22,10 +22,10 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { ErrorPage } from '../pages/error/error';
-import { TokenListPage } from '../pages/token-list/token-list';
+import { RulesEnginePage } from '../pages/rules-engine/rules-engine';
 import { PointListPage } from '../pages/point-list/point-list'
 import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
-import { TokenListPageModule } from '../pages/token-list/token-list.module';
+import { RulesEnginePageModule } from '../pages/rules-engine/rules-engine.module';
 import { ProfilePageModule } from '../pages/profile/profile.module';
 import { OnBoardPage } from '../pages/on-board/on-board';
 import { BrandDetailPage } from '../pages/brand-detail/brand-detail';
@@ -36,7 +36,9 @@ import { ProfilePage } from '../pages/profile/profile';
 import { UserData } from '../providers/user-data';
 import { LoyalXProvider } from '../providers/loyalx';
 import { SocketIoService } from '../providers/socketIo';
-//import { UportProvider } from '../providers/uport/uport';
+import { TransactionsPage } from '../pages/transactions/transactions';
+import { TransactionsPageModule } from '../pages/transactions/transactions.module';
+//import { UportProvider } from '../providers/uport';
 
 
 @NgModule({
@@ -46,7 +48,7 @@ import { SocketIoService } from '../providers/socketIo';
     SignupPage,
     TabsPage,
     TutorialPage,
-    PointListPage,
+    PointListPage
   ],
   imports: [
     BrowserModule,
@@ -55,9 +57,10 @@ import { SocketIoService } from '../providers/socketIo';
     BrandDetailPageModule,
     OfferCreatePageModule,
     PointTransferPageModule,
-    TokenListPageModule,
+    RulesEnginePageModule,
     ErrorPageModule,
     ProfilePageModule,
+    TransactionsPageModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -66,11 +69,11 @@ import { SocketIoService } from '../providers/socketIo';
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },
         { component: ErrorPage, name: 'ErrorPage', segment: 'error' },
         { component: OnBoardPage, name: 'OnBoardPage', segment: 'onBoard' },
-        { component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
-        { component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
-        { component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' },
-        { component: ProfilePage, name: 'ProfilePage', segment: 'profile' }
-
+        { component: RulesEnginePage, name: 'RulesEnginePage', segment: 'rulesEngine' },
+        { component: PointListPage, name: 'PointListPage', segment: 'pointList' },
+        { component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer' },
+        { component: ProfilePage, name: 'ProfilePage', segment: 'profile' },
+        { component: TransactionsPage, name: 'TransactionsPage', segment: 'transactions' }
       ]
     }),
     IonicStorageModule.forRoot()
@@ -87,7 +90,8 @@ import { SocketIoService } from '../providers/socketIo';
     OfferCreatePage,
     PointTransferPage,
     OnBoardPage,
-    TokenListPage
+    RulesEnginePage,
+    TransactionsPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

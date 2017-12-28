@@ -11,11 +11,13 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { ErrorPage } from '../pages/error/error';
-import { TokenListPage } from '../pages/token-list/token-list';
+import { RulesEnginePage } from '../pages/rules-engine/rules-engine';
 import { OnBoardPage } from '../pages/on-board/on-board';
 import { ProfilePage } from '../pages/profile/profile';
+import { PointListPage } from '../pages/point-list/point-list';
 
 import { UserData } from '../providers/user-data';
+import { TransactionsPage } from '../pages/transactions/transactions';
 
 export interface PageInterface {
 	title: string;
@@ -40,9 +42,10 @@ export class ConferenceApp {
 	// the left menu only works after login
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
-		{ title: 'Tokens', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
-		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 1, icon: 'pricetags' },
-		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 2, icon: 'person' }
+		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'ios-cash' },
+		{ title: 'Rules Engine', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 1, icon: 'ios-analytics' },
+		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 2, icon: 'pricetags' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' }
 
 	];
 	loggedInPages: PageInterface[] = [
@@ -64,11 +67,9 @@ export class ConferenceApp {
 		public splashScreen: SplashScreen
 	) {
 
-		if (typeof web3 !== 'undefined') {//<<<<<<<<<<<<<<<<<<<<<<<
-			this.rootPage = TokenListPage;
-		} else {
-			this.rootPage = ErrorPage;
-		}
+		//<<<<<<<<<<<<<<<<<<<<<<<
+		this.rootPage = (typeof web3 !== 'undefined') ? RulesEnginePage : ErrorPage;
+
 		this.platformReady();
 
 
