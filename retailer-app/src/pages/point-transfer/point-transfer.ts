@@ -4,7 +4,6 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
-import LoyalX from 'loyalx-jsapi';
 import { LoyalXProvider } from '../../providers/loyalx';
 import { SocketIoService } from '../../providers/socketIo';
 

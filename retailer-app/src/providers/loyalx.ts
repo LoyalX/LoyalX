@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import LoyalX from 'loyalx-jsapi';
+import LoyalX from 'loyalx.js';
 import CONFIG from '../config';
 
 declare var TruffleContract;
@@ -21,11 +21,11 @@ export class LoyalXProvider {
 	public TokenFactory;
 
 	constructor() {
-		LoyalX.init(
-			TruffleContract,
-			lightwallet,
-			CONFIG.IS_PRODUCTION ? LoyalX.SERVERS.PRODUCTION : LoyalX.SERVERS.LOCALHOST
-		)
+		LoyalX.init({
+			TruffleContract: TruffleContract,
+			lightwallet: lightwallet,
+			server: CONFIG.IS_PRODUCTION ? LoyalX.SERVERS.PRODUCTION : LoyalX.SERVERS.LOCALHOST
+		})
 			.then(loyalx => {
 				this.loyal = loyalx;
 				this.Web3Service = this.loyal.Web3Service;

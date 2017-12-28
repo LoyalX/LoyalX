@@ -4,7 +4,6 @@ import { NavController, NavParams, ModalController, Platform, ViewController } f
 import { BrandDetailPage } from '../brand-detail/brand-detail';
 import { OfferCreatePage } from '../offer-create/offer-create';
 
-import LoyalX from 'loyalx-jsapi';
 import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
@@ -55,6 +54,7 @@ export class PointListPage {
 	}
 
 	async ionViewDidLoad() {
+		/*
 		this.tokenIndex = this.navParams.get("tokenIndex");
 		this.token = this.navParams.get("token");
 
@@ -64,7 +64,8 @@ export class PointListPage {
 		}
 		let aToken = new this.LoyalXProvider.Token(this.token.address);
 		let tempBalance = (await aToken.getBalance());
-		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
+		*/
+		this.balance = "500";//tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
 
 		this.vouchers = [
 			{ price: 25, points: 50 },

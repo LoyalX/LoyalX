@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
 import { OnBoardPage } from '../on-board/on-board';
-import { TokenListPage } from '../token-list/token-list';
+import { RulesEnginePage } from '../rules-engine/rules-engine';
 import { ProfilePage } from '../profile/profile';
 
 @Component({
@@ -11,7 +11,7 @@ import { ProfilePage } from '../profile/profile';
 })
 export class TabsPage {
   // set the root pages for each tab
-  tab1Root: any = TokenListPage;
+  tab1Root: any = RulesEnginePage;
   tab2Root: any = OnBoardPage;
   tab3Root: any = ProfilePage;
 
