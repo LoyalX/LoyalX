@@ -52,7 +52,7 @@ export class OnBoardPage {
 		if (!this.form.valid) {
 			return;
 		}
-		this.isReadyToSave = false; // disable the submit button to prevent sending twice
+		/*this.isReadyToSave = false; // disable the submit button to prevent sending twice
 
 		let formValues = this.form.value;
 		let result = await this.LoyalXProvider.TokenFactory.initialiseRetail(
@@ -68,7 +68,22 @@ export class OnBoardPage {
 			position: 'bottom'
 		}).present();
 
-		this.navCtrl.setRoot('TokenListPage', { isTokensLoading: true });
+		this.navCtrl.setRoot('TokenListPage', { isTokensLoading: true });*/
+
+
+		this.LoyalXProvider.loyal.OrganizationFactory.createOrganization({
+			name: "name",
+			website: "website",
+			email: "email",
+			logoURL: "logoURL",
+			tokenIconURL: "tokenIconURL",
+			about: "about",
+			tokenInitialAmount: 10000000,
+			tokenName: "tokenName",
+			tokenDecimal: 2,
+			tokenSymbol: "tokenSymbol"
+		});
+
 	}
 
 	presentBrandDetail() {

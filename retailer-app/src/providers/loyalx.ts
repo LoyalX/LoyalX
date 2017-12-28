@@ -14,7 +14,7 @@ declare var lightwallet;
 */
 @Injectable()
 export class LoyalXProvider {
-	private loyal;
+	public loyal;
 	public Web3Service;
 
 	public Token;
@@ -30,18 +30,31 @@ export class LoyalXProvider {
 				this.loyal = loyalx;
 				this.Web3Service = this.loyal.Web3Service;
 
-				var symbol = "tst",
-					name = "test",
-					amount = 1000000,
-					decimal = 2;
-
-				/*this.loyal.TokenFactory.getTokensAddress()
-					.then(data => console.log("tokens", data))
-					.catch(err => console.warn("tokens", err));
-
-				this.loyal.TokenFactory.initialiseRetail(symbol, name, amount, decimal)
-					.then(data => console.log("init retail", data))
-					.catch(err => console.warn("init retail", err));*/
+				/*this.loyal.OrganizationFactory.createOrganization({
+					name: "name",
+					website: "website",
+					email: "email",
+					logoURL: "logoURL",
+					tokenIconURL: "tokenIconURL",
+					about: "about",
+					tokenInitialAmount: 10000000,
+					tokenName: "tokenName",
+					tokenDecimal: 2,
+					tokenSymbol: "tokenSymbol"
+				});*/
 			})
+
+		var symbol = "tst",
+			name = "test",
+			amount = 1000000,
+			decimal = 2;
+
+		/*this.loyal.TokenFactory.getTokensAddress()
+			.then(data => console.log("tokens", data))
+			.catch(err => console.warn("tokens", err));
+
+		this.loyal.TokenFactory.initialiseRetail(symbol, name, amount, decimal)
+			.then(data => console.log("init retail", data))
+			.catch(err => console.warn("init retail", err));*/
 	}
 }
