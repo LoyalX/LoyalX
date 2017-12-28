@@ -1,0 +1,32 @@
+page-token-list {
+	.container {
+		display: flex;
+		/* establish flex container */
+		flex-direction: column;
+		/* make main axis vertical */
+		justify-content: center;
+		/* center items vertically, in this case */
+		align-items: center;
+		/* center items horizontally, in this case */
+		height: 400px;
+	}
+
+	.spinner-container {
+		display: flex;
+		/* establish flex container */
+		flex-direction: column;
+		/* make main axis vertical */
+		justify-content: center;
+		/* center items vertically, in this case */
+		align-items: center;
+		/* center items horizontally, in this case */
+		height: 200px;
+	}
+
+	ion-spinner * {
+		width: 38px;
+		height: 38px;
+		stroke: #66b3ff !important;
+		fill: #222;
+	  }
+}

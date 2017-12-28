@@ -1,0 +1,48 @@
+<!--
+	Generated template for the OnBoardPage page.
+
+	See http://ionicframework.com/docs/components/#navigation for more info on
+	Ionic pages and navigation.
+  -->
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Rules engine</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content>
+
+	<ion-list inset>
+
+		<div *ngFor="let rul of rules; let i = index">
+			<button ion-item (click)="navigateToPoints(tokenIndex)">
+				<!-- <ion-icon name="ios-construct" item-left></ion-icon> -->
+				<ion-row>
+
+					<div col-4>
+						<ion-note>No of transactions</ion-note>
+						<h2>{{rul.noOfTransactions}}</h2>
+					</div>
+					<div col-4>
+						<ion-note>Points</ion-note>
+						<h2>{{rul.points}}</h2>
+					</div>
+					<div col-4>
+						<ion-note>Activity</ion-note>
+						<h2>{{rul.activity}}</h2>
+					</div>
+				</ion-row>
+
+			</button>
+		</div>
+
+	</ion-list>
+
+	<div padding>
+		<button ion-button>Add Rule</button>
+	</div>
+
+</ion-content>
