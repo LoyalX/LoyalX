@@ -7,19 +7,16 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-
+  //https://api.qrserver.com/v1/create-qr-code/?data=0x627306090abaB3A6e1400e9345bC60c78a8BEf57&size=220x220&margin=0
   user = {
-    "@context": "http://schema.org",
-    "@type": "Person",
-    "name": "Agent Smith",
-    "address": "23fga3r2hh87ddhq98dhas8dz101j9f449w0",
-    "avatar": {
-      "uri": "https://ipfs.infura.io/ipfs/QmaqGAeHmwAi44T6ZrSuu3yxwiyHPxoE1rHGmKxeCuZbS7DBX"
-    },
+    "name": "Vodafone",
+    "avatar": "https://www.vcol.co.uk/ds/core/assets/img/vf-logo-2017.png",
+    "backgroundImg": "https://www.underconsideration.com/brandnew/archives/vodafone_tagline.png",
     "country": "US",
-    "network": "rinkeby",
-    "publicEncKey": "dgH1devHn5MhAcph+np8MI4ZLB2kJWqRc4NTwtAj6Fs=",
-    "publicKey": "0x04016751595cf2f1429367d6c83a826526g613b4f7574af55ded0364f0fb34600bceba9211e5864ae616d7e83b5e3c79f1c913b40c8d38c64952fef383fd3ad637",
+    "email": "test@test.com",
+    "website": "test.com",
+    "publicKey": "0x627306090abaB3A6e1400e9345bC60c78a8BEf57",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae dapibus libero. Fusce ipsum enim, feugiat eu vehicula vel, laoreet non eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eget felis nulla. Phasellus metus magna, semper in sollicitudin blandit, lobortis in nisi. Etiam a fermentum massa. Ut vehicula nisl faucibus fringilla sollicitudin. Nunc eu scelerisque nulla."
   };
 
   constructor(public navCtrl: NavController) { }
