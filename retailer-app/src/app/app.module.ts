@@ -22,7 +22,7 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { RulesCreatePage } from '../pages/rules-create/rules-create';
-import { PointListPage } from '../pages/point-list/point-list'
+import { OffersPage } from '../pages/offers/offers'
 
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { OfferCreatePageModule } from '../pages/offer-create/offer-create.module';
@@ -55,7 +55,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     SignupPage,
     TabsPage,
     TutorialPage,
-    PointListPage,
+    OffersPage,
     RulesCreatePage
   ],
   imports: [
@@ -78,7 +78,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
         { component: ErrorPage, name: 'ErrorPage', segment: 'error' },
         { component: OnBoardPage, name: 'OnBoardPage', segment: 'onBoard' },
         { component: RulesEnginePage, name: 'RulesEnginePage', segment: 'rulesEngine' },
-        { component: PointListPage, name: 'PointListPage', segment: 'pointList' },
+        { component: OffersPage, name: 'OffersPage', segment: 'offers' },
         { component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer' },
         { component: ProfilePage, name: 'ProfilePage', segment: 'profile' },
         { component: TransactionsPage, name: 'TransactionsPage', segment: 'transactions' }
@@ -94,7 +94,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     ErrorPage,
     TabsPage,
     TutorialPage,
-    PointListPage,
+    OffersPage,
     OfferCreatePage,
     PointTransferPage,
     OnBoardPage,

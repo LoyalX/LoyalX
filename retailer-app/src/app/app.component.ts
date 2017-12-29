@@ -15,7 +15,7 @@ import { ErrorPage } from '../pages/error/error';
 import { RulesEnginePage } from '../pages/rules-engine/rules-engine';
 import { OnBoardPage } from '../pages/on-board/on-board';
 import { ProfilePage } from '../pages/profile/profile';
-import { PointListPage } from '../pages/point-list/point-list';
+import { OffersPage } from '../pages/offers/offers';
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { FeaturesPage } from '../pages/features/features';
 
@@ -42,12 +42,12 @@ export class ConferenceApp {
 	// the left menu only works after login
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
-		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'ios-calculator' },
-		{ title: 'Reward Program', name: "PointListPage", component: PointListPage, tabComponent: PointListPage, index: 1, icon: 'ios-cash' },
+		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'ios-cash' },
+		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 1, icon: 'md-basket' },
 		{ title: 'Rules Engine', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 2, icon: 'ios-analytics' },
-		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 3, icon: 'ios-cart' },
+		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 3, icon: 'cart' },
 		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' },
-		{ title: 'Logout', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 5, icon: 'ios-log-out' },
+		{ title: 'Logout', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 5, icon: 'log-out' },
 	];
 	loggedInPages: PageInterface[] = [
 		{ title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }

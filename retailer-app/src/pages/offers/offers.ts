@@ -13,11 +13,11 @@ import { LoyalXProvider } from '../../providers/loyalx';
  */
 
 @Component({
-	selector: 'page-point-list',
-	templateUrl: 'point-list.html',
+	selector: 'page-offers',
+	templateUrl: 'offers.html',
 })
-export class PointListPage {
-	vouchers = [
+export class OffersPage {
+	offers = [
 		{
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 1000,
