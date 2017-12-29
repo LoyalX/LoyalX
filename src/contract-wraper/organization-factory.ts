@@ -1,16 +1,10 @@
 import { Web3Service } from '../web3-service';
 import { Contract } from './contract';
-import Config from '../config';
-import { ContractArtifact } from '../contract-artifact';
+import { Organization } from './organization';
 
 export class OrganizationFactory extends Contract {
 
-	/**
-	 * @return {string} the contract name
-	 */
 	public get contractName(): string { return "OrganizationFactory" };
-
-	constructor() { super(); }
 
 	/**
 	 * deploy a new token contract
@@ -30,42 +24,12 @@ export class OrganizationFactory extends Contract {
 		tokenName,
 		tokenDecimal = 0,
 		tokenSymbol
-	}) {
+	}): Promise<Organization> {
 		tokenInitialAmount *= Math.pow(10, tokenDecimal);
 		try {
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var account = await web3ServiceInstance.getAccount();
 			var organizationFactoryInst = await this.getContractInstance();
-			var contract = (await ContractArtifact.get(this.contractName));
-
-			/* var nonce = await web3ServiceInstance.web3.eth.getTransactionCount(account);
-
-			// The transaction data follows the format of ethereumjs-tx
-			var txOptions = {
-				gasPrice: 10000000000000,
-				nonce: nonce
-			}
-
-			var funcTx = Config.LightWallet.txutils.functionTx(contract.abi, 'createOrganization',
-				[
-					name,
-					website,
-					email,
-					logoURL,
-					tokenIconURL,
-					about,
-					tokenInitialAmount,
-					tokenName,
-					tokenDecimal,
-					tokenSymbol
-				],
-				{ from: address, gas: 5000000, to: '0x62227531b82259561cc9ad4413188f08e536598a', nonce: nonce, gasLimit: 555555555555, gasPrice: 1 })
-
-			var pwDerivedKey = await (web3ServiceInstance.wallet._keyFromPassword("password"));
-
-			var signedSetValueTx = Config.LightWallet.signing.signTx(web3ServiceInstance.wallet.keyStore, pwDerivedKey, funcTx, address);
-
-			web3ServiceInstance.web3.eth.sendSignedTransaction(signedSetValueTx).on('receipt', console.log);*/
 
 			var result = await organizationFactoryInst.createOrganization(
 				name,
@@ -82,7 +46,7 @@ export class OrganizationFactory extends Contract {
 			);
 
 			console.log("createOrganization", result);
-			return result;
+			return new Organization(result);
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
@@ -93,47 +57,40 @@ export class OrganizationFactory extends Contract {
 	 * get all token's addresses
 	 * @returns {Promise<string[]>}
 	 */
-	public async getOrganizationsAddresses(): Promise<string[]> {
+	public async getOrganizationsAddresses(): Promise<Organization[]> {
 		try {
 			var organizationFactoryInst = await this.getContractInstance();
-
 			var result = await organizationFactoryInst.getOrganizationsAddresses();
 
 			console.log("getOrganizationsAddresses", result);
+			for (const key in result) {
+				result[key] = new Organization(result[key]);
+			}
 			return result;
-
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
 		}
 	}
+
 
 	/**
 	 * get all token's addresses created by the user account
 	 * @returns {Promise<string[]>}
 	 */
-	public async findOrganizationsAddressByOwner(): Promise<string> {
+	public async findOrganizationByOwner(_account?: string): Promise<Organization> {
 		try {
 			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
+			var account = _account ? _account : (await web3ServiceInstance.getAccount());
 			var organizationFactoryInst = await this.getContractInstance();
 
-			var result = <string>await organizationFactoryInst.findOrganizationsAddressByOwner(account);
+			var result = <string>await organizationFactoryInst.ownerMap(account);
 
-			console.log("findOrganizationsAddressByOwner", result);
-			return result;
-
+			console.log("findAddressByOwner", result);
+			return new Organization(result);
 		} catch (err) {
 			console.warn(err.message);
 			throw err;
 		}
 	}
-
-}
-
-export interface TokenData {
-	address: string;
-	name: string;
-	symbol: string;
-	decimal: number;
 }
