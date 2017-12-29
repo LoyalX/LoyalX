@@ -1,9 +1,9 @@
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
-		<ion-icon name="menu"></ion-icon>
-		</button>
-        <ion-title>Points</ion-title>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Vouchers</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -13,35 +13,18 @@
     <ion-grid>
 
         <ion-row>
-            <ion-col text-center>
-                <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ (token)?.symbol }} </span> </h1>
-                <button ion-button full color="google" (click)="presentPointTransfer()">Transfer Points</button>
+
+            <ion-col col-4 *ngFor="let ft of vouchers;">
+                <ion-card>
+                    <img [src]="ft.img" sty/>
+                    <ion-card-content>
+                        <ion-card-title>{{ft.reward}}</ion-card-title>
+                        <ion-note>Price: </ion-note> {{ft.price}}
+                        <p>{{ft.description}}</p>
+                    </ion-card-content>
+                </ion-card>
             </ion-col>
-        </ion-row>
 
-        <ion-row>
-            <ion-col col-6 *ngFor="let voucher of vouchers">
-                <div *ngIf="voucher" class="card-wrap">
-                    <ion-card class="full-card">
-
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col ion-text text-center padding>
-                                    <h1 ion-text color="primary"> {{ voucher.price }} {{ (token)?.symbol }} </h1>
-                                </ion-col>
-                            </ion-row>
-
-                            <ion-row>
-                                <ion-col ion-text text-center>
-                                    <ion-badge color="google" class="cost-badge"> {{ voucher.points }} Points </ion-badge>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-
-                    </ion-card>
-                </div>
-
-            </ion-col>
         </ion-row>
 
         <ion-row padding text-center>
@@ -50,14 +33,6 @@
             </ion-col>
         </ion-row>
 
-        <ion-list no-lines>
-
-            <ion-item *ngFor="let feature of features" [attr.track]="feature.name | lowercase" center text-center>
-                <ion-label>{{ feature.name }}</ion-label>
-                <ion-checkbox [(ngModel)]="feature.isChecked"></ion-checkbox>
-            </ion-item>
-
-        </ion-list>
 
     </ion-grid>
 

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
 
-import { BrandDetailPage } from '../brand-detail/brand-detail';
 import { OfferCreatePage } from '../offer-create/offer-create';
 
 import { LoyalXProvider } from '../../providers/loyalx';
@@ -18,39 +17,44 @@ import { LoyalXProvider } from '../../providers/loyalx';
 	templateUrl: 'point-list.html',
 })
 export class PointListPage {
-	vouchers: Array<{ price: number, points: number }> = [];
-	features: Array<{ name: string, isChecked: boolean }> = [];
+	vouchers = [
+		{
+			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
+			price: 1000,
+			reward: "50$ gift card",
+			description: "get a gift card for your loved ones"
+		}, {
+			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
+			price: 2500,
+			reward: "100$ gift card",
+			description: "get a gift card for your loved ones"
+		}, {
+			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
+			price: 5000,
+			reward: "250$ gift card",
+			description: "get a gift card for your loved ones"
+		}, {
+			img: "https://www.clintonsretail.com//media/wysiwyg/christmas-single-cards-50off-GIFFTS.jpg",
+			price: 500,
+			reward: "50% off",
+			description: "get 50% off on any purchase under 100$ ."
+		}
+	];
 
-	tokens: any;
-	tokenIndex: any;
-	token: any;
-	balance: any;
+	balance: any = 500;
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public modalCtrl: ModalController,
 		public platform: Platform,
-		public viewCtrl: ViewController,
-		public LoyalXProvider: LoyalXProvider
+		public viewCtrl: ViewController
 	) {
 	}
 
-	presentBrandDetail() {
-		let BrandDetailModal = this.modalCtrl.create(BrandDetailPage, { token: this.token });
-		BrandDetailModal.present();
-	}
-
 	presentOfferCreate() {
-		let OfferCreateModal = this.modalCtrl.create(OfferCreatePage, { token: this.token });
+		let OfferCreateModal = this.modalCtrl.create(OfferCreatePage);
 		OfferCreateModal.present();
-	}
-
-	presentPointTransfer() {
-		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
-		PointTransferPageModal.present();*/
-
-		this.navCtrl.push('PointTransferPage', { token: this.token, tokenIndex: this.tokenIndex });
 	}
 
 	async ionViewDidLoad() {
@@ -65,21 +69,6 @@ export class PointListPage {
 		let aToken = new this.LoyalXProvider.Token(this.token.address);
 		let tempBalance = (await aToken.getBalance());
 		*/
-		this.balance = "500";//tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
-
-		this.vouchers = [
-			{ price: 25, points: 50 },
-			{ price: 50, points: 100 },
-			{ price: 100, points: 200 },
-			{ price: 25, points: 50 }
-		];
-
-		this.features = [
-			{ name: "Feature 1", isChecked: false },
-			{ name: "Feature 2", isChecked: false },
-			{ name: "Feature 3", isChecked: false }
-		]
-
 	}
 
 }

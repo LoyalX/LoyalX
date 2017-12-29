@@ -15,22 +15,44 @@
 
 
 <ion-content>
-  <ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
 
-    <ion-card-header>
-      Vodafone
-      <ion-note>VOD</ion-note>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-note>Points in circulation:</ion-note> 500
-      <br>
-      <ion-note>Decimal point:</ion-note> 2
-      <br>
-      <ion-note>Transcations count :</ion-note> 2
-      <br>
-      <ion-note>No of users:</ion-note> 2
-    </ion-card-content>
-  </ion-card>
+        <ion-card>
+          <ion-card-header>
+            Vodafone
+            <ion-note>VOD</ion-note>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-note>Points in circulation:</ion-note> 500
+            <br>
+            <ion-note>Decimal point:</ion-note> 2
+            <br>
+            <ion-note>Transcations count :</ion-note> 2
+            <br>
+            <ion-note>No of users:</ion-note> 2
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+      <ion-col col-6>
+        <ion-card>
+
+          <ion-card-header>
+            Current Balance
+          </ion-card-header>
+          <ion-card-content>
+            <h1>{{balance}}</h1>
+            <div></div>
+            <button ion-button full color="google" (click)="presentPointTransfer()">Transfer Points</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
 
   <ion-list inset>
 
