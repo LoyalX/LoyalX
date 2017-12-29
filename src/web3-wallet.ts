@@ -5,11 +5,11 @@ import Config from './config';
 export class Web3Wallet {
 
 	private static _instance: Web3Wallet;
-	private lightWallet
-
+	private lightWallet;
 	private _provider: Web3Provider = Web3Provider.Instance;
 	private _keyStore: any;
 	private _address: any;
+	private passwordGetter;
 
 	private constructor() {
 	}
@@ -18,8 +18,8 @@ export class Web3Wallet {
 		this.lightWallet = Config.LightWallet;
 		try {
 			this._keyStore = await (this._createKeyStore(password, randomSeed));
+			this._keyStore.passwordProvider = this._passwordProvider.bind(this);
 			this._address = await (this._generateAddresses(password)) ? this._keyStore.getAddresses()[0] : "";
-
 			this._provider.setHookedWallet(this._keyStore);
 		}
 		catch (err) {
@@ -40,6 +40,11 @@ export class Web3Wallet {
 				else resolve(keyStore);
 			});
 		});
+	}
+
+	private _passwordProvider(callback) {
+		let password = this._getPassword(null, "password");
+		callback(null, password);
 	}
 
 	public _keyFromPassword(password: string) {
@@ -63,6 +68,15 @@ export class Web3Wallet {
 		}
 	}
 
+	public setPasswordGetter(passwordGetter) {
+		this.passwordGetter = passwordGetter;
+	}
+
+	private _getPassword(passwordGetter, password) {
+		password = typeof this.passwordGetter === "function" ? this.passwordGetter() : password;
+		return password;
+	}
+
 	public async getAddress() {
 		return await this._keyStore.getAddresses()[0];
 	}
@@ -79,7 +93,7 @@ export class Web3Wallet {
 		// var extraEntropy = prompt('Please enter a random text to generate entropy');
 		// var randomSeed = lightwallet.keystore.generateRandomSeed(extraEntropy);
 		// var password = prompt('Please enter a password to encrypt your seed while in the app');
-		
+
 		password = "password";
 		var randomSeed = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
 

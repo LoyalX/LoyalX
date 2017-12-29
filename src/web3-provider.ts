@@ -28,7 +28,6 @@ export class Web3Provider {
 		this._engine.addProvider(new HookedWalletSubprovider({
 			getAccounts: (cb) => {
 				let addresses = keyStore.getAddresses();
-				console.log(addresses);
 				cb(null, addresses);
 			},
 			signTransaction: (tx, cb) => {
