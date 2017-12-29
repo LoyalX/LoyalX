@@ -9,14 +9,14 @@ import { NavController, NavParams, IonicPage } from 'ionic-angular';
 export class ProfilePage {
   //https://api.qrserver.com/v1/create-qr-code/?data=0x627306090abaB3A6e1400e9345bC60c78a8BEf57&size=220x220&margin=0
   user = {
-    "name": "Vodafone",
-    "avatar": "https://www.vcol.co.uk/ds/core/assets/img/vf-logo-2017.png",
-    "backgroundImg": "https://www.underconsideration.com/brandnew/archives/vodafone_tagline.png",
-    "country": "US",
-    "email": "test@test.com",
-    "website": "test.com",
+    "name": "Happy",
+    "avatar": "https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap",
+    "backgroundImg": "https://www.happy.ae/images/default-source/home/why-image.jpg?Status=Temp&sfvrsn=2",
+    "country": "UAE",
+    "email": "support@happy.ae",
+    "website": "https://www.happy.ae",
     "publicKey": "0x627306090abaB3A6e1400e9345bC60c78a8BEf57",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In vitae dapibus libero. Fusce ipsum enim, feugiat eu vehicula vel, laoreet non eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eget felis nulla. Phasellus metus magna, semper in sollicitudin blandit, lobortis in nisi. Etiam a fermentum massa. Ut vehicula nisl faucibus fringilla sollicitudin. Nunc eu scelerisque nulla."
+    "description": "Happiness and positivity are a lifestyle and government’s commitment and a true spirit that unites the Emirati community."
   };
 
   constructor(public navCtrl: NavController) { }
