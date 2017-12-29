@@ -7,8 +7,8 @@
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>Points</ion-title>
     </ion-navbar>
 </ion-header>
@@ -19,29 +19,60 @@
         <ion-list>
 
             <ion-item>
-                <ion-label floating>Symbol</ion-label>
-                <ion-input type="text" formControlName="retailSymbol"></ion-input>
-            </ion-item>
-
-            <ion-item>
                 <ion-label floating>Name</ion-label>
-                <ion-input type="text" formControlName="retailName"></ion-input>
+                <ion-input type="text" formControlName="name"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label floating>Amount</ion-label>
-                <ion-input type="number" formControlName="retailAmount"></ion-input>
+                <ion-label floating>Website</ion-label>
+                <ion-input type="text" formControlName="website"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label floating>Decimal</ion-label>
-                <ion-input type="number" formControlName="retailDecimal"></ion-input>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="text" formControlName="email"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Logo URL</ion-label>
+                <ion-input type="text" formControlName="logoURL"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Reward Program Icon URL</ion-label>
+                <ion-input type="text" formControlName="tokenIconURL"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>About</ion-label>
+                <ion-input type="text" formControlName="about"></ion-input>
+            </ion-item>
+
+
+            <ion-item>
+                <ion-label floating>Short Name</ion-label>
+                <ion-input type="text" formControlName="tokenSymbol"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Reward Program Name</ion-label>
+                <ion-input type="text" formControlName="tokenName"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Initial Amount</ion-label>
+                <ion-input type="number" formControlName="tokenInitialAmount"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Decimal point</ion-label>
+                <ion-input type="number" formControlName="tokenDecimal"></ion-input>
             </ion-item>
 
         </ion-list>
 
         <div padding>
-            <button type="submit" ion-button color="primary" block [disabled]="!isReadyToSave">Save</button>
+            <button type="submit" ion-button color="primary" block [disabled]="!isReadyToSave">Sign Up</button>
         </div>
     </form>
 

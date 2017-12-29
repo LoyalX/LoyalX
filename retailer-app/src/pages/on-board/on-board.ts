@@ -4,9 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { BrandDetailPage } from '../brand-detail/brand-detail';
 
-import LoyalX from 'loyalx-jsapi';
-
-import { TokenListPage } from "../token-list/token-list";
+import { RulesEnginePage } from "../rules-engine/rules-engine";
 import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
@@ -36,10 +34,18 @@ export class OnBoardPage {
 		public LoyalXProvider: LoyalXProvider) {
 
 		this.form = formBuilder.group({
-			retailSymbol: ['', Validators.required],
-			retailName: ['', Validators.required],
-			retailAmount: ['', Validators.required],
-			retailDecimal: ['', Validators.required]
+
+			name: ['', Validators.required],
+			website: ['', Validators.required],
+			email: ['', Validators.required],
+			logoURL: ['', Validators.required],
+			tokenIconURL: ['', Validators.required],
+			about: ['', Validators.required],
+
+			tokenInitialAmount: ['', Validators.required],
+			tokenName: ['', Validators.required],
+			tokenDecimal: ['', Validators.required],
+			tokenSymbol: ['', Validators.required],
 		});
 
 		this.form.valueChanges.subscribe(() => {
@@ -68,21 +74,10 @@ export class OnBoardPage {
 			position: 'bottom'
 		}).present();
 
-		this.navCtrl.setRoot('TokenListPage', { isTokensLoading: true });*/
+		this.navCtrl.setRoot('RulesEnginePage', { isTokensLoading: true });*/
 
 
-		this.LoyalXProvider.loyal.OrganizationFactory.createOrganization({
-			name: "name",
-			website: "website",
-			email: "email",
-			logoURL: "logoURL",
-			tokenIconURL: "tokenIconURL",
-			about: "about",
-			tokenInitialAmount: 10000000,
-			tokenName: "tokenName",
-			tokenDecimal: 2,
-			tokenSymbol: "tokenSymbol"
-		});
+		this.LoyalXProvider.loyal.OrganizationFactory.createOrganization(this.form.value);
 
 	}
 
