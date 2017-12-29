@@ -14,7 +14,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'transactions.html',
 })
 export class TransactionsPage {
-
+  name = "Happy";
+  symbol = "HPY";
+  pointsInCirculation = 500500;
+  balance = 500000;
   transactions = [
     {
       from: "0x627306090abaB3A6e1400e9345bC60c78a8BEf57",
@@ -40,5 +43,11 @@ export class TransactionsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad TransactionsPage');
   }
+  
+	presentPointTransfer() {
+		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
+		PointTransferPageModal.present();*/
 
+		this.navCtrl.push('PointTransferPage');
+	}
 }

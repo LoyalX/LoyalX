@@ -5,19 +5,19 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Storage } from '@ionic/storage';
 
+import { UserData } from '../providers/user-data';
+
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-
 import { ErrorPage } from '../pages/error/error';
 import { RulesEnginePage } from '../pages/rules-engine/rules-engine';
 import { OnBoardPage } from '../pages/on-board/on-board';
 import { ProfilePage } from '../pages/profile/profile';
-import { PointListPage } from '../pages/point-list/point-list';
-
-import { UserData } from '../providers/user-data';
+import { OffersPage } from '../pages/offers/offers';
 import { TransactionsPage } from '../pages/transactions/transactions';
+import { FeaturesPage } from '../pages/features/features';
 
 export interface PageInterface {
 	title: string;
@@ -43,10 +43,11 @@ export class ConferenceApp {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'ios-cash' },
-		{ title: 'Rules Engine', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 1, icon: 'ios-analytics' },
-		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 2, icon: 'pricetags' },
-		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' }
-
+		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 1, icon: 'md-basket' },
+		{ title: 'AI rules', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 2, icon: 'ios-analytics' },
+		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 3, icon: 'cart' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' },
+		{ title: 'Logout', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 5, icon: 'log-out' },
 	];
 	loggedInPages: PageInterface[] = [
 		{ title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
@@ -68,7 +69,7 @@ export class ConferenceApp {
 	) {
 
 		//<<<<<<<<<<<<<<<<<<<<<<<
-		this.rootPage = (typeof web3 !== 'undefined') ? RulesEnginePage : ErrorPage;
+		this.rootPage = (typeof web3 !== 'undefined') ? ProfilePage : ErrorPage;
 
 		this.platformReady();
 

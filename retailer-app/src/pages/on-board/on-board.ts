@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { BrandDetailPage } from '../brand-detail/brand-detail';
-
 import { RulesEnginePage } from "../rules-engine/rules-engine";
-import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
  * Generated class for the OnBoardPage page.
@@ -30,8 +27,7 @@ export class OnBoardPage {
 		public modalCtrl: ModalController,
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
-		public formBuilder: FormBuilder,
-		public LoyalXProvider: LoyalXProvider) {
+		public formBuilder: FormBuilder) {
 
 		this.form = formBuilder.group({
 
@@ -58,32 +54,21 @@ export class OnBoardPage {
 		if (!this.form.valid) {
 			return;
 		}
-		/*this.isReadyToSave = false; // disable the submit button to prevent sending twice
+		/*
 
-		let formValues = this.form.value;
-		let result = await this.LoyalXProvider.TokenFactory.initialiseRetail(
-			formValues.retailSymbol,
-			formValues.retailName,
-			formValues.retailAmount,
-			formValues.retailDecimal
-		);
+		this.isReadyToSave = false; // disable the submit button to prevent sending twice
 
+		await this.LoyalXProvider.loyal.OrganizationFactory.createOrganization(this.form.value);
+		
 		this.toastCtrl.create({
 			message: 'Token created successfully',
 			duration: 3000,
 			position: 'bottom'
 		}).present();
 
-		this.navCtrl.setRoot('RulesEnginePage', { isTokensLoading: true });*/
+		this.navCtrl.setRoot('RulesEnginePage', { isTokensLoading: true });
 
-
-		this.LoyalXProvider.loyal.OrganizationFactory.createOrganization(this.form.value);
-
-	}
-
-	presentBrandDetail() {
-		let BrandDetailModal = this.modalCtrl.create(BrandDetailPage, { brandId: 1 });
-		BrandDetailModal.present();
+		*/
 	}
 
 }
