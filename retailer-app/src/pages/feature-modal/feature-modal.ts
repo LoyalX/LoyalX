@@ -31,7 +31,12 @@ export class FeatureModalPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeatureModalPage');
   }
+
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  install() {
+    document.getElementById('test').style.color = 'green';
   }
 }
