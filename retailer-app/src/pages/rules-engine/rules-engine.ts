@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ModalController } from 'ionic-angular';
+
+import { RulesCreatePage } from '../rules-create/rules-create';
 
 import { LoyalXProvider } from '../../providers/loyalx';
 
@@ -33,9 +35,16 @@ export class RulesEnginePage {
 		}
 	];
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController,
+		public navParams: NavParams,
+		public modalCtrl: ModalController) {
 	}
 
+	openCreateRulesModal() {
+		let CreateRulesModal = this.modalCtrl.create(RulesCreatePage);
+		CreateRulesModal.present();
+	}
+	
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TransactionsPage');
 	}

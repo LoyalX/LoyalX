@@ -1,0 +1,47 @@
+<!--
+  Generated template for the RulesCreatePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">CANCEL</button>
+    </ion-buttons>
+    <ion-title>ADD NEW RULE</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="onAddTapped()">
+      <ion-list>
+    
+        <ion-item>
+          <ion-label floating>No of transactions</ion-label>
+          <ion-input type="text" formControlName="noOfTransactions"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Points</ion-label>
+          <ion-input type="text" formControlName="points"></ion-input>
+        </ion-item>
+
+          <ion-item>
+            <ion-label floating>Activity</ion-label>
+            <ion-select formControlName="activity">
+              <ion-option *ngFor="let activity of activities" value="{{activity.name}}">{{activity.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+    
+      </ion-list>
+    
+      <div padding>
+        <button type="submit" ion-button color="primary" block [disabled]="!isReadyToAdd">Sign Up</button>
+      </div>
+    </form>
+
+</ion-content>

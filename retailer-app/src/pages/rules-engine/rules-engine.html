@@ -17,8 +17,8 @@
 
 	<ion-list inset>
 
-		<div *ngFor="let rul of rules; let i = index">
-			<button ion-item (click)="navigateToPoints(tokenIndex)">
+		<div *ngFor="let rul of rules;">
+			<button ion-item>
 				<!-- <ion-icon name="ios-construct" item-left></ion-icon> -->
 				<ion-row>
 
@@ -42,7 +42,7 @@
 	</ion-list>
 
 	<div padding>
-		<button ion-button>Add Rule</button>
+		<button ion-button block (click)="openCreateRulesModal()">Add Rule</button>
 	</div>
 
 </ion-content>

@@ -23,6 +23,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { ErrorPage } from '../pages/error/error';
 import { RulesEnginePage } from '../pages/rules-engine/rules-engine';
+import { RulesCreatePage } from '../pages/rules-create/rules-create';
 import { PointListPage } from '../pages/point-list/point-list'
 import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
 import { RulesEnginePageModule } from '../pages/rules-engine/rules-engine.module';
@@ -48,7 +49,8 @@ import { TransactionsPageModule } from '../pages/transactions/transactions.modul
     SignupPage,
     TabsPage,
     TutorialPage,
-    PointListPage
+    PointListPage,
+    RulesCreatePage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ import { TransactionsPageModule } from '../pages/transactions/transactions.modul
     PointTransferPage,
     OnBoardPage,
     RulesEnginePage,
-    TransactionsPage
+    TransactionsPage,
+    RulesCreatePage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
