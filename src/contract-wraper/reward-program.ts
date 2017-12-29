@@ -4,22 +4,25 @@ import { Contract } from './contract';
 
 export class RewardProgram extends Contract {
 
-	name: string;
-	symbol: string;
-	version: string;
-	decimal: number;
-
-	/**
-	 * 
-	 * @param tokenAddress the token contract address OR null for the main loyalX tokens
-	 */
-	constructor(address: string) {
-		super();
-		this._address = address;
-	}
-
 	public get contractName() { return "RewardProgram" };
 
+	public async getAttribs() {
+		try {
+			var contractInstance = await this.getContractInstance();
+
+			var result = {
+				name: await contractInstance.name(),
+				decimal: await contractInstance.decimal(),
+				symbol: await contractInstance.symbol(),
+				version: await contractInstance.version()
+			}
+			console.log("getAttribs", result);
+			return result;
+		} catch (err) {
+			console.warn(err.message);
+			throw err;
+		}
+	}
 
 	/**
 	 * get the current user balance

@@ -6,6 +6,10 @@ export abstract class Contract {
 
     public get address(): string { return this._address; }
 
+    constructor(address?: string) {
+        this._address = <any>address;
+    }
+
 	/**
 	 * @return {string} the contract name
 	 */
@@ -24,7 +28,7 @@ export abstract class Contract {
 	 */
     public async getContractInstance() {
         var contract = await this.getContract();
-        return this.address ? contract.at(this.address) : await contract.deployed();
+        return this.address ? contract.at(this.address) : contract.deployed();
     }
 
 }

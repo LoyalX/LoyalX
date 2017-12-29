@@ -21,11 +21,11 @@ export default class LoyalX {
 
 	private constructor() { }
 
-	public static async init(TruffleContract, lightwallet, server: ServerInfo = SERVERS.LOCALHOST) {
+	public static async init({ TruffleContract, lightwallet, server = SERVERS.LOCALHOST }) {
 		Config.TruffleContract = TruffleContract;
 		Config.LightWallet = lightwallet;
 		Config.server = server;
-		
+
 		var ret = new LoyalX();
 		ret.Web3Service = await Web3Service.getInstance();
 		return ret;
