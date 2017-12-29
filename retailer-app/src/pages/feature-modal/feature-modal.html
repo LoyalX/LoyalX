@@ -27,12 +27,13 @@
   <img [src]="feature.img" sty/>
   <ion-card-content>
     <ion-note>by </ion-note> {{feature.creator}}
+    <span *ngIf="feature.forCause" class="forCause">Featured for a Cause</span>
     <p>{{feature.description}}</p>
   </ion-card-content>
 
   <ion-buttons end padding clear>
       <button ion-button icon-only clear>
-        <ion-icon name="cloud-download"></ion-icon>
+        <ion-icon name="checkmark-circle"></ion-icon>
       </button>
     </ion-buttons>
 

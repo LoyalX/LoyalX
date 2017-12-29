@@ -75,7 +75,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     FeaturesPageModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
-        { component: FeaturesPage, name: 'FeaturesPage', segment: 'features-page' },
+        { component: FeaturesPage, name: 'FeaturesPage', segment: 'features' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },

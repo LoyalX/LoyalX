@@ -44,7 +44,7 @@ export class ConferenceApp {
 	appPages: PageInterface[] = [
 		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'ios-cash' },
 		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 1, icon: 'md-basket' },
-		{ title: 'Rules Engine', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 2, icon: 'ios-analytics' },
+		{ title: 'AI rules', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 2, icon: 'ios-analytics' },
 		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 3, icon: 'cart' },
 		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' },
 		{ title: 'Logout', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 5, icon: 'log-out' },
@@ -69,7 +69,7 @@ export class ConferenceApp {
 	) {
 
 		//<<<<<<<<<<<<<<<<<<<<<<<
-		this.rootPage = (typeof web3 !== 'undefined') ? RulesEnginePage : ErrorPage;
+		this.rootPage = (typeof web3 !== 'undefined') ? ProfilePage : ErrorPage;
 
 		this.platformReady();
 

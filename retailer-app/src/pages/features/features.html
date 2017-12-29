@@ -23,6 +23,7 @@
           <ion-card-content>
             <ion-card-title>{{ft.name}}</ion-card-title>
             <ion-note>by </ion-note> {{ft.creator}}
+            <span *ngIf="ft.forCause" class="forCause">Featured for a Cause</span>
             <p>{{ft.description}}</p>
           </ion-card-content>
         </ion-card>

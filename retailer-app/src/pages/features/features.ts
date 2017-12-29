@@ -18,31 +18,23 @@ export class FeaturesPage {
 
   features = [
     {
-      img: "http://www.videoplayerhtml5.com/wp-content/uploads/2017/09/top-3-sticky-html5-radio-player-plugins-img.jpg",
+      img: "http://www.businessplusng.com/blog/wp-content/uploads/2016/10/successful-social-media-campaign-featured-1000x530.jpg",
       name: "Social Media Campaign",
       description: "Create a social media campaign that promotes your message. Empowered by AI and Cognitive Services.",
-      creator: "John Smith"
+      creator: "Waylon Dalton",
+      forCause: true
     }, {
-      img: "http://www.videoplayerhtml5.com/wp-content/uploads/2017/09/top-3-sticky-html5-radio-player-plugins-img.jpg",
-      name: "Social Media Campaign",
-      description: "Create a social media campaign that promotes your message. Empowered by AI and Cognitive Services.",
-      creator: "John Smith"
-    }
-    , {
-      img: "http://www.videoplayerhtml5.com/wp-content/uploads/2017/09/top-3-sticky-html5-radio-player-plugins-img.jpg",
-      name: "Social Media Campaign",
-      description: "Create a social media campaign that promotes your message. Empowered by AI and Cognitive Services.",
-      creator: "John Smith"
+      img: "https://grist.files.wordpress.com/2015/11/shutterstock_64328092-e1472488109710.jpg?w=1024&h=576&crop=1",
+      name: "Utility Campaign",
+      description: "Campaign to save electricity and water consumption for a greener City.",
+      creator: "John Smith",
+      forCause: false
     }, {
-      img: "http://www.videoplayerhtml5.com/wp-content/uploads/2017/09/top-3-sticky-html5-radio-player-plugins-img.jpg",
-      name: "Social Media Campaign",
-      description: "Create a social media campaign that promotes your message. Empowered by AI and Cognitive Services.",
-      creator: "John Smith"
-    }, {
-      img: "http://www.videoplayerhtml5.com/wp-content/uploads/2017/09/top-3-sticky-html5-radio-player-plugins-img.jpg",
-      name: "Social Media Campaign",
-      description: "Create a social media campaign that promotes your message. Empowered by AI and Cognitive Services.",
-      creator: "John Smith"
+      img: "https://previews.123rf.com/images/lculig/lculig1507/lculig150701219/42848198-positive-thinking-concept-word-cloud-background-Stock-Photo.jpg",
+      name: "Positive Thinker",
+      description: "Campaign to promote browsing positive material over the internet.",
+      creator: "Marcus Cruz",
+      forCause: false
     }
   ];
   constructor(
