@@ -27,6 +27,9 @@ import { OffersPage } from '../pages/offers/offers'
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { OfferCreatePageModule } from '../pages/offer-create/offer-create.module';
 
+import { FeatureModalPage } from '../pages/feature-modal/feature-modal';
+import { FeatureModalPageModule } from '../pages/feature-modal/feature-modal.module';
+
 import { ErrorPage } from '../pages/error/error';
 import { ErrorPageModule } from '../pages/error/error.module';
 
@@ -63,6 +66,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     HttpModule,
     OnBoardPageModule,
     OfferCreatePageModule,
+    FeatureModalPageModule,
     PointTransferPageModule,
     RulesEnginePageModule,
     ErrorPageModule,
@@ -95,6 +99,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     TabsPage,
     TutorialPage,
     OffersPage,
+    FeatureModalPage,
     OfferCreatePage,
     PointTransferPage,
     OnBoardPage,

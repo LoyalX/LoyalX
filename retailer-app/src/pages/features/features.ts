@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { FeatureModalPage } from '../feature-modal/feature-modal';
 
 /**
  * Generated class for the FeaturesPage page.
@@ -44,11 +45,19 @@ export class FeaturesPage {
       creator: "John Smith"
     }
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FeaturesPage');
   }
 
+  presentFeatureModal(feature) {
+    let modal = this.modalCtrl.create(FeatureModalPage, { feature: feature });
+    modal.present();
+  }
 }
