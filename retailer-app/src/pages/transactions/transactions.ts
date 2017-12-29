@@ -14,7 +14,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'transactions.html',
 })
 export class TransactionsPage {
-
+  name = "Happy";
+  symbol = "HPY";
+  pointsInCirculation = 500500;
   balance = 500000;
   transactions = [
     {

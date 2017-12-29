@@ -21,11 +21,11 @@
 
         <ion-card>
           <ion-card-header>
-            Vodafone
-            <ion-note>VOD</ion-note>
+            {{name}}
+            <ion-note>{{symbol}}</ion-note>
           </ion-card-header>
           <ion-card-content>
-            <ion-note>Points in circulation:</ion-note> 500
+            <ion-note>Points in circulation:</ion-note> {{pointsInCirculation}}
             <br>
             <ion-note>Decimal point:</ion-note> 2
             <br>
@@ -43,7 +43,7 @@
             Current Balance
           </ion-card-header>
           <ion-card-content>
-            <h1>{{balance}}</h1>
+            <h1>{{balance}} <ion-note>{{symbol}}</ion-note></h1>
             <div></div>
             <button ion-button full color="google" (click)="presentPointTransfer()">Transfer Points</button>
           </ion-card-content>
