@@ -9,12 +9,13 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-
+import { ProfilePage } from '../pages/profile/profile';
 import { ErrorPage } from '../pages/error/error';
 import { TokenListPage } from '../pages/token-list/token-list';
 import { AddressCodePage } from '../pages/address-code/address-code';
 
 import { UserData } from '../providers/user-data';
+import { DonatePage } from '../pages/donate/donate';
 
 export interface PageInterface {
 	title: string;
@@ -39,8 +40,11 @@ export class ConferenceApp {
 	// the left menu only works after login
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
-		{ title: 'Tokens', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
-		{ title: 'Address Code', name: "AddressCodePage", component: AddressCodePage, tabComponent: AddressCodePage, index: 1, icon: 'barcode' }
+		{ title: 'Reward Points', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
+		//{ title: 'Badges', name: "BadgesPage", component: DonatePage, tabComponent: DonatePage, index: 1, icon: 'ios-trophy' },
+		{ title: 'Donate', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'ios-star' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' },
+		{ title: 'Address Code', name: "AddressCodePage", component: AddressCodePage, tabComponent: AddressCodePage, index: 4, icon: 'barcode' }
 
 	];
 	loggedInPages: PageInterface[] = [

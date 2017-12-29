@@ -29,6 +29,12 @@ import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { PointTransferPage } from '../pages/point-transfer/point-transfer';
 import { AddressCodePage } from '../pages/address-code/address-code';
 
+import { ProfilePage } from '../pages/profile/profile';
+import { ProfilePageModule } from '../pages/profile/profile.module';
+
+import { DonatePage } from '../pages/donate/donate';
+import { DonatePageModule } from '../pages/donate/donate.module';
+
 import { UserData } from '../providers/user-data';
 
 import { ErrorPage } from "../pages/error/error";
@@ -51,6 +57,7 @@ import { ErrorPage } from "../pages/error/error";
 		PointTransferPageModule,
 		ErrorPageModule,
 		ComponentsModule,
+		ProfilePageModule,
 		IonicModule.forRoot(ConferenceApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -58,11 +65,12 @@ import { ErrorPage } from "../pages/error/error";
 				{ component: LoginPage, name: 'LoginPage', segment: 'login' },
 				{ component: SignupPage, name: 'SignupPage', segment: 'signup' },
 				{ component: ErrorPage, name: 'ErrorPage', segment: 'error' },
+				{ component: DonatePage, name: 'DonatePage', segment: 'donateCode' },
 				{ component: AddressCodePage, name: 'AddressCodePage', segment: 'addressCode' },
 				{ component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
 				{ component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
-				{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' }
-
+				{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' },
+				{ component: ProfilePage, name: 'ProfilePage', segment: 'profile' }
 			]
 		}),
 		IonicStorageModule.forRoot()
