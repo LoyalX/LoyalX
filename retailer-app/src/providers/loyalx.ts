@@ -29,6 +29,10 @@ export class LoyalXProvider {
 			.then(loyalx => {
 				this.loyal = loyalx;
 				this.Web3Service = this.loyal.Web3Service;
+				this.Web3Service.wallet.setPasswordGetter(function () {
+					let password = prompt("Please enter your password to continue", "password");
+					return password;
+				})
 
 				/*this.loyal.OrganizationFactory.createOrganization({
 					name: "name",
