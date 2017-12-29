@@ -27,6 +27,9 @@ export class RulesCreatePage {
     },
     {
       name: "Tweet"
+    },
+    {
+      name: "Share"
     }
   ];
 
