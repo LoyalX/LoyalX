@@ -39,6 +39,8 @@ import { LoyalXProvider } from '../providers/loyalx';
 import { SocketIoService } from '../providers/socketIo';
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { TransactionsPageModule } from '../pages/transactions/transactions.module';
+import { FeaturesPage } from '../pages/features/features';
+import { FeaturesPageModule } from '../pages/features/features.module';
 //import { UportProvider } from '../providers/uport';
 
 
@@ -63,9 +65,10 @@ import { TransactionsPageModule } from '../pages/transactions/transactions.modul
     ErrorPageModule,
     ProfilePageModule,
     TransactionsPageModule,
+    FeaturesPageModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
-        { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
+        { component: FeaturesPage, name: 'FeaturesPage', segment: 'features-page' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: SignupPage, name: 'SignupPage', segment: 'signup' },

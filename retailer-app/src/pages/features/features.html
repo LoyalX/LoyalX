@@ -5,14 +5,30 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Features</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col col-4 *ngFor="let ft of features;">
+        <ion-card>
+          <img [src]="ft.img" sty/>
+          <ion-card-content>
+            <ion-card-title>{{ft.name}}</ion-card-title>
+            <ion-note>by </ion-note> {{ft.creator}}
+            <p>{{ft.description}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

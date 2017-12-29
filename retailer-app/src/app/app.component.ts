@@ -18,6 +18,7 @@ import { PointListPage } from '../pages/point-list/point-list';
 
 import { UserData } from '../providers/user-data';
 import { TransactionsPage } from '../pages/transactions/transactions';
+import { FeaturesPage } from '../pages/features/features';
 
 export interface PageInterface {
 	title: string;
@@ -44,8 +45,9 @@ export class ConferenceApp {
 	appPages: PageInterface[] = [
 		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'ios-cash' },
 		{ title: 'Rules Engine', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 1, icon: 'ios-analytics' },
-		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 2, icon: 'pricetags' },
-		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' }
+		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 2, icon: 'ios-cart' },
+		{ title: 'On Board', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 3, icon: 'pricetags' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' }
 
 	];
 	loggedInPages: PageInterface[] = [
