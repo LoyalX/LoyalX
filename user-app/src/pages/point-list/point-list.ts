@@ -4,9 +4,6 @@ import { NavController, NavParams, ModalController, Platform, ViewController } f
 import { OfferCreatePage } from '../offer-create/offer-create';
 import { PointTransferPage } from '../point-transfer/point-transfer';
 
-import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
-import { LoyaltyTokenProvider } from '../../providers/loyalty-token/loyalty-token';
-
 /**
  * Generated class for the PointListPage page.
  *
@@ -27,7 +24,7 @@ export class PointListPage {
 	balance: any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
-		public platform: Platform, public viewCtrl: ViewController, public loyaltyFactoryProvider: LoyaltyFactoryProvider, public loyaltyTokenProvider: LoyaltyTokenProvider) {
+		public platform: Platform, public viewCtrl: ViewController) {
 		this.token = this.navParams.get("token");
 	}
 
@@ -50,12 +47,12 @@ export class PointListPage {
 		this.token = this.navParams.get("token");
 
 		if(!this.token && this.tokenIndex) {
-			this.tokens = await this.loyaltyFactoryProvider.getTokens();
+			this.tokens = []
 			this.token = this.tokens[this.tokenIndex];
 		}
 
-		let tempBalance = (await this.loyaltyTokenProvider.getBalance(this.token.address));
-		this.balance = tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
+		//let tempBalance = (await this.loyaltyTokenProvider.getBalance(this.token.address));
+		this.balance = 100 // tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
 
 		this.vouchers = [
 			{ price: 25, points: 50 },

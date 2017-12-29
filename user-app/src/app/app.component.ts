@@ -15,7 +15,6 @@ import { TokenListPage } from '../pages/token-list/token-list';
 import { AddressCodePage } from '../pages/address-code/address-code';
 
 import { UserData } from '../providers/user-data';
-import { Web3Provider } from '../providers/web3/web3';
 
 export interface PageInterface {
 	title: string;
@@ -60,15 +59,10 @@ export class ConferenceApp {
 		public menu: MenuController,
 		public platform: Platform,
 		public storage: Storage,
-		public splashScreen: SplashScreen,
-		public web3Provider: Web3Provider
+		public splashScreen: SplashScreen
 	) {
 
-		if (this.web3Provider.hashMetaMask()) {
-			this.rootPage = TokenListPage;
-		} else {
-			this.rootPage = ErrorPage;
-		}
+		this.rootPage = TokenListPage;
 		this.platformReady();
 
 

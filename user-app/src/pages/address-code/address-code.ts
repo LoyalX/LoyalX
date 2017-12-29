@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Web3Provider } from '../../providers/web3/web3';
-
 /**
  * Generated class for the AddressCodePage page.
  *
@@ -19,12 +17,12 @@ export class AddressCodePage {
 
   address: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public web3Provider: Web3Provider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   async ionViewDidLoad() {
     console.log('ionViewDidLoad AddressCodePage');
-    this.address = await this.web3Provider.getAccount();
+    this.address =  "0x627306090abaB3A6e1400e9345bC60c78a8BEf57" // await this.web3Provider.getAccount()
   }
 
 }

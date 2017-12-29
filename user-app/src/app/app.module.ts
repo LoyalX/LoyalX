@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { QRScanner } from '@ionic-native/qr-scanner';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { ComponentsModule } from '../components/components.module'
 
 import { AddressCodePageModule } from '../pages/address-code/address-code.module';
 import { ErrorPageModule } from '../pages/error/error.module';
@@ -29,13 +30,8 @@ import { PointTransferPage } from '../pages/point-transfer/point-transfer';
 import { AddressCodePage } from '../pages/address-code/address-code';
 
 import { UserData } from '../providers/user-data';
-import { Web3Provider } from '../providers/web3/web3';
 
-import { LoyaltyTokenProvider } from '../providers/loyalty-token/loyalty-token';
-import { LoyaltyFactoryProvider } from '../providers/loyalty-factory/loyalty-factory';
 import { ErrorPage } from "../pages/error/error";
-import { UportProvider } from '../providers/uport/uport';
-
 
 @NgModule({
 	declarations: [
@@ -45,6 +41,7 @@ import { UportProvider } from '../providers/uport/uport';
 		TabsPage,
 		TutorialPage,
 		PointListPage,
+		OfferCreatePage
 	],
 	imports: [
 		BrowserModule,
@@ -53,6 +50,7 @@ import { UportProvider } from '../providers/uport/uport';
 		TokenListPageModule,
 		PointTransferPageModule,
 		ErrorPageModule,
+		ComponentsModule,
 		IonicModule.forRoot(ConferenceApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -87,11 +85,7 @@ import { UportProvider } from '../providers/uport/uport';
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		UserData,
 		InAppBrowser,
-		SplashScreen,
-		Web3Provider,
-		LoyaltyTokenProvider,
-		LoyaltyFactoryProvider,
-    UportProvider
+		SplashScreen
 	]
 })
 export class AppModule { }

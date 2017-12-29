@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
-import { LoyaltyFactoryProvider } from '../../providers/loyalty-factory/loyalty-factory';
 /**
  * Generated class for the TokenListPage page.
  *
@@ -21,7 +20,6 @@ export class TokenListPage {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		public events: Events,
-		public loyaltyFactoryProvider: LoyaltyFactoryProvider
 	) {
 	}
 
@@ -35,7 +33,7 @@ export class TokenListPage {
 	}
 
 	async ionViewDidEnter() {
-		this.tokens = await this.loyaltyFactoryProvider.getTokens();
+		this.tokens = [];
 	}
 
 }
