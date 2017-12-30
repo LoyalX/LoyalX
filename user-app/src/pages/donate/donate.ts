@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { CharityModalPage } from '../charity-modal/charity-modal';
 
@@ -16,6 +16,7 @@ import { CharityModalPage } from '../charity-modal/charity-modal';
   templateUrl: 'donate.html',
 })
 export class DonatePage {
+  private _CharityModal;
 
   charities = [
     {
@@ -36,7 +37,7 @@ export class DonatePage {
     }
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl:ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -44,7 +45,14 @@ export class DonatePage {
   }
 
   presentCharityModal(charity) {
-    let modal = this.modalCtrl.create( CharityModalPage, { charity: charity });
+    let modal = this.modalCtrl.create(CharityModalPage, { charity: charity });
+
+    modal.onDidDismiss(data => this.toastCtrl.create({
+      message: `${data.numberOfPoints} ${data.token} was donated successfully`,
+      duration: 3000,
+      position: 'bottom'
+    }).present());
+
     modal.present();
   }
 

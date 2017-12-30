@@ -29,12 +29,38 @@
     <ion-note>by </ion-note> {{charity.creator}}
     <p>{{charity.description}}</p>
 
-    <ion-buttons end padding clear>
-      <button ion-button>Donate</button>
-    </ion-buttons>
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="onDonateTapped()">
+      <ion-list>
+        <ion-grid>
+          <ion-row>
 
+            <ion-col>
+              <ion-item>
+                <ion-label floating>Token</ion-label>
+                <ion-select formControlName="token">
+                  <ion-option *ngFor="let token of tokens" value="{{token.name}}">{{token.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <ion-item>
+                <ion-label floating>Number Of Points</ion-label>
+                <ion-input type="number" formControlName="numberOfPoints"></ion-input>
+              </ion-item>
+            </ion-col>
+
+            <ion-col>
+              <div padding margin>
+                <button type="submit" ion-button full color="primary" block [disabled]="!isReadyToDonate">Donate</button>
+              </div>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+      </ion-list>
+
+    </form>
   </ion-card-content>
-
-
 
 </ion-content>
