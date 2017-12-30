@@ -36,15 +36,21 @@ export class TokenListPage {
 		this.tokens = [
 			{
 				name: "Vodafone",
-				symbol: "VOD"
+				symbol: "VOD",
+				balance: 350000,
+				logo: 'http://diylogodesigns.com/blog/wp-content/uploads/2016/05/Vodafone-Logo-png-download.png'
 			},
 			{
 				name: "happiness",
-				symbol: "HPY"
+				symbol: "HPY",
+				balance: 200000,
+				logo: 'http://www.happinesswithirene.com/images/misc/logohappy.png'
 			},
 			{
 				name: "etisalat",
-				symbol: "ETS"
+				symbol: "ETS",
+				balance: 100000,
+				logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Etisalat_Lanka_logo.svg/871px-Etisalat_Lanka_logo.svg.png'
 			}
 		];
 	}

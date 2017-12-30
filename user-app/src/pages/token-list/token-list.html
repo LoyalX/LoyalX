@@ -9,15 +9,19 @@
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Tokens</ion-title>
+        <ion-title>Reward Points</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <ion-list inset>
-        <button ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
+        <ion-item *ngFor="let token of tokens; let tokenIndex = index;">
+            <ion-thumbnail item-start>
+                <img [src]="token.logo" />
+            </ion-thumbnail>
             <h2> {{ token.name }} </h2>
-            <ion-note item-end>{{ token.symbol }}</ion-note>
-        </button>
+            <ion-note color="google">Balance: {{ token.balance }} {{ token.symbol }}</ion-note>
+            <button ion-button default item-end (click)="navigateToPoints(tokenIndex)">Transfer</button>
+        </ion-item>
     </ion-list>
 </ion-content>
