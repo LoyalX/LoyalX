@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { BadgeModalPage } from '../badge-modal/badge-modal';
 
 /**
  * Generated class for the BadgeListPage page.
@@ -20,11 +21,14 @@ export class BadgeListPage {
     { src: "assets/img/badges/helper.png", text: 'Helper', textColor: 'black', backgroundColor: '#51D2B7', reason: 'Being a helper for peopler'}
   ]
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl:ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BadgeListPage');
   }
-
+  presentBadgeModal(badge) {
+    let modal = this.modalCtrl.create( BadgeModalPage, { badge: badge });
+    modal.present();
+  }
 }

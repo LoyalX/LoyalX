@@ -39,6 +39,9 @@ import { DonatePageModule } from '../pages/donate/donate.module';
 import { CharityModalPage } from '../pages/charity-modal/charity-modal';
 import { CharityModalPageModule } from '../pages/charity-modal/charity-modal.module';
 
+import { BadgeModalPage } from '../pages/badge-modal/badge-modal';
+import { BadgeModalPageModule } from '../pages/badge-modal/badge-modal.module';
+
 import { BadgeListPage } from '../pages/badge-list/badge-list';
 import { BadgeListPageModule } from '../pages/badge-list/badge-list.module';
 
@@ -68,6 +71,7 @@ import { UserData } from '../providers/user-data';
 		ComponentsModule,
 		ProfilePageModule,
 		DonatePageModule,
+		BadgeModalPageModule,
 		BadgeListPageModule,
 		CharityModalPageModule,
 		IonicModule.forRoot(UserApp, {}, {

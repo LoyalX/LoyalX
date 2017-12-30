@@ -43,7 +43,7 @@ export class DonatePage {
     console.log('ionViewDidLoad DonatePage');
   }
 
-  presentcharityModal(charity) {
+  presentCharityModal(charity) {
     let modal = this.modalCtrl.create( CharityModalPage, { charity: charity });
     modal.present();
   }
