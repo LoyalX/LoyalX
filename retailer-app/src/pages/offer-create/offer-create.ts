@@ -26,10 +26,10 @@ export class OfferCreatePage {
     this.company = this.navParams.get("company");
 
     this.form = formBuilder.group({
-      img: ['', Validators.required],
       price: ['', Validators.required],
       reward: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
+      img: ['', Validators.required]
     });
 
     this.form.valueChanges.subscribe(() => {

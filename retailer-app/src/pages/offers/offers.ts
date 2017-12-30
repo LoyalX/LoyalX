@@ -17,6 +17,8 @@ import { LoyalXProvider } from '../../providers/loyalx';
 	templateUrl: 'offers.html',
 })
 export class OffersPage {
+	private _offerCreateModal;
+
 	offers = [
 		{
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
@@ -50,11 +52,14 @@ export class OffersPage {
 		public platform: Platform,
 		public viewCtrl: ViewController
 	) {
+		this._offerCreateModal = this.modalCtrl.create(OfferCreatePage);
+		this._offerCreateModal.onDidDismiss(data => {
+			this.offers.push(data);
+		});
 	}
 
 	presentOfferCreate() {
-		let OfferCreateModal = this.modalCtrl.create(OfferCreatePage);
-		OfferCreateModal.present();
+		this._offerCreateModal.present();
 	}
 
 	async ionViewDidLoad() {
