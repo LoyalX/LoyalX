@@ -35,22 +35,16 @@ export class TokenListPage {
 	async ionViewDidEnter() {
 		this.tokens = [
 			{
-				name: "Vodafone",
-				symbol: "VOD",
+				name: "IBM",
+				symbol: "IBM",
 				balance: 350000,
-				logo: 'http://diylogodesigns.com/blog/wp-content/uploads/2016/05/Vodafone-Logo-png-download.png'
+				logo: 'https://logoeps.com/wp-content/uploads/2012/04/ibm-logo-vector.png'
 			},
 			{
-				name: "Happiness",
+				name: "Happy",
 				symbol: "HPY",
 				balance: 200000,
-				logo: 'http://www.happinesswithirene.com/images/misc/logohappy.png'
-			},
-			{
-				name: "Etisalat",
-				symbol: "ETS",
-				balance: 100000,
-				logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Etisalat_Lanka_logo.svg/871px-Etisalat_Lanka_logo.svg.png'
+				logo: 'https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap'
 			}
 		];
 	}
