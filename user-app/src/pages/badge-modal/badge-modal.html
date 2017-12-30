@@ -8,7 +8,7 @@
   <ion-toolbar color="primary">
 
     <ion-title>
-      {{badge.name}}
+      {{badge.text}}
     </ion-title>
 
     <ion-buttons start>
@@ -24,14 +24,23 @@
 
 <ion-content class="no-scroll">
 
-  <img [src]="badge.img" sty/>
+  <loyal-badge [src]="badge.src" [text]="badge.text" [textColor]="badge.textColor" [backgroundColor]="badge.backgroundColor"></loyal-badge>
   <ion-card-content>
-    <ion-note>by </ion-note> {{badge.creator}}
-    <p>{{badge.description}}</p>
 
-    <ion-buttons end padding clear>
-      <button ion-button>Donate</button>
-    </ion-buttons>
+    <p>
+      <ion-note>by </ion-note> {{badge.creator}}
+    </p>
+    <p>
+      <ion-note>awarded to </ion-note> {{badge.user}}
+    </p>
+    <p>
+      <ion-note>for </ion-note> {{badge.reason}}
+    </p>
+
+    <button ion-button icon-only clear round>
+      <ion-icon name="share"></ion-icon>
+    </button>
+
 
   </ion-card-content>
 
