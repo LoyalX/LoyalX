@@ -24,7 +24,7 @@ export class TokenListPage {
 	}
 
 	navigateToPoints(tokenIndex) {
-		this.navCtrl.push('PointListPage', { token: this.tokens[tokenIndex], tokenIndex: tokenIndex });
+		this.navCtrl.push('PointTransferPage', { token: this.tokens[tokenIndex], tokenIndex: tokenIndex });
 	}
 
 	ionViewWillEnter() {
