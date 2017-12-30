@@ -1,4 +1,4 @@
-<ion-split-pane [when]="getSplitPaneEnabledState()">
+<ion-split-pane>
 
 	<ion-menu id="mainMenu" [content]="content">
 
@@ -10,9 +10,16 @@
 						<img alt="logo" height="35" src="assets/img/logo.png">
 					</button>
 				</ion-buttons>
-				<ion-title>LoyalX</ion-title>
-			</ion-toolbar>
 
+				<ion-title>LoyalX</ion-title>
+
+				<ion-buttons right>
+					<button ion-button icon-end clear (click)="openRegister()">
+						Logout
+						<ion-icon name="log-out"></ion-icon>
+					</button>
+				</ion-buttons>
+			</ion-toolbar>
 
 		</ion-header>
 

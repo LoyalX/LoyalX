@@ -1,22 +1,24 @@
 import { Component } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 /**
- * Generated class for the RulesCreatePage page.
+ * Generated class for the ProfileEditPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
+@IonicPage()
 @Component({
-  selector: 'page-rules-create',
-  templateUrl: 'rules-create.html',
+  selector: 'page-profile-edit',
+  templateUrl: 'profile-edit.html',
 })
-export class RulesCreatePage {
+export class ProfileEditPage {
+  user: any;
 
   form: FormGroup;
-  isReadyToAdd: boolean;
+  isReadyToEdit: boolean;
 
   activities = [
     {
@@ -33,20 +35,28 @@ export class RulesCreatePage {
     }
   ];
 
+
   constructor(
     public navCtrl: NavController,
     public viewCtrl: ViewController,
     public navParams: NavParams,
     public formBuilder: FormBuilder) {
 
+    this.user = this.navParams.get('user');
+
     this.form = formBuilder.group({
-      noOfTransactions: ['', Validators.required],
-      points: ['', Validators.required],
-      activity: ['', Validators.required]
+      name: [this.user.name, Validators.required],
+      avatar: [this.user.avatar, Validators.required],
+      backgroundImg: [this.user.backgroundImg, Validators.required],
+      country: [this.user.country, Validators.required],
+      email: [this.user.email, Validators.required],
+      website: [this.user.website, Validators.required],
+      publicKey: [this.user.publicKey, Validators.required],
+      description: [this.user.description, Validators.required]
     });
 
     this.form.valueChanges.subscribe(() => {
-      this.isReadyToAdd = this.form.valid;
+      this.isReadyToEdit = this.form.valid;
     });
 
   }
@@ -59,9 +69,8 @@ export class RulesCreatePage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
-
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RulesCreatePage');
+    console.log('ionViewDidLoad ProfileEditPage');
   }
 
 }

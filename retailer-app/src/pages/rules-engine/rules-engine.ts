@@ -18,6 +18,7 @@ import { LoyalXProvider } from '../../providers/loyalx';
 	templateUrl: 'rules-engine.html',
 })
 export class RulesEnginePage {
+	private _createRulesModal;
 
 	rules = [
 		{
@@ -38,13 +39,16 @@ export class RulesEnginePage {
 	constructor(public navCtrl: NavController,
 		public navParams: NavParams,
 		public modalCtrl: ModalController) {
+		this._createRulesModal = this.modalCtrl.create(RulesCreatePage);
+		this._createRulesModal.onDidDismiss(data => {
+			this.rules.push(data);
+		});
 	}
 
 	openCreateRulesModal() {
-		let CreateRulesModal = this.modalCtrl.create(RulesCreatePage);
-		CreateRulesModal.present();
+		this._createRulesModal.present();
 	}
-	
+
 	ionViewDidLoad() {
 		console.log('ionViewDidLoad TransactionsPage');
 	}

@@ -18,6 +18,7 @@
     <ion-row>
 
       <ion-col col-4 *ngFor="let ft of features;">
+        <div>
         <ion-card (click)="presentFeatureModal(ft)">
           <img [src]="ft.img" sty/>
           <ion-card-content>
@@ -27,6 +28,7 @@
             <p>{{ft.description}}</p>
           </ion-card-content>
         </ion-card>
+        </div>
       </ion-col>
 
     </ion-row>
