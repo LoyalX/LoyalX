@@ -19,7 +19,6 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { PointListPage } from '../pages/point-list/point-list';
-import { OfferCreatePage } from '../pages/offer-create/offer-create';
 
 import { TokenListPage } from '../pages/token-list/token-list';
 import { TokenListPageModule } from '../pages/token-list/token-list.module';
@@ -48,6 +47,12 @@ import { BadgeListPageModule } from '../pages/badge-list/badge-list.module';
 import { ErrorPage } from "../pages/error/error";
 import { ErrorPageModule } from '../pages/error/error.module';
 
+import { OffersPage } from '../pages/offers/offers';
+import { OfferPageModule } from '../pages/offers/offers.module';
+
+import { OfferCreatePage } from '../pages/offer-create/offer-create';
+import { OfferCreatePageModule } from '../pages/offer-create/offer-create.module';
+
 import { UserData } from '../providers/user-data';
 
 
@@ -58,8 +63,7 @@ import { UserData } from '../providers/user-data';
 		SignupPage,
 		TabsPage,
 		TutorialPage,
-		PointListPage,
-		OfferCreatePage
+		PointListPage		
 	],
 	imports: [
 		BrowserModule,
@@ -74,6 +78,8 @@ import { UserData } from '../providers/user-data';
 		BadgeModalPageModule,
 		BadgeListPageModule,
 		CharityModalPageModule,
+		OfferPageModule,
+		OfferCreatePageModule,
 		IonicModule.forRoot(UserApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -87,7 +93,8 @@ import { UserData } from '../providers/user-data';
 				{ component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
 				{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' },
 				{ component: ProfilePage, name: 'ProfilePage', segment: 'profile' },
-				{ component: BadgeListPage, name: 'BadgeListPage', segment: 'badgeListPage' }
+				{ component: BadgeListPage, name: 'BadgeListPage', segment: 'badgeListPage' },
+				{ component: OffersPage, name: 'OffersPage', segment: 'offersPage' }
 
 			]
 		}),

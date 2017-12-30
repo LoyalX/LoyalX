@@ -13,8 +13,9 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ErrorPage } from '../pages/error/error';
 import { TokenListPage } from '../pages/token-list/token-list';
 import { AddressCodePage } from '../pages/address-code/address-code'
-import { DonatePage } from '../pages/donate/donate';;
+import { DonatePage } from '../pages/donate/donate';
 import { BadgeListPage } from '../pages/badge-list/badge-list';
+import { OffersPage } from '../../.tmp/src/pages/offers/offers';
 
 import { UserData } from '../providers/user-data';
 
@@ -45,8 +46,7 @@ export class UserApp {
 		{ title: 'Badges', name: "BadgeListPage", component: BadgeListPage, tabComponent: BadgeListPage, index: 1, icon: 'ios-trophy' },
 		{ title: 'Charity', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'md-hand' },
 		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' },
-		{ title: 'Address Code', name: "AddressCodePage", component: AddressCodePage, tabComponent: AddressCodePage, index: 4, icon: 'barcode' }
-
+		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 5, icon: 'md-basket' }
 	];
 	loggedInPages: PageInterface[] = [
 		{ title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }

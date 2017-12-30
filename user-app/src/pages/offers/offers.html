@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>offers</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+
+            <ion-col col-12 col-lg-6 col-xl-4 *ngFor="let ft of offers;">
+                <ion-card>
+                    <img [src]="ft.img" sty/>
+                    <ion-card-content>
+                        <ion-card-title>{{ft.reward}}</ion-card-title>
+                        <ion-note>Price: </ion-note> {{ft.price}}
+                        <p>{{ft.description}}</p>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+    <div padding>
+        <ion-fab bottom right #fab>
+            <button ion-fab (click)="presentOfferCreate()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab>
+    </div>
+
+</ion-content>

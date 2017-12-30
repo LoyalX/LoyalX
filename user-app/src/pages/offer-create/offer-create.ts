@@ -27,7 +27,9 @@ export class OfferCreatePage {
 
     this.form = formBuilder.group({
       price: ['', Validators.required],
-      numberOfPoints: ['', Validators.required]
+      reward: ['', Validators.required],
+      description: ['', Validators.required],
+      img: ['', Validators.required]
     });
 
     this.form.valueChanges.subscribe(() => {
