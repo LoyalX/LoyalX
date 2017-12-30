@@ -41,13 +41,13 @@ export class TokenListPage {
 				logo: 'http://diylogodesigns.com/blog/wp-content/uploads/2016/05/Vodafone-Logo-png-download.png'
 			},
 			{
-				name: "happiness",
+				name: "Happiness",
 				symbol: "HPY",
 				balance: 200000,
 				logo: 'http://www.happinesswithirene.com/images/misc/logohappy.png'
 			},
 			{
-				name: "etisalat",
+				name: "Etisalat",
 				symbol: "ETS",
 				balance: 100000,
 				logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Etisalat_Lanka_logo.svg/871px-Etisalat_Lanka_logo.svg.png'
