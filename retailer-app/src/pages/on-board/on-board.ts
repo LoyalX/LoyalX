@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, ToastController, Events } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { RulesEnginePage } from "../rules-engine/rules-engine";
@@ -27,7 +27,8 @@ export class OnBoardPage {
 		public modalCtrl: ModalController,
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
-		public formBuilder: FormBuilder) {
+		public formBuilder: FormBuilder,
+		public events: Events,) {
 
 		this.form = formBuilder.group({
 
@@ -66,6 +67,7 @@ export class OnBoardPage {
 			position: 'bottom'
 		}).present();
 
+		this.events.publish('user:signup');
 		this.navCtrl.setRoot('RulesEnginePage', { isTokensLoading: true });
 
 		*/

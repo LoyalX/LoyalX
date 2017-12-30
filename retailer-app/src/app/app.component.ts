@@ -33,7 +33,7 @@ export interface PageInterface {
 @Component({
 	templateUrl: 'app.template.html'
 })
-export class ConferenceApp {
+export class RetailerApp {
 	// the root nav is a child of the root app component
 	// @ViewChild(Nav) gets a reference to the app's root nav
 	@ViewChild(Nav) nav: Nav;
@@ -46,8 +46,7 @@ export class ConferenceApp {
 		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 1, icon: 'md-basket' },
 		{ title: 'AI rules', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 2, icon: 'ios-analytics' },
 		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 3, icon: 'cart' },
-		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' },
-		{ title: 'Logout', name: "OnBoardPage", component: OnBoardPage, tabComponent: OnBoardPage, index: 5, icon: 'log-out' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' }
 	];
 	loggedInPages: PageInterface[] = [
 		{ title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
@@ -57,6 +56,7 @@ export class ConferenceApp {
 		{ title: 'Signup', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
 	];
 	rootPage: any;
+	activePageName: any;
 	splitPaneEnabledState: boolean;
 
 	constructor(
@@ -82,7 +82,7 @@ export class ConferenceApp {
 		this.setSplitPaneEnabledState(true);
 		this.enableMenu(true);
 
-		//this.listenToLoginEvents();
+		this.listenToLoginEvents();
 		this.listenToErrorEvents();
 	}
 
@@ -116,6 +116,11 @@ export class ConferenceApp {
 
 	openTutorial() {
 		this.nav.setRoot(TutorialPage);
+	}
+
+	openRegister() {
+		this.nav.setRoot(OnBoardPage);
+		this.events.publish('user:logout');	
 	}
 
 	listenToErrorEvents() {
@@ -179,5 +184,10 @@ export class ConferenceApp {
 			return 'primary';
 		}
 		return;
+	}
+
+	ngAfterViewInit() {
+		this.activePageName = this.nav.getActive() ? this.nav.getActive().name : "";
+		console.log(this.nav.getActive());
 	}
 }

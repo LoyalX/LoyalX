@@ -9,7 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { IonicStorageModule } from '@ionic/storage';
 
-import { ConferenceApp } from './app.component';
+import { RetailerApp } from './app.component';
 
 import { UserData } from '../providers/user-data';
 import { LoyalXProvider } from '../providers/loyalx';
@@ -50,16 +50,18 @@ import { TransactionsPageModule } from '../pages/transactions/transactions.modul
 
 import { FeaturesPage } from '../pages/features/features';
 import { FeaturesPageModule } from '../pages/features/features.module';
+import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 
 @NgModule({
   declarations: [
-    ConferenceApp,
+    RetailerApp,
     LoginPage,
     SignupPage,
     TabsPage,
     TutorialPage,
     OffersPage,
-    RulesCreatePage
+    RulesCreatePage,
+    ProfileEditPage
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     ProfilePageModule,
     TransactionsPageModule,
     FeaturesPageModule,
-    IonicModule.forRoot(ConferenceApp, {}, {
+    IonicModule.forRoot(RetailerApp, {}, {
       links: [
         { component: FeaturesPage, name: 'FeaturesPage', segment: 'features' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
@@ -92,7 +94,7 @@ import { FeaturesPageModule } from '../pages/features/features.module';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    ConferenceApp,
+    RetailerApp,
     LoginPage,
     SignupPage,
     ErrorPage,
@@ -105,7 +107,8 @@ import { FeaturesPageModule } from '../pages/features/features.module';
     OnBoardPage,
     RulesEnginePage,
     TransactionsPage,
-    RulesCreatePage
+    RulesCreatePage,
+    ProfileEditPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
