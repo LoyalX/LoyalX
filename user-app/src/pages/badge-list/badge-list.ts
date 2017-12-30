@@ -16,19 +16,45 @@ import { BadgeModalPage } from '../badge-modal/badge-modal';
 })
 export class BadgeListPage {
   badges = [
-    { src: "assets/img/badges/clean-energy.png", text: 'Clean Energy', textColor: 'black', backgroundColor: '#51D2B7', reason: 'Being energy concern'},
-    { src: "assets/img/badges/environment-saver.png", text: 'Environment Saver', textColor: 'black', backgroundColor: '#51D2B7', reason: 'Being environment saver'},
-    { src: "assets/img/badges/helper.png", text: 'Helper', textColor: 'black', backgroundColor: '#51D2B7', reason: 'Being a helper for peopler'}
+    {
+      src: "assets/img/badges/clean-energy.png",
+      text: 'Clean Energy',
+      textColor: 'black',
+      backgroundColor: '#51D2B7',
+      reason: 'Being energy concern',
+      user: "john Smith",
+      creator: "Happy"
+    }, {
+      src: "assets/img/badges/environment-saver.png",
+      text: 'Environment Saver',
+      textColor: 'black',
+      backgroundColor: '#51D2B7',
+      reason: 'Being environment saver',
+      user: "john Smith",
+      creator: "Happy"
+    }, {
+      src: "assets/img/badges/helper.png",
+      text: 'Helper',
+      textColor: 'black',
+      backgroundColor: '#51D2B7',
+      reason: 'Being a helper for peopler',
+      user: "john Smith",
+      creator: "Happy"
+    }
   ]
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl:ModalController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BadgeListPage');
   }
   presentBadgeModal(badge) {
-    let modal = this.modalCtrl.create( BadgeModalPage, { badge: badge });
+    let modal = this.modalCtrl.create(BadgeModalPage, { badge: badge });
     modal.present();
   }
 }

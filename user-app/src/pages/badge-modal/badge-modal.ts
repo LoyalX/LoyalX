@@ -15,9 +15,12 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class BadgeModalPage {
   badge = {
-    img: "",
-    name: "",
-    description: "",
+    src: "",
+    text: '',
+    textColor: '',
+    backgroundColor: '',
+    reason: '',
+    user: "",
     creator: ""
   };
   constructor(
