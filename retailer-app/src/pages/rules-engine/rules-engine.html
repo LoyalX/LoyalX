@@ -41,8 +41,12 @@
 
 	</ion-list>
 
-	<div padding>
-		<button ion-button block (click)="openCreateRulesModal()">Add Rule</button>
+    <div padding>
+        <ion-fab bottom right #fab>
+            <button ion-fab (click)="openCreateRulesModal()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab>
 	</div>
-
+	
 </ion-content>

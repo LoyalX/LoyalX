@@ -24,24 +24,22 @@
 
                 <ion-list no-lines>
                     <ion-item>
-                        <!-- <ion-icon name="mail" color="primary" item-start></ion-icon> -->
+                        <ion-icon name="mail" color="secondary" item-start></ion-icon>
                         <p>Email</p>
                         <p>{{user.email}}</p>
-                        <!-- <a button ion-button href="#" color="primary" item-end large>requestCredentials</a> -->
                     </ion-item>
                     <ion-item>
-                        <!-- <ion-icon item-start name="call" color="danger"></ion-icon> -->
+                        <ion-icon item-start name="globe" color="secondary"></ion-icon>
                         <p>website</p>
-                        {{user.website}}
-                        <!-- <a button ion-button href="#" color="secondary" item-end large>getCredentials</a> -->
+                        <p>{{user.website}}</p>
                     </ion-item>
                     <ion-item>
-                        <!-- <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon> -->
+                        <ion-icon item-start name="pin" color="secondary"></ion-icon>
                         <p>Country</p>
-                        {{user.country}}
+                        <p>{{user.country}}</p>
                     </ion-item>
                     <ion-item>
-                        <!-- <ion-icon item-start name="pin" color="twitter"></ion-icon> -->
+                        <ion-icon item-start name="key" color="secondary"></ion-icon>
                         <p>Public Key</p>
                         <p>{{user.publicKey}}</p>
                     </ion-item>
@@ -49,9 +47,14 @@
             </ion-col>
 
         </ion-row>
-        <button ion-button (click)="requestCredentials()">
-            Edit Profile
-        </button>
+    </div>
+
+    <div padding>
+        <ion-fab bottom right #fab>
+            <button ion-fab>
+                <ion-icon name="md-create"></ion-icon>
+            </button>
+        </ion-fab>
     </div>
 
 </ion-content>

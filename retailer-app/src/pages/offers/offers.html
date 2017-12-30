@@ -11,7 +11,6 @@
 <ion-content>
 
     <ion-grid>
-
         <ion-row>
 
             <ion-col col-4 *ngFor="let ft of offers;">
@@ -26,14 +25,14 @@
             </ion-col>
 
         </ion-row>
-
-        <ion-row padding text-center>
-            <ion-col>
-                <button ion-button full (click)="presentOfferCreate()">Add New Offer</button>
-            </ion-col>
-        </ion-row>
-
-
     </ion-grid>
+
+    <div padding>
+        <ion-fab bottom right #fab>
+            <button ion-fab (click)="presentOfferCreate()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-fab>
+    </div>
 
 </ion-content>
