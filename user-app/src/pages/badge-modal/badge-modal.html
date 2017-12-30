@@ -24,20 +24,23 @@
 
 <ion-content class="no-scroll">
 
-  <loyal-badge [src]="badge.src" [text]="badge.text" [textColor]="badge.textColor" [backgroundColor]="badge.backgroundColor"></loyal-badge>
+  <ion-avatar col-6 style="margin:0 auto;">
+    <img [src]="badge.src">
+  </ion-avatar>
+
+  <ion-badge item-end style="position: absolute;top: 8px; right: 8px;"><h6>John Smith</h6></ion-badge>
+
+  <!--<loyal-badge [src]="badge.src" [text]="badge.text" [textColor]="badge.textColor" [backgroundColor]="badge.backgroundColor"></loyal-badge>-->
   <ion-card-content>
 
-    <p>
+    <p text-center>
       <ion-note>by </ion-note> {{badge.creator}}
     </p>
-    <p>
-      <ion-note>awarded to </ion-note> {{badge.user}}
-    </p>
-    <p>
-      <ion-note>for </ion-note> {{badge.reason}}
+    <p text-center>
+      {{badge.reason}}
     </p>
 
-    <button ion-button icon-only clear round>
+    <button ion-button icon-only clear round float-right>
       <ion-icon name="share"></ion-icon>
     </button>
 
