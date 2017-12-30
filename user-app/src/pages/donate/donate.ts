@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { CharityModalPage } from '../charity-modal/charity-modal';
 
 /**
  * Generated class for the DonatePage page.
@@ -15,11 +17,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DonatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  charities = [
+    {
+      img: "https://www.projectlinus.org/images/image-2.jpg",
+      name: "Buy one blanket, donate one",
+      description: "At Project Linus, a non-profit organization, we provide homemade blankets to children in need. Our blankets are lovingly made by adults.",
+      creator: "projectlinus"
+    }, {
+      img: "https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg",
+      name: "Clean Water",
+      description: "water’s mission is to bring clean and safe drinking water to every person in the world. Part of that mission is to deliver the best possible customer experience to every charity: water supporter.",
+      creator: "charity-water"
+    }, {
+      img: "https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg",
+      name: "Clean Water",
+      description: "water’s mission is to bring clean and safe drinking water to every person in the world. Part of that mission is to deliver the best possible customer experience to every charity: water supporter.",
+      creator: "charity-water"
+    }
+  ];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modalCtrl:ModalController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DonatePage');
+  }
+
+  presentcharityModal(charity) {
+    let modal = this.modalCtrl.create( CharityModalPage, { charity: charity });
+    modal.present();
   }
 
 }

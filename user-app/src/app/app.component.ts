@@ -43,7 +43,7 @@ export class UserApp {
 	appPages: PageInterface[] = [
 		{ title: 'Reward Points', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
 		{ title: 'Badges', name: "BadgeListPage", component: BadgeListPage, tabComponent: BadgeListPage, index: 1, icon: 'ios-trophy' },
-		{ title: 'Donate', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'ios-star' },
+		{ title: 'Charity', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'md-hand' },
 		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' },
 		{ title: 'Address Code', name: "AddressCodePage", component: AddressCodePage, tabComponent: AddressCodePage, index: 4, icon: 'barcode' }
 

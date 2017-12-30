@@ -36,6 +36,9 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
 import { DonatePage } from '../pages/donate/donate';
 import { DonatePageModule } from '../pages/donate/donate.module';
 
+import { CharityModalPage } from '../pages/charity-modal/charity-modal';
+import { CharityModalPageModule } from '../pages/charity-modal/charity-modal.module';
+
 import { BadgeListPage } from '../pages/badge-list/badge-list';
 import { BadgeListPageModule } from '../pages/badge-list/badge-list.module';
 
@@ -66,6 +69,7 @@ import { UserData } from '../providers/user-data';
 		ProfilePageModule,
 		DonatePageModule,
 		BadgeListPageModule,
+		CharityModalPageModule,
 		IonicModule.forRoot(UserApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -73,14 +77,14 @@ import { UserData } from '../providers/user-data';
 				{ component: LoginPage, name: 'LoginPage', segment: 'login' },
 				{ component: SignupPage, name: 'SignupPage', segment: 'signup' },
 				{ component: ErrorPage, name: 'ErrorPage', segment: 'error' },
-				{ component: DonatePage, name: 'DonatePage', segment: 'donateCode' },
+				{ component: DonatePage, name: 'DonatePage', segment: 'charity' },
 				{ component: AddressCodePage, name: 'AddressCodePage', segment: 'addressCode' },
 				{ component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
 				{ component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
 				{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' },
 				{ component: ProfilePage, name: 'ProfilePage', segment: 'profile' },
-				{ component: BadgeListPage, name: 'BadgeListPage', segment: 'badgeListPage'}
-				
+				{ component: BadgeListPage, name: 'BadgeListPage', segment: 'badgeListPage' }
+
 			]
 		}),
 		IonicStorageModule.forRoot()
