@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
+//import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 /**
  * Generated class for the PointTransferPage page.
@@ -22,7 +22,7 @@ export class PointTransferPage {
 	tokenIndex: any;
 	token: any;
 	form: FormGroup;
-	scannerStatus: QRScannerStatus;
+	//scannerStatus: QRScannerStatus;
 	isReadyToTransfer: boolean;
 
 	constructor(
@@ -32,7 +32,7 @@ export class PointTransferPage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
-		public qrScanner: QRScanner,
+		//public qrScanner: QRScanner,
 	) {
 
 		this.token = this.navParams.get("token");
@@ -46,7 +46,7 @@ export class PointTransferPage {
 			this.isReadyToTransfer = this.form.valid;
 		});
 
-		this.qrScanner.getStatus().then(status => this.scannerStatus = status);
+		//this.qrScanner.getStatus().then(status => this.scannerStatus = status);
 
 	}
 
@@ -60,7 +60,7 @@ export class PointTransferPage {
 		scanRequestToast.present();
 
 		// start scanning
-		let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+		/* let scanSub = this.qrScanner.scan().subscribe((text: string) => {
 			// wait for user to scan something, then the observable callback will be called
 
 			scanRequestToast.dismiss();
@@ -72,38 +72,36 @@ export class PointTransferPage {
 				duration: 3000,
 				position: 'middle'
 			}).present();
-
-			/* cleaing up */
+			
 			this.qrScanner.pausePreview();
 			this.qrScanner.hide();
 			this.qrScanner.destroy();
-			/* cleaing up */
 
 			scanSub.unsubscribe(); // stop scanning
 
 			this.qrScanner.getStatus().then(status => this.scannerStatus = status);
-		});
+		}); */
 
 		// Make the webview transparent so the video preview is visible behind it.
-		this.qrScanner.show().then(status => this.scannerStatus = status);
+		// this.qrScanner.show().then(status => this.scannerStatus = status);
 
 		// Make any opaque HTML elements transparent here to avoid covering the video.
 		window.document.querySelector('ion-content').classList.add('transparent-background');
 
-	}
+}
 
 	async ionViewDidLoad() {
 		this.tokenIndex = this.navParams.get("tokenIndex");
 		this.token = this.navParams.get("token");
 
 		if (!this.token && this.tokenIndex) {
-			this.tokens = await this.loyaltyFactoryProvider.getTokens();
+			this.tokens = [] || await this.loyaltyFactoryProvider.getTokens();
 			this.token = this.tokens[this.tokenIndex];
 		}
 	}
 
 	isReadyToShowScanRec() {
-		return this.scannerStatus.showing;
+		return true // this.scannerStatus.showing;
 	}
 
 	async onTransferTapped() {

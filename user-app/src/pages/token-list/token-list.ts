@@ -33,7 +33,20 @@ export class TokenListPage {
 	}
 
 	async ionViewDidEnter() {
-		this.tokens = [];
+		this.tokens = [
+			{
+				name: "Vodafone",
+				symbol: "VOD"
+			},
+			{
+				name: "happiness",
+				symbol: "HPY"
+			},
+			{
+				name: "etisalat",
+				symbol: "ETS"
+			}
+		];
 	}
 
 }

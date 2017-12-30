@@ -43,10 +43,10 @@ export class UserApp {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ title: 'Reward Points', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
-		{ title: 'Badges', name: "BadgeListPage", component: BadgeListPage, tabComponent: BadgeListPage, index: 1, icon: 'ios-trophy' },
-		{ title: 'Charity', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'md-hand' },
+		{ title: 'Badges', name: "BadgeListPage", component: BadgeListPage, tabComponent: BadgeListPage, index: 1, icon: 'trophy' },
+		{ title: 'Charity', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'hand' },
 		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' },
-		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 5, icon: 'md-basket' }
+		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 5, icon: 'bowtie' }
 	];
 	loggedInPages: PageInterface[] = [
 		{ title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
