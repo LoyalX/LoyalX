@@ -12,10 +12,11 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { ProfilePage } from '../pages/profile/profile';
 import { ErrorPage } from '../pages/error/error';
 import { TokenListPage } from '../pages/token-list/token-list';
-import { AddressCodePage } from '../pages/address-code/address-code';
+import { AddressCodePage } from '../pages/address-code/address-code'
+import { DonatePage } from '../pages/donate/donate';;
+import { BadgeListPage } from '../pages/badge-list/badge-list';
 
 import { UserData } from '../providers/user-data';
-import { DonatePage } from '../pages/donate/donate';
 
 export interface PageInterface {
 	title: string;
@@ -31,7 +32,7 @@ export interface PageInterface {
 @Component({
 	templateUrl: 'app.template.html'
 })
-export class ConferenceApp {
+export class UserApp {
 	// the root nav is a child of the root app component
 	// @ViewChild(Nav) gets a reference to the app's root nav
 	@ViewChild(Nav) nav: Nav;
@@ -41,7 +42,7 @@ export class ConferenceApp {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ title: 'Reward Points', name: "TokenListPage", component: TokenListPage, tabComponent: TokenListPage, index: 0, icon: 'basket' },
-		//{ title: 'Badges', name: "BadgesPage", component: DonatePage, tabComponent: DonatePage, index: 1, icon: 'ios-trophy' },
+		{ title: 'Badges', name: "BadgeListPage", component: BadgeListPage, tabComponent: BadgeListPage, index: 1, icon: 'ios-trophy' },
 		{ title: 'Donate', name: "DonatePage", component: DonatePage, tabComponent: DonatePage, index: 2, icon: 'ios-star' },
 		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 3, icon: 'person' },
 		{ title: 'Address Code', name: "AddressCodePage", component: AddressCodePage, tabComponent: AddressCodePage, index: 4, icon: 'barcode' }

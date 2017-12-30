@@ -11,22 +11,23 @@ import { QRScanner } from '@ionic-native/qr-scanner';
 import { IonicStorageModule } from '@ionic/storage';
 import { ComponentsModule } from '../components/components.module'
 
-import { AddressCodePageModule } from '../pages/address-code/address-code.module';
-import { ErrorPageModule } from '../pages/error/error.module';
-import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
-import { TokenListPageModule } from '../pages/token-list/token-list.module';
-
-import { ConferenceApp } from './app.component';
+import { UserApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
-import { TokenListPage } from '../pages/token-list/token-list';
 import { PointListPage } from '../pages/point-list/point-list';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
+
+import { TokenListPage } from '../pages/token-list/token-list';
+import { TokenListPageModule } from '../pages/token-list/token-list.module';
+
+import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.module';
 import { PointTransferPage } from '../pages/point-transfer/point-transfer';
+
+import { AddressCodePageModule } from '../pages/address-code/address-code.module';
 import { AddressCodePage } from '../pages/address-code/address-code';
 
 import { ProfilePage } from '../pages/profile/profile';
@@ -35,13 +36,18 @@ import { ProfilePageModule } from '../pages/profile/profile.module';
 import { DonatePage } from '../pages/donate/donate';
 import { DonatePageModule } from '../pages/donate/donate.module';
 
-import { UserData } from '../providers/user-data';
+import { BadgeListPage } from '../pages/badge-list/badge-list';
+import { BadgeListPageModule } from '../pages/badge-list/badge-list.module';
 
 import { ErrorPage } from "../pages/error/error";
+import { ErrorPageModule } from '../pages/error/error.module';
+
+import { UserData } from '../providers/user-data';
+
 
 @NgModule({
 	declarations: [
-		ConferenceApp,
+		UserApp,
 		LoginPage,
 		SignupPage,
 		TabsPage,
@@ -58,7 +64,9 @@ import { ErrorPage } from "../pages/error/error";
 		ErrorPageModule,
 		ComponentsModule,
 		ProfilePageModule,
-		IonicModule.forRoot(ConferenceApp, {}, {
+		DonatePageModule,
+		BadgeListPageModule,
+		IonicModule.forRoot(UserApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
 				{ component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
@@ -70,14 +78,16 @@ import { ErrorPage } from "../pages/error/error";
 				{ component: TokenListPage, name: 'TokenListPage', segment: 'tokenList' },
 				{ component: PointListPage, name: 'PointListPage', segment: 'pointList/:tokenIndex' },
 				{ component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer/:tokenIndex' },
-				{ component: ProfilePage, name: 'ProfilePage', segment: 'profile' }
+				{ component: ProfilePage, name: 'ProfilePage', segment: 'profile' },
+				{ component: BadgeListPage, name: 'BadgeListPage', segment: 'badgeListPage'}
+				
 			]
 		}),
 		IonicStorageModule.forRoot()
 	],
 	bootstrap: [IonicApp],
 	entryComponents: [
-		ConferenceApp,
+		UserApp,
 		LoginPage,
 		SignupPage,
 		ErrorPage,

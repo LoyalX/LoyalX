@@ -12,8 +12,8 @@ import { Component, Input } from '@angular/core';
 })
 export class LoyalBadgeComponent {
 
-  private _info: string = "";
-  public displayInfo: boolean = false;
+  private _text: string = "";
+  public displaytext: boolean = false;
 
   @Input()
   src: string = "";
@@ -24,17 +24,17 @@ export class LoyalBadgeComponent {
   @Input()
   textColor: string = "black";
 
-  @Input() set info(value: string) {
-    this._info = value;
-    this.setDisplayInfo(this._info !== "");
+  @Input() set text(value: string) {
+    this._text = value;
+    this.setDisplaytext(this._text !== "");
   }
 
-  get info() {
-    return this._info;
+  get text() {
+    return this._text;
   }
 
-  setDisplayInfo(state: boolean) {
-    this.displayInfo = state;
+  setDisplaytext(state: boolean) {
+    this.displaytext = state;
   }
 
   constructor() {

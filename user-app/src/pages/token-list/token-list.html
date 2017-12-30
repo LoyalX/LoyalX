@@ -14,7 +14,6 @@
 </ion-header>
 
 <ion-content>
-    <loyal-badge [src]="'assets/img/badges/clean-energy.png'" [info]="'clean energy'"  [textColor] = "'black'" [backgroundColor]="'#51D2B7'"></loyal-badge>
     <ion-list inset>
         <button ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
             <h2> {{ token.name }} </h2>
