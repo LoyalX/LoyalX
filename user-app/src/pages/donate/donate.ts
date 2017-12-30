@@ -47,11 +47,15 @@ export class DonatePage {
   presentCharityModal(charity) {
     let modal = this.modalCtrl.create(CharityModalPage, { charity: charity });
 
-    modal.onDidDismiss(data => this.toastCtrl.create({
-      message: `${data.numberOfPoints} ${data.token} was donated successfully`,
-      duration: 3000,
-      position: 'bottom'
-    }).present());
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.toastCtrl.create({
+          message: `${data.numberOfPoints} ${data.token} was donated successfully`,
+          duration: 3000,
+          position: 'bottom'
+        }).present()
+      }
+    })
 
     modal.present();
   }
