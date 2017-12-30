@@ -54,7 +54,9 @@ export class OffersPage {
 	) {
 		this._offerCreateModal = this.modalCtrl.create(OfferCreatePage);
 		this._offerCreateModal.onDidDismiss(data => {
-			this.offers.push(data);
+			if (data) {
+				this.offers.push(data);
+			}
 		});
 	}
 

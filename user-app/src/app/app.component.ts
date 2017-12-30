@@ -15,7 +15,7 @@ import { TokenListPage } from '../pages/token-list/token-list';
 import { AddressCodePage } from '../pages/address-code/address-code'
 import { DonatePage } from '../pages/donate/donate';
 import { BadgeListPage } from '../pages/badge-list/badge-list';
-import { OffersPage } from '../../.tmp/src/pages/offers/offers';
+import { OffersPage } from '../pages/offers/offers';
 
 import { UserData } from '../providers/user-data';
 
