@@ -44,15 +44,36 @@ export class PointListPage {
 
 	async ionViewDidLoad() {
 		this.tokenIndex = this.navParams.get("tokenIndex");
-		this.token = this.navParams.get("token");
+		//this.token = this.navParams.get("token");
+
+		this.tokens = [
+			{
+				name: "Vodafone",
+				symbol: "VOD",
+				balance: 350000,
+				logo: 'http://diylogodesigns.com/blog/wp-content/uploads/2016/05/Vodafone-Logo-png-download.png'
+			},
+			{
+				name: "happiness",
+				symbol: "HPY",
+				balance: 200000,
+				logo: 'http://www.happinesswithirene.com/images/misc/logohappy.png'
+			},
+			{
+				name: "etisalat",
+				symbol: "ETS",
+				balance: 100000,
+				logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Etisalat_Lanka_logo.svg/871px-Etisalat_Lanka_logo.svg.png'
+			}
+		];
 
 		if(!this.token && this.tokenIndex) {
-			this.tokens = []
+		//	this.tokens = []
 			this.token = this.tokens[this.tokenIndex];
 		}
 
 		//let tempBalance = (await this.loyaltyTokenProvider.getBalance(this.token.address));
-		this.balance = 100 // tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
+		this.balance = this.token.balance // tempBalance.dividedBy(Math.pow(10, this.token.decimal)).toString(10);
 
 		this.vouchers = [
 			{ price: 25, points: 50 },
