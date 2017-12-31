@@ -20,19 +20,19 @@ export class DonatePage {
 
   charities = [
     {
-      img: "https://www.projectlinus.org/images/image-2.jpg",
-      name: "Buy one blanket, donate one",
-      description: "At Project Linus, a non-profit organization, we provide homemade blankets to children in need. Our blankets are lovingly made by adults.",
-      creator: "projectlinus"
-    }, {
       img: "https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg",
       name: "Clean Water",
       description: "water’s mission is to bring clean and safe drinking water to every person in the world. Part of that mission is to deliver the best possible customer experience to every charity: water supporter.",
       creator: "charity-water"
     }, {
-      img: "https://d26a57ydsghvgx.cloudfront.net/product/images/customers/charity_water_pouring.jpg",
-      name: "Clean Water",
-      description: "water’s mission is to bring clean and safe drinking water to every person in the world. Part of that mission is to deliver the best possible customer experience to every charity: water supporter.",
+      img: "https://www.directrelief.org/content/uploads/Aid-map-Direct-Relief-600x316.png",
+      name: "Direct Relief",
+      description: "Direct Relief is a nonprofit, nonpartisan organization with a stated mission to “improve the health and lives of people affected by poverty or emergency situations by mobilizing and providing essential medical resources needed for their care.",
+      creator: "charity-water"
+    }, {
+      img: "http://lakeshoreopen.com/wp-content/images/banner-make-a-wish.jpg",
+      name: "Make-A-Wish Foundation",
+      description: "The Make-A-Wish Foundation is a 501 non-profit organization that arranges experiences described as wishes to children with life-threatening medical conditions.",
       creator: "charity-water"
     }
   ];

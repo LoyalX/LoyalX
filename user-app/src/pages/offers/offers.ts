@@ -20,21 +20,21 @@ export class OffersPage {
 
 	offers = [
 		{
-			img: "https://www.clintonsretail.com//media/wysiwyg/christmas-single-cards-50off-GIFFTS.jpg",
-			price: 1000,
-			reward: "50$ gift card",
-			description: "get a gift card for your loved ones",
-			isActivated: true
+			img: "https://www.projectlinus.org/images/image-2.jpg",
+			price: "For Charity",
+			reward: "Buy one blanket, donate one",
+			description: "At Project Linus, a non-profit organization, we provide homemade blankets to children in need. Our blankets are lovingly made by adults.",
+			creator: "projectlinus"
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 2500,
-			reward: "100$ gift card",
+			reward: "50$ gift card",
 			description: "get a gift card for your loved ones",
 			isActivated: false
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 5000,
-			reward: "250$ gift card",
+			reward: "100$ gift card",
 			description: "get a gift card for your loved ones",
 			isActivated: false
 		}, {
