@@ -25,14 +25,14 @@ export class OffersPage {
 			reward: "Buy one blanket, donate one",
 			description: "At Project Linus, a non-profit organization, we provide homemade blankets to children in need. Our blankets are lovingly made by adults.",
 			creator: "projectlinus",
-			isActivated: true
+			isActivated: false
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 2500,
 			reward: "50$ gift card",
 			description: "get a gift card for your loved ones",
 			creator: "Happiness",
-			isActivated: false
+			isActivated: true
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 5000,
