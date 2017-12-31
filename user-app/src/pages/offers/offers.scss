@@ -11,16 +11,10 @@ page-offers {
             width: 100%;
         }
     }
-
-   .offer-col{
-        display: flex;
-        justify-content: center;
-    }
-
     .scroll,
     .scroll-content {
-        height: 100% !important;
-        overflow: hidden;
+        // height: 100% !important;
+        //overflow: hidden;
     }
     .card-wrap {
         height: 100% !important;

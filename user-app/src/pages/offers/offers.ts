@@ -32,7 +32,7 @@ export class OffersPage {
 			reward: "50$ gift card",
 			description: "get a gift card for your loved ones",
 			creator: "Happiness",
-			isActivated: true
+			isActivated: false
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 5000,
