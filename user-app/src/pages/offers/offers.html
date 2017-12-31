@@ -21,10 +21,14 @@
                         <p>{{ft.description}}</p>
                     </ion-card-content>
                     <ion-col text-left>
-                        <button ion-button clear default [color]="ft.isActivated == true ? 'favorite' : 'danger'" icon-start  (click)="onActivateClicked(ft)">
+                        <button ion-button clear full default [color]="ft.isActivated == true ? 'favorite' : 'danger'" icon-start (click)="onActivateClicked(ft)">
                             <ion-icon name='flash'></ion-icon>
                             <p *ngIf="!ft.isActivated">Activate</p>
                             <p *ngIf="ft.isActivated">Activated</p>
+                        </button>
+                        <button *ngIf="ft.isActivated" ion-button clear full color="primary" icon-start>
+                            <ion-icon name='text'></ion-icon>
+                            Contact
                         </button>
                     </ion-col>
                 </ion-card>

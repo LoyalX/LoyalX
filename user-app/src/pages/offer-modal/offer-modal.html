@@ -37,14 +37,14 @@
     </ion-card-content>
 
     <ion-row no-padding>
-      <ion-col text-right>
+      <ion-col>
         <button ion-button clear default [color]="offer.isActivated == true ? 'favorite' : 'danger'" icon-start (click)="onActivateClicked()">
           <ion-icon name='flash'></ion-icon>
           <p *ngIf="!offer.isActivated">Activate</p>
           <p *ngIf="offer.isActivated">Activated</p>
         </button>
       </ion-col>
-      <ion-col text-lift>
+      <ion-col text-right>
         <button *ngIf="offer.isActivated" ion-button clear color="primary" icon-start>
           <ion-icon name='text'></ion-icon>
           Contact
