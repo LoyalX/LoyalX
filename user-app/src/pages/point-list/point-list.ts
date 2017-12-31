@@ -17,15 +17,17 @@ import { PointTransferPage } from '../point-transfer/point-transfer';
 })
 export class PointListPage {
 	vouchers: Array<{ price: number, points: number }> = [];
-
+	callback;
 	tokens: any;
 	tokenIndex: any;
 	token: any;
 	balance: any;
+	selectedCard: any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
 		public platform: Platform, public viewCtrl: ViewController) {
 		this.token = this.navParams.get("token");
+		this.callback = this.navParams.get("callback")
 	}
 
 	presentOfferCreate() {
@@ -37,10 +39,26 @@ export class PointListPage {
 		/*let PointTransferPageModal = this.modalCtrl.create(PointTransferPage, { token: this.token });
 		PointTransferPageModal.present();*/
 
-		this.navCtrl.push('PointTransferPage',  { token: this.token, tokenIndex: this.tokenIndex });
+		this.callback(this.vouchers[this.selectedCard]).then(() => {
+			this.navCtrl.pop();
+		});
 	}
 
+	checkSelection(index) {
+		return index === this.selectedCard;
+	}
 
+	isRedeemDisabled() {
+		return (this.selectedCard != 0 && !this.selectedCard);
+	}
+
+	onRedeemTapped() {
+		//this.dismiss();
+	}
+
+	onVoucherCardTapped(index) {
+		this.selectedCard = index;
+	}
 
 	async ionViewDidLoad() {
 		this.tokenIndex = this.navParams.get("tokenIndex");
@@ -48,27 +66,21 @@ export class PointListPage {
 
 		this.tokens = [
 			{
-				name: "Vodafone",
-				symbol: "VOD",
+				name: "IBM",
+				symbol: "IBM",
 				balance: 350000,
-				logo: 'http://diylogodesigns.com/blog/wp-content/uploads/2016/05/Vodafone-Logo-png-download.png'
+				logo: 'https://logoeps.com/wp-content/uploads/2012/04/ibm-logo-vector.png'
 			},
 			{
-				name: "happiness",
+				name: "Happy",
 				symbol: "HPY",
 				balance: 200000,
-				logo: 'http://www.happinesswithirene.com/images/misc/logohappy.png'
-			},
-			{
-				name: "etisalat",
-				symbol: "ETS",
-				balance: 100000,
-				logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Etisalat_Lanka_logo.svg/871px-Etisalat_Lanka_logo.svg.png'
+				logo: 'https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap'
 			}
 		];
 
-		if(!this.token && this.tokenIndex) {
-		//	this.tokens = []
+		if (!this.token && this.tokenIndex) {
+			//	this.tokens = []
 			this.token = this.tokens[this.tokenIndex];
 		}
 

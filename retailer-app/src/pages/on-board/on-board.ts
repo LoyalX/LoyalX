@@ -67,10 +67,10 @@ export class OnBoardPage {
 			position: 'bottom'
 		}).present();
 
-		this.events.publish('user:signup');
-		this.navCtrl.setRoot('RulesEnginePage', { isTokensLoading: true });
-
 		*/
+
+		this.events.publish('user:signup');
+		this.navCtrl.setRoot('ProfilePage', { isTokensLoading: true });
 	}
 
 }

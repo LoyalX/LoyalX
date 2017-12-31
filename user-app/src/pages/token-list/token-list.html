@@ -21,7 +21,8 @@
             </ion-thumbnail>
             <h2> {{ token.name }} </h2>
             <ion-note color="google">Balance: {{ token.balance }} {{ token.symbol }}</ion-note>
-            <button ion-button clear item-end (click)="navigateToPoints(tokenIndex)">Transfer</button>
+            <button ion-button clear item-end (click)="navigateToTransfer(tokenIndex)">Transfer</button>
+            <button ion-button clear item-end (click)="navigateToPoints(tokenIndex)">Redeem</button>
         </ion-item>
     </ion-list>
 </ion-content>

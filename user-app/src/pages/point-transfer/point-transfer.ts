@@ -57,7 +57,12 @@ export class PointTransferPage {
 			duration: 3000,
 			position: 'middle'
 		})
-		scanRequestToast.present();
+		// scanRequestToast.present();
+
+		this.form.setValue({
+			amount: null,
+			address: '0x627306090abaB3A6e1400e9345bC60c78a8BEf57'
+		});
 
 		// start scanning
 		/* let scanSub = this.qrScanner.scan().subscribe((text: string) => {
@@ -88,7 +93,7 @@ export class PointTransferPage {
 		// Make any opaque HTML elements transparent here to avoid covering the video.
 		window.document.querySelector('ion-content').classList.add('transparent-background');
 
-}
+	}
 
 	async ionViewDidLoad() {
 		this.tokenIndex = this.navParams.get("tokenIndex");

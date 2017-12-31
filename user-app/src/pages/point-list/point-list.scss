@@ -85,4 +85,12 @@ page-point-list {
         -ms-flex-align: center !important;
         align-items: center !important;
     }
+
+    .selected {
+        background-color: #E8E8E8 !important;
+    }
+
+    .active {
+        background-color: map-get($colors, light) !important;
+    }
 }

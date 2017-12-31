@@ -3,7 +3,7 @@
         <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-        <ion-title>Points</ion-title>
+        <ion-title>{{token?.name}} Points</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -15,14 +15,14 @@
         <ion-row>
             <ion-col text-center>
                 <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ (token)?.symbol }} </span> </h1>
-                <button ion-button full color="google" (click)="presentPointTransfer()">Transfer Points</button>
+                <button ion-button full color="secondary" (click)="presentPointTransfer()" [disabled]="isRedeemDisabled()">Redeem</button>
             </ion-col>
         </ion-row>
 
         <ion-row>
-            <ion-col col-6 *ngFor="let voucher of vouchers">
+            <ion-col col-6 *ngFor="let voucher of vouchers; let i = index">
                 <div *ngIf="voucher" class="card-wrap">
-                    <ion-card class="full-card">
+                    <ion-card class="full-card" [class.selected]="checkSelection(i)" (click)="onVoucherCardTapped(i)">
 
                         <ion-grid>
                             <ion-row>
@@ -33,7 +33,7 @@
 
                             <ion-row>
                                 <ion-col ion-text text-center>
-                                    <ion-badge color="google" class="cost-badge"> {{ voucher.points }} Points </ion-badge>
+                                    <ion-badge color="secondary" class="cost-badge"> {{ voucher.points }} Points </ion-badge>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>

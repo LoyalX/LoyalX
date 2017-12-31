@@ -19,20 +19,8 @@ export class TokenListPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public events: Events,
+		public events: Events
 	) {
-	}
-
-	navigateToPoints(tokenIndex) {
-		this.navCtrl.push('PointTransferPage', { token: this.tokens[tokenIndex], tokenIndex: tokenIndex });
-	}
-
-	ionViewWillEnter() {
-		// Fire an event to enable back the split plane in this page
-		this.events.publish('errorPage:leave');
-	}
-
-	async ionViewDidEnter() {
 		this.tokens = [
 			{
 				name: "IBM",
@@ -47,6 +35,30 @@ export class TokenListPage {
 				logo: 'https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap'
 			}
 		];
+	}
+
+	navigateToPoints(tokenIndex) {
+		this.navCtrl.push('PointListPage', {
+			token: this.tokens[tokenIndex], tokenIndex: tokenIndex, callback: (voucher) => {
+				return new Promise((resolve, reject) => {
+					this.tokens[tokenIndex].balance -= voucher.points;
+					resolve();
+				});
+			}
+		});
+	}
+	navigateToTransfer(tokenIndex) {
+		this.navCtrl.push('PointTransferPage', {
+			token: this.tokens[tokenIndex], tokenIndex: tokenIndex
+		});
+	}
+
+	ionViewWillEnter() {
+		// Fire an event to enable back the split plane in this page
+		this.events.publish('errorPage:leave');
+	}
+
+	async ionViewDidEnter() {
 	}
 
 }
