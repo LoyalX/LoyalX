@@ -28,7 +28,9 @@
     <img [src]="badge.src">
   </ion-avatar>
 
-  <ion-badge item-end style="position: absolute;top: 8px; right: 8px;"><h6>John Smith</h6></ion-badge>
+  <ion-badge item-end style="position: absolute;top: 8px; right: 8px;">
+    <h6>John Smith</h6>
+  </ion-badge>
 
   <!--<loyal-badge [src]="badge.src" [text]="badge.text" [textColor]="badge.textColor" [backgroundColor]="badge.backgroundColor"></loyal-badge>-->
   <ion-card-content>
@@ -40,10 +42,10 @@
       {{badge.reason}}
     </h2>
 
-    <button ion-button icon-only clear round float-right>
-      <ion-icon name="share"></ion-icon>
+    <button ion-button clear round float-right full color="primary" icon-start>
+      <ion-icon name='share'></ion-icon>
+      Share
     </button>
-
 
   </ion-card-content>
 
