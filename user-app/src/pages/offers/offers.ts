@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ModalController, Platform, ViewController } from 'ionic-angular';
 
 import { OfferCreatePage } from '../offer-create/offer-create';
+import { OfferModalPage } from '../offer-modal/offer-modal';
 
 /**
  * Generated class for the PointListPage page.
@@ -19,25 +20,29 @@ export class OffersPage {
 
 	offers = [
 		{
-			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
+			img: "https://www.clintonsretail.com//media/wysiwyg/christmas-single-cards-50off-GIFFTS.jpg",
 			price: 1000,
 			reward: "50$ gift card",
-			description: "get a gift card for your loved ones"
+			description: "get a gift card for your loved ones",
+			isActivated: true
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 2500,
 			reward: "100$ gift card",
-			description: "get a gift card for your loved ones"
+			description: "get a gift card for your loved ones",
+			isActivated: false
 		}, {
 			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
 			price: 5000,
 			reward: "250$ gift card",
-			description: "get a gift card for your loved ones"
+			description: "get a gift card for your loved ones",
+			isActivated: false
 		}, {
 			img: "https://www.clintonsretail.com//media/wysiwyg/christmas-single-cards-50off-GIFFTS.jpg",
 			price: 500,
 			reward: "50% off",
-			description: "get 50% off on any purchase under 100$ ."
+			description: "get 50% off on any purchase under 100$ .",
+			isActivated: false
 		}
 	];
 
@@ -60,6 +65,23 @@ export class OffersPage {
 
 	presentOfferCreate() {
 		this._offerCreateModal.present();
+	}
+
+	presentOfferModal(offer) {
+		let offerModal = this.modalCtrl.create(OfferModalPage, { "offer": offer });
+		offerModal.onDidDismiss(data => {
+			if (data) {
+				var index = this.offers.indexOf(data);
+				if (index !== -1) {
+					this.offers[index] = data;
+				}
+			}
+		});
+		offerModal.present();
+	}
+
+	onActivateClicked(offer) {
+		offer.isActivated = true;
 	}
 
 	async ionViewDidLoad() {

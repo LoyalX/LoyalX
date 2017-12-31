@@ -53,6 +53,9 @@ import { OfferPageModule } from '../pages/offers/offers.module';
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { OfferCreatePageModule } from '../pages/offer-create/offer-create.module';
 
+import { OfferModalPage } from '../pages/offer-modal/offer-modal';
+import { OfferModalPageModule } from '../pages/offer-modal/offer-modal.module';
+
 import { UserData } from '../providers/user-data';
 
 
@@ -80,6 +83,7 @@ import { UserData } from '../providers/user-data';
 		CharityModalPageModule,
 		OfferPageModule,
 		OfferCreatePageModule,
+		OfferModalPageModule,
 		IonicModule.forRoot(UserApp, {}, {
 			links: [
 				{ component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },

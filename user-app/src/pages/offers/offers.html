@@ -12,18 +12,23 @@
 
     <ion-grid>
         <ion-row>
-
             <ion-col col-12 col-lg-6 col-xl-4 *ngFor="let ft of offers;">
-                <ion-card>
-                    <img [src]="ft.img" sty/>
+                <ion-card (click)="presentOfferModal(ft)">
+                    <img [src]="ft.img" />
                     <ion-card-content>
                         <ion-card-title>{{ft.reward}}</ion-card-title>
                         <ion-note>Price: </ion-note> {{ft.price}}
                         <p>{{ft.description}}</p>
                     </ion-card-content>
+                    <ion-col text-left>
+                        <button ion-button clear default [color]="ft.isActivated == true ? 'favorite' : 'danger'" icon-start  (click)="onActivateClicked(ft)">
+                            <ion-icon name='flash'></ion-icon>
+                            <p *ngIf="!ft.isActivated">Activate</p>
+                            <p *ngIf="ft.isActivated">Activated</p>
+                        </button>
+                    </ion-col>
                 </ion-card>
             </ion-col>
-
         </ion-row>
     </ion-grid>
 
