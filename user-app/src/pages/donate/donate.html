@@ -13,8 +13,16 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <!-- <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" > </ion-searchbar> -->
+        <ion-searchbar [(ngModel)]="myInput"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
     <ion-row>
 
       <ion-col col-12 col-lg-6 col-xl-4 *ngFor="let ct of charities;">

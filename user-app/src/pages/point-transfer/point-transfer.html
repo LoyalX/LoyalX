@@ -25,7 +25,7 @@
                             <ion-row>
                                 <ion-col>
                                     <ion-item>
-                                        <ion-label stacked>Amount Or Price</ion-label>
+                                        <ion-label stacked>Amount</ion-label>
                                         <ion-input type="number" formControlName="amount"></ion-input>
                                     </ion-item>
                                 </ion-col>
@@ -36,7 +36,7 @@
                                 <ion-col>
                                     <ion-item>
                                         <ion-label stacked>
-                                            Address or Destination
+                                            Recipient address
                                         </ion-label>
                                         <ion-input type="text" formControlName="address" ng-value="form.value.amount"></ion-input>
                                         <button ion-button clear icon-only item-right (click)="extractAddressFromQRCode()">

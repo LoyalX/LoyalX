@@ -43,7 +43,9 @@
             Current Balance
           </ion-card-header>
           <ion-card-content>
-            <h1>{{balance}} <ion-note>{{symbol}}</ion-note></h1>
+            <h1>{{balance}}
+              <ion-note>{{symbol}}</ion-note>
+            </h1>
             <div></div>
             <button ion-button full color="google" (click)="presentPointTransfer()">Send Points</button>
           </ion-card-content>
@@ -51,6 +53,14 @@
       </ion-col>
 
     </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <!-- <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" > </ion-searchbar> -->
+        <ion-searchbar [(ngModel)]="myInput"></ion-searchbar>
+      </ion-col>
+    </ion-row>
+
   </ion-grid>
 
 
