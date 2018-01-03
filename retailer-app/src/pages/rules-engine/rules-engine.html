@@ -14,6 +14,12 @@
 </ion-header>
 
 <ion-content>
+	<ion-row>
+		<ion-col>
+			<!-- <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" > </ion-searchbar> -->
+			<ion-searchbar [(ngModel)]="myInput"></ion-searchbar>
+		</ion-col>
+	</ion-row>
 
 	<ion-list inset>
 
@@ -41,12 +47,12 @@
 
 	</ion-list>
 
-    <div padding>
-        <ion-fab bottom right #fab>
-            <button ion-fab (click)="openCreateRulesModal()">
-                <ion-icon name="add"></ion-icon>
-            </button>
-        </ion-fab>
+	<div padding>
+		<ion-fab bottom right #fab>
+			<button ion-fab (click)="openCreateRulesModal()">
+				<ion-icon name="add"></ion-icon>
+			</button>
+		</ion-fab>
 	</div>
-	
+
 </ion-content>

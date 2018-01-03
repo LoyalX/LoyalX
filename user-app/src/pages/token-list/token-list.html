@@ -20,7 +20,7 @@
                 <img [src]="token.logo" />
             </ion-thumbnail>
             <h2> {{ token.name }} </h2>
-            <ion-note color="google">Balance: {{ token.balance }} {{ token.symbol }}</ion-note>
+            <ion-note>Balance:</ion-note> {{ token.balance }} <ion-note>{{ token.symbol }}</ion-note>
             <button ion-button default item-end (click)="navigateToPoints(tokenIndex)">Transfer</button>
         </ion-item>
     </ion-list>
