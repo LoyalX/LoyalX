@@ -17,8 +17,8 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col col-6>
 
+      <ion-col col-12 col-sm-7 col-md-6>
         <ion-card>
           <ion-card-header>
             {{name}}
@@ -34,11 +34,10 @@
             <ion-note>No of users:</ion-note> 2
           </ion-card-content>
         </ion-card>
-
       </ion-col>
-      <ion-col col-6>
-        <ion-card>
 
+      <ion-col col-12 col-sm-5 col-md-6>
+        <ion-card>
           <ion-card-header>
             Current Balance
           </ion-card-header>
@@ -69,19 +68,19 @@
     <div *ngFor="let tr of transactions; let i = index">
       <button ion-item>
         <ion-row>
-          <div col-3>
+          <div col-3 col-md-3 col-sm-3>
             <ion-note>Time</ion-note>
             <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.time | date : "H:mm M/d/yy"}}</h2>
           </div>
-          <div col-4>
+          <div col-3 col-md-4 col-sm-3>
             <ion-note>From</ion-note>
             <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.from}}</h2>
           </div>
-          <div col-4>
+          <div col-3 col-md-4 col-sm-3>
             <ion-note>To</ion-note>
             <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.to}}</h2>
           </div>
-          <div col-1>
+          <div col-3 col-md-1 col-sm-3>
             <ion-note>Amount</ion-note>
             <h2>{{tr.amount}}</h2>
           </div>

@@ -3,18 +3,33 @@
     <ion-menu id="mainMenu" [content]="content">
 
         <ion-header>
+
             <ion-toolbar>
+                <ion-buttons left>
+                    <button ion-button icon-only>
+                        <img alt="logo" height="35" src="assets/img/logo.png">
+                    </button>
+                </ion-buttons>
+
                 <ion-title>LoyalX</ion-title>
+
+                <ion-buttons right>
+                    <button ion-button icon-end clear (click)="openRegister()">
+                        Logout
+                        <ion-icon name="log-out"></ion-icon>
+                    </button>
+                </ion-buttons>
             </ion-toolbar>
+
         </ion-header>
 
         <ion-content class="no-scroll outer-content">
 
             <ion-list>
                 <button ion-item menuClose *ngFor="let p of appPages" (click)="openPage(p)">
-						  <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
-						  {{p.title}}
-						</button>
+                    <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+                    {{p.title}}
+                </button>
             </ion-list>
 
         </ion-content>

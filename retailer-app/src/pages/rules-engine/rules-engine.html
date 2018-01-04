@@ -29,7 +29,7 @@
 				<ion-row>
 
 					<div col-4>
-						<ion-note>No of transactions</ion-note>
+						<ion-note>Transactions</ion-note>
 						<h2>{{rul.noOfTransactions}}</h2>
 					</div>
 					<div col-4>
@@ -47,12 +47,10 @@
 
 	</ion-list>
 
-	<div padding>
-		<ion-fab bottom right #fab>
-			<button ion-fab (click)="openCreateRulesModal()">
-				<ion-icon name="add"></ion-icon>
-			</button>
-		</ion-fab>
-	</div>
+	<ion-fab bottom right #fab>
+		<button ion-fab (click)="openCreateRulesModal()">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-fab>
 
 </ion-content>
