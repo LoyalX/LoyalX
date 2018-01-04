@@ -28,7 +28,7 @@
             <ion-col col-12 col-lg-6 col-xl-4 *ngFor="let ft of features;">
 
                 <ion-card (click)="presentFeatureModal(ft)">
-                    <img [src]="ft.img" sty/>
+                    <img [src]="ft.img"/>
                     <ion-card-content>
                         <ion-card-title>{{ft.name}}</ion-card-title>
                         <ion-note>by </ion-note> {{ft.creator}}
