@@ -1,12 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.conferenceapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Loyalty Chain Retailer</name>
-    <description>
-        An Ionic Framework application for the Loyalty Chain Retailer.
-  </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-  </author>
+<widget id="io.loyalx.loyalx" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>LoyalX</name>
+    <description>A Block-chain Loyalty Program Protocol to empower retail/brands, customers, developers, influencers to interact and collaborate in a self sustaining ecosystem.</description>
+    <author email="hi@ionicframework" href="http://ionicframework.com/">LoyalX Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
