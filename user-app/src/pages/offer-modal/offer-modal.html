@@ -22,31 +22,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <div>
-      <img [src]="offer.img" />
-    </div>
 
-    <ion-card-content>
-      <ion-card-title>{{offer.reward}}</ion-card-title>
-      <ion-note>Price: </ion-note> {{offer.price}}
-      <p>{{offer.description}}</p>
-    </ion-card-content>
+  <div>
+    <img [src]="offer.img" />
+  </div>
 
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear default [color]="offer.isActivated == true ? 'favorite' : 'danger'" icon-start (click)="onActivateClicked()">
-          <ion-icon name='flash'></ion-icon>
-          <p *ngIf="!offer.isActivated">Activate</p>
-          <p *ngIf="offer.isActivated">Activated</p>
-        </button>
-      </ion-col>
-      <ion-col text-right>
-        <button *ngIf="offer.isActivated" ion-button clear color="primary" icon-start>
-          <ion-icon name='text'></ion-icon>
-          Contact
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-card>
+  <ion-card-content>
+    <ion-card-title>{{offer.reward}}</ion-card-title>
+    <ion-note>Price: </ion-note> {{offer.price}}
+    <p>{{offer.description}}</p>
+  </ion-card-content>
+
+  <ion-row no-padding>
+    <ion-col>
+      <button ion-button clear default [color]="offer.isActivated == true ? 'favorite' : 'danger'" icon-start (click)="onActivateClicked()">
+        <ion-icon name='flash'></ion-icon>
+        <p *ngIf="!offer.isActivated">Activate</p>
+        <p *ngIf="offer.isActivated">Activated</p>
+      </button>
+    </ion-col>
+    <ion-col text-right>
+      <button *ngIf="offer.isActivated" ion-button clear color="primary" icon-start>
+        <ion-icon name='text'></ion-icon>
+        Contact
+      </button>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

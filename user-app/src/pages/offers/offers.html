@@ -25,10 +25,10 @@
                     <img [src]="ft.img" />
                     <ion-card-content>
                         <ion-card-title>{{ft.reward}}</ion-card-title>
-                        <ion-note>Price: </ion-note> {{ft.price}}
+                        <ion-note>by: </ion-note> {{ft.creator}}
                         <p>{{ft.description}}</p>
                     </ion-card-content>
-                    <ion-col text-left>
+                    <div text-left>
                         <button ion-button clear full default [color]="ft.isActivated == true ? 'favorite' : 'danger'" icon-start (click)="onActivateClicked(ft)">
                             <ion-icon name='flash'></ion-icon>
                             <p *ngIf="!ft.isActivated">Activate</p>
@@ -38,7 +38,7 @@
                             <ion-icon name='text'></ion-icon>
                             Contact
                         </button>
-                    </ion-col>
+                    </div>
                 </ion-card>
             </ion-col>
         </ion-row>

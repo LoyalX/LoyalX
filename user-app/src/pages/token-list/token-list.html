@@ -15,16 +15,16 @@
 
 <ion-content>
     <ion-list inset>
-        <ion-item *ngFor="let token of tokens; let tokenIndex = index;">
+        <ion-item *ngFor="let token of tokens; let tokenIndex = index;" (click)="navigateToPoints(tokenIndex)">
             <ion-thumbnail item-start>
                 <img [src]="token.logo" />
             </ion-thumbnail>
             <h2> {{ token.name }} </h2>
 
             <ion-note>Balance:</ion-note> {{ token.balance }} <ion-note>{{ token.symbol }}</ion-note>
-            <button ion-button clear item-end (click)="navigateToTransfer(tokenIndex)">Transfer</button>
-            <button ion-button clear item-end (click)="navigateToPoints(tokenIndex)">Redeem</button>
-
+            <!-- <button ion-button clear item-end (click)="navigateToTransfer(tokenIndex)">Transfer</button>
+            <button ion-button clear item-end (click)="navigateToPoints(tokenIndex)">Redeem</button> -->
+            <button ion-button clear item-end (click)="navigateToTransfer(tokenIndex)"><ion-icon name="ios-arrow-forward"></ion-icon></button>
         </ion-item>
     </ion-list>
 </ion-content>

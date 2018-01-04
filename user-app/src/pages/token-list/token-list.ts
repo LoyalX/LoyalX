@@ -32,7 +32,7 @@ export class TokenListPage {
 				name: "Happy",
 				symbol: "HPY",
 				balance: 200000,
-				logo: 'https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap'
+				logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ23BRRC85RbvxoN3qROvfJ0W9eDMCe0mdIU0B8ZDIOpZK0sHvwTg'
 			}
 		];
 	}

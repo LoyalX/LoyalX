@@ -1,8 +1,8 @@
 <ion-header>
     <ion-navbar>
         <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+            <ion-icon name="menu"></ion-icon>
+        </button>
         <ion-title>{{token?.name}} Points</ion-title>
     </ion-navbar>
 </ion-header>
@@ -14,35 +14,35 @@
 
         <ion-row>
             <ion-col text-center>
-                <h1> Current Balance: <span ion-text color="primary"> {{balance }} {{ (token)?.symbol }} </span> </h1>
-                <button ion-button full color="secondary" (click)="presentPointTransfer()" [disabled]="isRedeemDisabled()">Redeem</button>
+                <ion-item>
+                <h1>
+                    <ion-note>Balance: </ion-note>
+                    <span ion-text color="primary">{{balance}}</span> {{ (token)?.symbol }}
+                    
+                </h1>
+                <button ion-button item-end (click)="navigateToTransfer(tokenIndex)">Send Points</button>
+            </ion-item>
             </ion-col>
         </ion-row>
 
         <ion-row>
-            <ion-col col-6 *ngFor="let voucher of vouchers; let i = index">
-                <div *ngIf="voucher" class="card-wrap">
-                    <ion-card class="full-card" [class.selected]="checkSelection(i)" (click)="onVoucherCardTapped(i)">
+            <ion-col col-12 col-lg-6 col-xl-4 *ngFor="let ft of offers;" class="offer-col">
+                <ion-card>
+                    <img [src]="ft.img" />
+                    <ion-card-content>
+                        <ion-card-title>{{ft.reward}}</ion-card-title>
+                        <ion-note>Price: </ion-note> {{ft.price}}
+                        <p>{{ft.description}}</p>
+                    </ion-card-content>
 
-                        <ion-grid>
-                            <ion-row>
-                                <ion-col ion-text text-center padding>
-                                    <h1 ion-text color="primary"> {{ voucher.price }} {{ (token)?.symbol }} </h1>
-                                </ion-col>
-                            </ion-row>
+                    <button ion-button clear full default [color]="balance >= ft.price ? 'favorite' : 'danger'" icon-start (click)="presentPointTransfer()">
+                        <p>Reddem</p>
+                    </button>
 
-                            <ion-row>
-                                <ion-col ion-text text-center>
-                                    <ion-badge color="secondary" class="cost-badge"> {{ voucher.points }} Points </ion-badge>
-                                </ion-col>
-                            </ion-row>
-                        </ion-grid>
-
-                    </ion-card>
-                </div>
-
+                </ion-card>
             </ion-col>
         </ion-row>
+
 
     </ion-grid>
 

@@ -13,7 +13,7 @@ export class ProfilePage {
   //https://api.qrserver.com/v1/create-qr-code/?data=0x627306090abaB3A6e1400e9345bC60c78a8BEf57&size=220x220&margin=0
   user = {
     "name": "Happy",
-    "avatar": "https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap",
+    "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ23BRRC85RbvxoN3qROvfJ0W9eDMCe0mdIU0B8ZDIOpZK0sHvwTg",
     "backgroundImg": "https://www.happy.ae/images/default-source/home/why-image.jpg?Status=Temp&sfvrsn=2",
     "country": "UAE",
     "email": "support@happy.ae",

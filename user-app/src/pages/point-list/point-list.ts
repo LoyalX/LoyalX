@@ -24,6 +24,31 @@ export class PointListPage {
 	balance: any;
 	selectedCard: any;
 
+	offers = [
+		{
+			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
+			price: 2500,
+			reward: "50$ gift card",
+			description: "get a gift card for your loved ones",
+			creator: "Happiness",
+			isActivated: false
+		}, {
+			img: "http://maaakickboxing.net/wp-content/uploads/2016/04/cards-hero-gift.png",
+			price: 5000,
+			reward: "100$ gift card",
+			description: "get a gift card for your loved ones",
+			creator: "Happiness",
+			isActivated: false
+		}, {
+			img: "https://www.clintonsretail.com//media/wysiwyg/christmas-single-cards-50off-GIFFTS.jpg",
+			price: 500,
+			reward: "50% off",
+			description: "get 50% off on any purchase under 100$ .",
+			creator: "Happiness",
+			isActivated: false
+		}
+	];
+
 	constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController,
 		public platform: Platform, public viewCtrl: ViewController) {
 		this.token = this.navParams.get("token");
@@ -75,7 +100,7 @@ export class PointListPage {
 				name: "Happy",
 				symbol: "HPY",
 				balance: 200000,
-				logo: 'https://www.happy.ae/Frontend-Assembly/Telerik.Sitefinity.Frontend.Navigation/assets/dist/images/happiness_logo1.png?package=Bootstrap'
+				logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ23BRRC85RbvxoN3qROvfJ0W9eDMCe0mdIU0B8ZDIOpZK0sHvwTg'
 			}
 		];
 
@@ -94,6 +119,13 @@ export class PointListPage {
 			{ price: 25, points: 50 }
 		];
 
+	}
+
+
+	navigateToTransfer(tokenIndex) {
+		this.navCtrl.push('PointTransferPage', {
+			token: this.tokens[tokenIndex], tokenIndex: tokenIndex
+		});
 	}
 
 }
