@@ -69,8 +69,8 @@ export class RetailerApp {
 	) {
 
 		//<<<<<<<<<<<<<<<<<<<<<<<
-		this.rootPage = (typeof web3 !== 'undefined') ? ProfilePage : ErrorPage;
-
+		// this.rootPage = (typeof web3 !== 'undefined') ? ProfilePage : ErrorPage;
+		this.rootPage = TransactionsPage;
 		this.platformReady();
 
 

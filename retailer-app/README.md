@@ -1,6 +1,6 @@
 # <img src="https://avatars1.githubusercontent.com/u/33500684" height="45px"/> LoyalX Retailer Application
 
-This is a demo of Loyalty Chain Retailer Application. It is still in development.
+This is a demo of LoyalX Retailer Application. It is still in development.
 
 ## Table of Contents
  - [Getting Started](#getting-started)
