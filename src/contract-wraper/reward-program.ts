@@ -165,4 +165,23 @@ export class RewardProgram extends Contract {
 			throw err;
 		}
 	}
+
+	public async getTransactions(filter?: { from?: string, to?: string }): Promise<any[]> {
+		try {
+			var contractInstance = await this.getContractInstance();
+			var web3ServiceInstance = await (Web3Service.getInstance());
+			var account = await web3ServiceInstance.getAccount();
+			var event = await contractInstance.Transfer({ _from: account }, { fromBlock: 0, toBlock: 'latest', filter: filter });
+
+			var result = <any[]>await new Promise((resolve, reject) => {
+				event.get((error, logs) => error ? reject(error) : resolve(logs));
+			});
+
+			console.log("getTransactions", result);
+			return result;
+		} catch (err) {
+			console.warn(err.message);
+			throw err;
+		}
+	}
 }
