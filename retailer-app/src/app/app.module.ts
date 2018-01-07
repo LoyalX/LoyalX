@@ -59,9 +59,7 @@ import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
     SignupPage,
     TabsPage,
     TutorialPage,
-    OffersPage,
-    RulesCreatePage,
-    ProfileEditPage
+    OffersPage
   ],
   imports: [
     BrowserModule,
