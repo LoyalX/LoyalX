@@ -12,12 +12,15 @@ export class Badge extends Contract {
 			var contractInstance = await this.getContractInstance();
 
 			var result = {
-				badgeName: await contractInstance.badgeName(),
-				badgeClass: await contractInstance.badgeClass(),
-				organization: new Organization(await contractInstance.organization()),
-				ownerName: await contractInstance.ownerName(),
-				owner: await contractInstance.owner()
-			}
+				name: await contractInstance.name(),
+				rank: await contractInstance.rank(),
+				reason: await contractInstance.reason(),
+				details: await contractInstance.details(),
+				image: await contractInstance.image(),
+				styleData: await contractInstance.styleData(),
+				version: await contractInstance.version()
+			};
+
 			console.log("getAttribs", result);
 			return result;
 		} catch (err) {

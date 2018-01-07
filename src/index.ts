@@ -7,6 +7,8 @@ import { ExtendedRewardProgram } from './contract-wraper/extended-reward-program
 import { OrganizationFactory } from './contract-wraper/organization-factory';
 import { Organization } from './contract-wraper/organization';
 import { RewardProgram } from './contract-wraper/reward-program';
+import { BadgeProgram } from './contract-wraper/badge-program';
+
 import Config from './config';
 
 export default class LoyalX {
@@ -18,6 +20,7 @@ export default class LoyalX {
 	public OrganizationFactory = new OrganizationFactory();
 	public Organization = Organization;
 	public RewardProgram = RewardProgram;
+	public BadgeProgram = BadgeProgram;
 
 	private constructor() { }
 
