@@ -2,6 +2,7 @@ import { Web3Service } from '../web3-service';
 import { BigNumber } from 'bignumber.js';
 import { Contract } from './contract';
 import { RewardProgram } from './reward-program';
+import { Badge } from './badge';
 
 export class BadgeProgram extends Contract {
 
@@ -24,13 +25,14 @@ export class BadgeProgram extends Contract {
 			throw err;
 		}
 	}
-	public async add({ name = "", rank = "", reason = "", details = "", image = "", styleData = "" }): Promise<string> {
+
+	public async add({ name = "", rank = "", reason = "", about = "", image = "", styleData = "" }): Promise<string> {
 		try {
 			var contractInstance = await this.getContractInstance();
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var account = await web3ServiceInstance.getAccount();
 			var result = await contractInstance.issueBadge(
-				name, rank, reason, details, image, styleData,
+				name, rank, reason, about, image, styleData,
 				{ from: account, gas: 5000000 }
 			);
 
@@ -42,12 +44,16 @@ export class BadgeProgram extends Contract {
 		}
 	}
 
-	public async getBadges(owner?: string): Promise<string[]> {
+	public async getBadges(): Promise<string[]> {
 		try {
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var contractInstance = await this.getContractInstance();
-			var account = owner ? owner : (await web3ServiceInstance.getAccount());
+			var account = await web3ServiceInstance.getAccount();
 			var result = await contractInstance.getBadges({ from: account });
+
+			for (const key in result) {
+				result[key] = new Badge(result[key]);
+			}
 
 			console.log("getBadges", result);
 			return result;

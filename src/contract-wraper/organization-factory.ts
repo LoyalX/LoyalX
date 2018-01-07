@@ -55,12 +55,12 @@ export class OrganizationFactory extends Contract {
 
 	/**
 	 * get all token's addresses
-	 * @returns {Promise<string[]>}
+	 * @returns {Promise<Organization[]>}
 	 */
-	public async getOrganizationsAddresses(): Promise<Organization[]> {
+	public async getOrganizations(): Promise<Organization[]> {
 		try {
 			var organizationFactoryInst = await this.getContractInstance();
-			var result = await organizationFactoryInst.getOrganizationsAddresses();
+			var result = await organizationFactoryInst.getOrganizations();
 
 			console.log("getOrganizationsAddresses", result);
 			for (const key in result) {
