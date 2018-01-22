@@ -13,11 +13,9 @@ export class Badge extends Contract {
 
 			var result = {
 				name: await contractInstance.name(),
-				rank: await contractInstance.rank(),
-				reason: await contractInstance.reason(),
-				about: await contractInstance.about(),
-				image: await contractInstance.image(),
-				styleData: await contractInstance.styleData(),
+				metaData: JSON.parse(await contractInstance.metaData()),
+				next: await contractInstance.next(),
+				previous: await contractInstance.previous(),
 				version: await contractInstance.version()
 			};
 

@@ -15,11 +15,8 @@ export class OrganizationFactory extends Contract {
 	 */
 	public async createOrganization({
         name,
-		website = "",
-		email = "",
+		metaData = {},
 		country = "",
-		image = "",
-		about = "",
 		tokenInitialAmount = 1000000000,
 		tokenName,
 		tokenDecimal = 0,
@@ -32,16 +29,8 @@ export class OrganizationFactory extends Contract {
 			var organizationFactoryInst = await this.getContractInstance();
 
 			var result = await organizationFactoryInst.createOrganization(
-				name,
-				website,
-				email,
-				country,
-				image,
-				about,
-				tokenInitialAmount,
-				tokenName,
-				tokenDecimal,
-				tokenSymbol,
+				name, country, JSON.stringify(metaData),
+				tokenInitialAmount, tokenName, tokenDecimal, tokenSymbol,
 				{ from: account, gas: 5000000 }
 			);
 
@@ -78,10 +67,10 @@ export class OrganizationFactory extends Contract {
 	 * get all token's addresses created by the user account
 	 * @returns {Promise<string[]>}
 	 */
-	public async findOrganizationByOwner(_account?: string): Promise<Organization> {
+	public async findOrganizationByOwner(owner?: string): Promise<Organization> {
 		try {
 			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = _account ? _account : (await web3ServiceInstance.getAccount());
+			var account = owner ? owner : (await web3ServiceInstance.getAccount());
 			var organizationFactoryInst = await this.getContractInstance();
 
 			var result = <string>await organizationFactoryInst.ownerMap(account);

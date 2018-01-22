@@ -8,32 +8,15 @@ export class Organization extends Contract {
 
 	public get contractName() { return "Organization" };
 
-	public async getBadgesAddress(owner?: string): Promise<string[]> {
-		try {
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var contractInstance = await this.getContractInstance();
-			var account = owner ? owner : (await web3ServiceInstance.getAccount());
-			var result = await contractInstance.getBadgesAddress(account);
-
-			console.log("getBadgesAddress", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
-	}
-
 	public async getAttribs() {
 		try {
 			var contractInstance = await this.getContractInstance();
 
 			var result = {
 				name: await contractInstance.name(),
-				website: await contractInstance.website(),
-				email: await contractInstance.email(),
 				country: await contractInstance.country(),
-				image: await contractInstance.image(),
-				about: await contractInstance.about(),
+				version: await contractInstance.version(),
+				metaData: JSON.parse(await contractInstance.metaData()),
 				rewardProgram: new RewardProgram(await contractInstance.rewardProgram()),
 				badgeProgram: new BadgeProgram(await contractInstance.badgeProgram())
 			}

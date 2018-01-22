@@ -26,13 +26,13 @@ export class BadgeProgram extends Contract {
 		}
 	}
 
-	public async add({ name = "", rank = "", reason = "", about = "", image = "", styleData = "" }): Promise<string> {
+	public async add({ name = "", metaData = {}, next = "0x0", previous = "0x0" }): Promise<string> {
 		try {
 			var contractInstance = await this.getContractInstance();
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var account = await web3ServiceInstance.getAccount();
 			var result = await contractInstance.issueBadge(
-				name, rank, reason, about, image, styleData,
+				name, JSON.stringify(metaData), next, previous,
 				{ from: account, gas: 5000000 }
 			);
 
@@ -68,7 +68,7 @@ export class BadgeProgram extends Contract {
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var contractInstance = await this.getContractInstance();
 			var account = owner ? owner : (await web3ServiceInstance.getAccount());
-			var result = await contractInstance.issuedBadges(account);
+			var result = await contractInstance.getIssuedBadges(account);
 
 			console.log("getIssuedBadges", result);
 			return result;
@@ -83,7 +83,8 @@ export class BadgeProgram extends Contract {
 			var contractInstance = await this.getContractInstance();
 
 			var result = {
-				version: await contractInstance.version(),
+				metaData: JSON.parse(await contractInstance.metaData()),
+				version: await contractInstance.version()
 			};
 
 			console.log("getAttribs", result);
