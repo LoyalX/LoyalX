@@ -22,6 +22,8 @@ import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
 import { RulesCreatePage } from '../pages/rules-create/rules-create';
+import { RulesCreatePageModule } from '../pages/rules-create/rules-create.module';
+
 import { OffersPage } from '../pages/offers/offers'
 
 import { OfferCreatePage } from '../pages/offer-create/offer-create';
@@ -50,7 +52,9 @@ import { TransactionsPageModule } from '../pages/transactions/transactions.modul
 
 import { FeaturesPage } from '../pages/features/features';
 import { FeaturesPageModule } from '../pages/features/features.module';
+
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
+import { ProfileEditPageModule } from '../pages/profile-edit/profile-edit.module';
 
 @NgModule({
   declarations: [
@@ -66,6 +70,8 @@ import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
     HttpModule,
     OnBoardPageModule,
     OfferCreatePageModule,
+    RulesCreatePageModule,
+    ProfileEditPageModule,
     FeatureModalPageModule,
     PointTransferPageModule,
     RulesEnginePageModule,
