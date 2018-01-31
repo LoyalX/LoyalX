@@ -18,34 +18,28 @@ export class Web3Provider {
 	init() {
 	}
 
+	// data source
 	setRpc(url?: any) {
-		// data source
 		this._engine.addProvider(new RpcSubprovider({
 			rpcUrl: url || Config.server.HTTP_PROVIDER
 		}));
 	}
+	// id mgmt
 	setHookedWallet(keyStore: any) {
 		this._engine.addProvider(new HookedWalletSubprovider({
 			getAccounts: (cb) => {
-				let addresses = keyStore.getAddresses();
-				cb(null, addresses);
+				cb(null, keyStore.getAddresses());
 			},
-			signTransaction: (tx, cb) => {
-				let signedTransactionCallback = (error, result) => {
-					cb(null, result);
-				};
-				keyStore.signTransaction(tx, signedTransactionCallback);
-			}
+			signTransaction: keyStore.signTransaction.bind(keyStore)
 		}));
 	}
 
+	// start polling for blocks
 	startPolling() {
-		// start polling for blocks
 		this._engine.start();
 	}
-
+	// stop polling for blocks
 	stopPolling() {
-		// stop polling for blocks
 		this._engine.stop();
 	}
 
@@ -54,6 +48,14 @@ export class Web3Provider {
 	}
 
 	public static get Instance() {
-		return this._instance || (this._instance = new this());
+		try {
+			if (!Web3Provider._instance) {
+				Web3Provider._instance = new Web3Provider();
+			}
+		}
+		catch (err) {
+			throw err;
+		}
+		return Web3Provider._instance;
 	}
 }

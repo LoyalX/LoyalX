@@ -1,29 +1,49 @@
 // import lightwallet = require("eth-lightwallet");
+import store = require('store');
 import { Web3Provider } from './web3-provider';
 import Config from './config';
+
+import { generatedPasswordLength, generateString } from './utils';
+import LoyalX from './index';
 
 export class Web3Wallet {
 
 	private static _instance: Web3Wallet;
+
 	private lightWallet;
-	private _provider: Web3Provider = Web3Provider.Instance;
-	private _keyStore: any;
-	private _address: any;
-	private passwordGetter;
+	private _keyStore;
+	private _address;
+	private _passwordGetter;
+	private _passwordSetter;
 
 	private constructor() {
 	}
 
-	private async _init(password: string, randomSeed: string) {
-		this.lightWallet = Config.LightWallet;
+	private async _init() {
 		try {
-			this._keyStore = await (this._createKeyStore(password, randomSeed));
+			let password = "";
+			this.lightWallet = Config.LightWallet;
+			let serialized_keystore = store.get('ks');
+
+			if (serialized_keystore) {
+				password = this._getPassword();
+				this._keyStore = this.lightWallet.keystore.deserialize(serialized_keystore);
+			}
+			else {
+				password = this._setPassword();
+				const extraEntropy = generateString(generatedPasswordLength);
+				const randomSeed = this.lightWallet.keystore.generateRandomSeed(extraEntropy);
+				// const randomSeed = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
+				this._keyStore = await (this._createKeyStore(password, randomSeed));
+
+				store.set('ks', this._keyStore.serialize());
+			}
 			this._keyStore.passwordProvider = this._passwordProvider.bind(this);
-			this._address = await (this._generateAddresses(password)) ? this._keyStore.getAddresses()[0] : "";
-			this._provider.setHookedWallet(this._keyStore);
+
+			this._address = await (this._generateAddresses(password, 2)) ? this._keyStore.getAddresses() [0] : "";
 		}
 		catch (err) {
-			console.warn(err);
+			throw err;
 		}
 		return this;
 	}
@@ -36,21 +56,28 @@ export class Web3Wallet {
 				//random salt 
 				hdPathString: Config.server.HD_PATH
 			}, (err, keyStore) => {
-				if (err) return reject(err);
+				if (err) {
+					console.warn("_createKeyStore", err);
+					reject(err);
+				}
 				else resolve(keyStore);
 			});
 		});
 	}
 
 	private _passwordProvider(callback) {
-		let password = this._getPassword(null, "password");
-		callback(null, password);
+		let password = this._getPassword();
+		if (password) callback(null, password);
+		else callback("Password is required");
 	}
 
-	public _keyFromPassword(password: string) {
+	private _keyFromPassword(password: string) {
 		return new Promise((resolve, reject) => {
 			this._keyStore.keyFromPassword(password, (err, pwDerivedKey) => {
-				if (err) return reject(err);
+				if (err) {
+					console.warn("_keyFromPassword", err);
+					reject(err);
+				}
 				else resolve(pwDerivedKey);
 			});
 		});
@@ -63,40 +90,69 @@ export class Web3Wallet {
 			return true;
 		}
 		catch (err) {
-			console.warn(err);
-			return false;
+			console.warn("_generateAddresses", err);
+			throw err;
 		}
 	}
 
 	public setPasswordGetter(passwordGetter) {
-		this.passwordGetter = passwordGetter;
+		this._passwordGetter = passwordGetter;
 	}
 
-	private _getPassword(passwordGetter, password) {
-		password = typeof this.passwordGetter === "function" ? this.passwordGetter() : password;
-		return password;
+	public setPasswordSetter(passwordSetter) {
+		this._passwordSetter = passwordSetter;
+	}
+
+	private _getPassword() {
+		let error = "";
+
+		if (typeof LoyalX.passwordGetter !== "function") {
+			error = "'Web3-wallet' - '_getPassword' - Must provide 'PasswordGetter' function (Use 'LoyalX.setPasswordGetter' function to provide it)";
+			console.warn(error);
+			throw new Error(error);
+		}
+
+		let password = LoyalX.passwordGetter();
+		if (password) {
+			return password;
+		}
+	}
+
+	private _setPassword() {
+		let error = "";
+
+		if (typeof LoyalX.passwordSetter !== "function") {
+			error = "'Web3-wallet' - '_setPassword' - Must provide 'passwordSetter' function (Use 'LoyalX.setPasswordSetter' function to provide it)";
+			console.warn(error);
+			throw new Error(error);
+		}
+
+		let password = LoyalX.passwordSetter();
+		if (password) {
+			return password;
+		}
 	}
 
 	public async getAddress() {
-		return await this._keyStore.getAddresses()[0];
-	}
-
-	public get provider() {
-		return this._provider;
+		if (!this._address) {
+			this._address = await this._keyStore.getAddresses() [0];
+		}
+		return this._address;
 	}
 
 	public get keyStore() {
 		return this._keyStore;
 	}
 
-	public static async getInstance(password?: string, extraEntropy?: string) {
-		// var extraEntropy = prompt('Please enter a random text to generate entropy');
-		// var randomSeed = lightwallet.keystore.generateRandomSeed(extraEntropy);
-		// var password = prompt('Please enter a password to encrypt your seed while in the app');
-
-		password = "password";
-		var randomSeed = "candy maple cake sugar pudding cream honey rich smooth crumble sweet treat";
-
-		return this._instance || (this._instance = (await new this()._init(password, randomSeed)));
+	public static async getInstance() {
+		try {
+			if (!Web3Wallet._instance) {
+				Web3Wallet._instance = await new Web3Wallet()._init();
+			}
+		}
+		catch (err) {
+			throw err;
+		}
+		return Web3Wallet._instance;
 	}
 }

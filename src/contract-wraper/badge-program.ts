@@ -13,7 +13,7 @@ export class BadgeProgram extends Contract {
 			var contractInstance = await this.getContractInstance();
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.issueBadge(
+			var result = await contractInstance.issue(
 				index, to,
 				{ from: account, gas: 5000000 }
 			);
@@ -31,7 +31,8 @@ export class BadgeProgram extends Contract {
 			var contractInstance = await this.getContractInstance();
 			var web3ServiceInstance = await (Web3Service.getInstance());
 			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.issueBadge(
+			console.log("contract", contractInstance);
+			var result = await contractInstance.add(
 				name, JSON.stringify(metaData), next, previous,
 				{ from: account, gas: 5000000 }
 			);
@@ -69,6 +70,10 @@ export class BadgeProgram extends Contract {
 			var contractInstance = await this.getContractInstance();
 			var account = owner ? owner : (await web3ServiceInstance.getAccount());
 			var result = await contractInstance.getIssuedBadges(account);
+
+			for (const key in result) {
+				result[key] = new Badge(result[key]);
+			}
 
 			console.log("getIssuedBadges", result);
 			return result;

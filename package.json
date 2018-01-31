@@ -22,6 +22,7 @@
 		"bignumber.js": "^4.1.0",
 		"eth-lightwallet": "^3.0.0",
 		"request": "^2.83.0",
+		"store": "^2.0.12",
 		"truffle-contract": "^3.0.1",
 		"web3": "^1.0.0-beta.26",
 		"web3-provider-engine": "^13.4.0"

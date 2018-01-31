@@ -12,26 +12,26 @@ export class Web3Service {
 	private static _instance: Web3Service;
 
 	private _wallet: Web3Wallet;
+	private _provider = Web3Provider.Instance;
 	private _web3: any;
 	private _contracts: any = {};
 
 	private constructor() { }
 
-	public static async getInstance() {
-		return this._instance || (this._instance = (await new this().init()));
-	}
-
 	private async init() {
 		try {
-			this._wallet = await (Web3Wallet.getInstance());
-			this._wallet.provider.setRpc(Config.server.HTTP_PROVIDER);
-			this._wallet.provider.startPolling();
-			this._web3 = new Web3(this._wallet.provider.engine);
+			this._wallet = await Web3Wallet.getInstance();
+
+			this._provider.setHookedWallet(this._wallet.keyStore);
+			this._provider.setRpc(Config.server.HTTP_PROVIDER);
+			this._provider.stopPolling();
+			this._provider.startPolling();
+
+			this._web3 = new Web3(this._provider.engine);
 		}
 		catch (err) {
-			console.warn(err);
+			throw err;
 		}
-
 		return this;
 	}
 
@@ -41,7 +41,7 @@ export class Web3Service {
 			let balance = this._web3.utils.fromWei(await (this._web3.eth.getBalance(address)), "ether");
 			return balance;
 		} catch (err) {
-			console.warn(err);
+			console.warn("getBalance", err);
 			throw err;
 		}
 	}
@@ -122,7 +122,7 @@ export class Web3Service {
 			let address = await (this._wallet.getAddress());
 			return address;
 		} catch (err) {
-			console.warn(err);
+			console.warn("getAddress", err);
 			throw err;
 		}
 	}
@@ -135,14 +135,26 @@ export class Web3Service {
 			let address = await (this._wallet.getAddress());
 			return address;
 		} catch (err) {
-			console.warn(err.message);
+			console.warn("getAccount", err);
 			throw err;
 		}
 	}
 
-	public get engine(): any { return this._wallet.provider.engine; }
+	public get engine(): any { return this._provider.engine; }
 	public get web3(): any { return this._web3; }
 	public get provider() { return this._web3.currentProvider; }
 	public get wallet() { return this._wallet; }
+
+	public static async getInstance() {
+		try {
+			if (!Web3Service._instance) {
+				Web3Service._instance = await new Web3Service().init();
+			}
+		}
+		catch (err) {
+			throw err;
+		}
+		return Web3Service._instance;
+	}
 
 }

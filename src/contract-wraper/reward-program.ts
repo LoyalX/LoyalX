@@ -12,7 +12,7 @@ export class RewardProgram extends Contract {
 
 			var result = {
 				name: await contractInstance.name(),
-				decimal: await contractInstance.decimal(),
+				decimal: await contractInstance.decimals(),
 				symbol: await contractInstance.symbol(),
 				version: await contractInstance.version()
 			}
