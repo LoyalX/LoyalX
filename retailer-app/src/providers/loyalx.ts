@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
-import LoyalX from 'loyalx.js';
-import CONFIG from '../config';
+import { Injectable } from "@angular/core";
+import "rxjs/add/operator/map";
+import LoyalX from "loyalx.js";
+import CONFIG from "../config";
 
 declare var TruffleContract;
 declare var lightwallet;
@@ -14,51 +14,60 @@ declare var lightwallet;
 */
 @Injectable()
 export class LoyalXProvider {
-	public loyal;
-	public Web3Service;
+	public loyalx = null;
+	private Web3Service;
+	private OrganizationFactory;
+	private RewardProgram;
 
-	public Token;
-	public TokenFactory;
+	private Token;
+	private TokenFactory;
 
-	constructor() {
-		LoyalX.init({
-			TruffleContract: TruffleContract,
-			lightwallet: lightwallet,
-			server: CONFIG.IS_PRODUCTION ? LoyalX.SERVERS.PRODUCTION : LoyalX.SERVERS.LOCALHOST
-		})
-			.then(loyalx => {
-				this.loyal = loyalx;
-				this.Web3Service = this.loyal.Web3Service;
-				this.Web3Service.wallet.setPasswordGetter(function () {
-					let password = prompt("Please enter your password to continue", "password");
-					return password;
-				})
+	constructor() {}
 
-				/*this.loyal.OrganizationFactory.createOrganization({
-					name: "name",
-					website: "website",
-					email: "email",
-					logoURL: "logoURL",
-					tokenIconURL: "tokenIconURL",
-					about: "about",
-					tokenInitialAmount: 10000000,
-					tokenName: "tokenName",
-					tokenDecimal: 2,
-					tokenSymbol: "tokenSymbol"
-				});*/
+	private _init() {
+		LoyalX.setPasswordSetter(function() {
+			let password = prompt(
+				"Please enter a password to encrypt your seed",
+				"password"
+			);
+			if (password) {
+				return password;
+			}
+		});
+		LoyalX.setPasswordGetter(function() {
+			let password = prompt(
+				"Please enter your password to continue",
+				"password"
+			);
+			if (password) {
+				return password;
+			}
+		});
+
+		return new Promise((resolve, reject) => {
+			LoyalX.init({
+				TruffleContract: TruffleContract,
+				lightwallet: lightwallet,
+				server: CONFIG.IS_PRODUCTION
+					? LoyalX.SERVERS.PRODUCTION
+					: LoyalX.SERVERS.LOCALHOST
 			})
+				.then(loyalx => {
+					this.loyalx = loyalx;
+					resolve(loyalx);
+				})
+				.catch(err => reject(err));
+		});
+	}
 
-		var symbol = "tst",
-			name = "test",
-			amount = 1000000,
-			decimal = 2;
-
-		/*this.loyal.TokenFactory.getTokensAddress()
-			.then(data => console.log("tokens", data))
-			.catch(err => console.warn("tokens", err));
-
-		this.loyal.TokenFactory.initialiseRetail(symbol, name, amount, decimal)
-			.then(data => console.log("init retail", data))
-			.catch(err => console.warn("init retail", err));*/
+	public async getInstance() {
+		try {
+			if (!this.loyalx) {
+				this.loyalx = await this._init();
+			}
+		} catch (err) {
+			throw err;
+		}
+		return this.loyalx;
 	}
 }

@@ -35,7 +35,7 @@ export class PointTransferPage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
-		public qrScanner: QRScanner,
+	//	public qrScanner: QRScanner,
 		public loyalXProvider: LoyalXProvider,
 		public socketIoService: SocketIoService
 	) {
@@ -51,7 +51,7 @@ export class PointTransferPage {
 			this.isReadyToTransfer = this.form.valid;
 		});
 
-		this.qrScanner.getStatus().then(status => this.scannerStatus = status);
+	//	this.qrScanner.getStatus().then(status => this.scannerStatus = status);
 
 		this.socketIoService.onPublicKeySent(key => this.form.controls['address'].setValue(key));
 
@@ -67,7 +67,7 @@ export class PointTransferPage {
 		scanRequestToast.present();
 
 		// start scanning
-		let scanSub = this.qrScanner.scan().subscribe((text: string) => {
+	/*	let scanSub = this.qrScanner.scan().subscribe((text: string) => {
 			// wait for user to scan something, then the observable callback will be called
 
 			scanRequestToast.dismiss();
@@ -80,23 +80,23 @@ export class PointTransferPage {
 				position: 'middle'
 			}).present();
 
-			/* cleaing up */
+			/* cleaing up 
 			this.qrScanner.pausePreview();
 			this.qrScanner.hide();
 			this.qrScanner.destroy();
-			/* cleaing up */
+			/* cleaing up 
 
 			scanSub.unsubscribe(); // stop scanning
 
 			this.qrScanner.getStatus().then(status => this.scannerStatus = status);
 			
-		});
+		});*/
 
 		// Make the webview transparent so the video preview is visible behind it.
-		this.qrScanner.show().then(status => this.scannerStatus = status);
+	//	this.qrScanner.show().then(status => this.scannerStatus = status);
 
 		// Make any opaque HTML elements transparent here to avoid covering the video.
-		window.document.querySelector('ion-content').classList.add('transparent-background');
+	//	window.document.querySelector('ion-content').classList.add('transparent-background');
 
 	}
 
@@ -105,22 +105,30 @@ export class PointTransferPage {
 		this.token = this.navParams.get("token");
 
 		if (!this.token && this.tokenIndex) {
-			this.tokens = await this.loyalXProvider.TokenFactory.getTokensByOwner();
+			let loyalx = await this.loyalXProvider.getInstance();
+			this.tokens = loyalx.TokenFactory.getTokensByOwner();
 			this.token = this.tokens[this.tokenIndex];
 		}
 	}
 
 	isReadyToShowScanRec() {
-		return this.scannerStatus.showing;
+		return false && this.scannerStatus.showing;
 	}
 
 	async onTransferTapped() {
 		if (!this.form.valid) { return; }
 
+		let loyalx = await this.loyalXProvider.getInstance();
+
+		let organization = await loyalx.OrganizationFactory.findOrganizationByOwner();
+		let organizationAtts = await organization.getAttribs();
+
+		let rewardProgram = organizationAtts.rewardProgram;
+		let rewardProgramAtts = await rewardProgram.getAttribs();
+
 		let values = this.form.value;
-		values.amount *= Math.pow(10, this.token.decimal);
-		let aToken = new this.loyalXProvider.Token(this.token.address);
-		await aToken.transfer(values.amount, values.address);
+		values.amount *= Math.pow(10, rewardProgramAtts.decimal);
+		await rewardProgram.transfer(values.amount, values.address);
 
 		this.toastCtrl.create({
 			message: 'Token transferred successfully',
@@ -130,7 +138,8 @@ export class PointTransferPage {
 
 		this.form.reset();
 		this.showForm = false;
-		this.viewCtrl.dismiss(this.form.value);
+		//this.viewCtrl.dismiss(this.form.value);
+		this.navCtrl.pop();
 	}
 
 	dismiss() {

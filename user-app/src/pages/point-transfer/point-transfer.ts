@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform, ViewController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
+import { LoyalXProvider } from '../../providers/loyalx';
+
 //import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 
 /**
@@ -23,6 +25,7 @@ export class PointTransferPage {
 	token: any;
 	form: FormGroup;
 	//scannerStatus: QRScannerStatus;
+	showForm: boolean;
 	isReadyToTransfer: boolean;
 
 	constructor(
@@ -33,6 +36,7 @@ export class PointTransferPage {
 		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
 		//public qrScanner: QRScanner,
+		public loyalXProvider: LoyalXProvider
 	) {
 
 		this.token = this.navParams.get("token");
@@ -112,10 +116,32 @@ export class PointTransferPage {
 	async onTransferTapped() {
 		if (!this.form.valid) { return; }
 
-		let values = this.form.value;
-		values.amount *= Math.pow(10, this.token.decimal);
+		let loyalx = await this.loyalXProvider.getInstance();
 
-		this.viewCtrl.dismiss(this.form.value);
+		let organization = await loyalx.OrganizationFactory.findOrganizationByOwner();
+		let organizationAtts = await organization.getAttribs();
+
+		let rewardProgram = organizationAtts.rewardProgram;
+		let rewardProgramAtts = await rewardProgram.getAttribs();
+
+		let values = this.form.value;
+		values.amount *= Math.pow(10, rewardProgramAtts.decimal);
+		try {
+			await rewardProgram.transfer(values.amount, values.address);
+		}
+		catch (err) {
+			console.warn(err);
+		}
+
+		this.toastCtrl.create({
+			message: 'Token transferred successfully',
+			duration: 3000,
+			position: 'middle'
+		}).present();
+
+		this.form.reset();
+		this.showForm = false;
+		this.dismiss();
 	}
 
 	dismiss() {

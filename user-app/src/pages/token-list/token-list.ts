@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, LoadingController } from 'ionic-angular';
+
+import { LoyalXProvider } from '../../providers/loyalx';
 
 /**
  * Generated class for the TokenListPage page.
@@ -19,7 +21,9 @@ export class TokenListPage {
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public events: Events
+		public events: Events,
+		public loadingCtrl: LoadingController,
+		public loyalXProvider: LoyalXProvider
 	) {
 		this.tokens = [
 			{
@@ -58,7 +62,29 @@ export class TokenListPage {
 		this.events.publish('errorPage:leave');
 	}
 
-	async ionViewDidEnter() {
+	async ionViewDidLoad() {
+		let loading = this.loadingCtrl.create({
+			content: 'Loading, Please Wait...'
+		});
+		loading.present();
+		
+		let loyalx = await this.loyalXProvider.getInstance();
+
+		let organizations = await loyalx.OrganizationFactory.getOrganizations();
+		for (const key in organizations) {
+
+			let organization = organizations[key];
+			organizations[key] = { ...organizations[key], ...await organizations[key].getAttribs() };
+
+			let rewardProgram = organizations[key].rewardProgram
+			organizations[key].rewardProgram = { ...organizations[key].rewardProgram, ...await organizations[key].rewardProgram.getAttribs() };
+			organizations[key].rewardProgram = { ...organizations[key].rewardProgram, ...organizations[key].rewardProgram.metaData};
+
+			let tempBalance = await rewardProgram.balanceOf("0xf17f52151EbEF6C7334FAD080c5704D77216b732");
+			organizations[key].balance = tempBalance.dividedBy(Math.pow(10, organizations[key].rewardProgram.decimal)).toString(10);
+		};
+		loading.dismiss();
+		this.tokens = organizations;
 	}
 
 }

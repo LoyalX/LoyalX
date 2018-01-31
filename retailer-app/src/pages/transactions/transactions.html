@@ -56,7 +56,7 @@
     <ion-row>
       <ion-col>
         <!-- <ion-searchbar [(ngModel)]="myInput" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)" > </ion-searchbar> -->
-        <ion-searchbar [(ngModel)]="myInput"></ion-searchbar>
+        <ion-searchbar></ion-searchbar>
       </ion-col>
     </ion-row>
 
@@ -74,15 +74,15 @@
           </div>
           <div col-3 col-md-4 col-sm-3>
             <ion-note>From</ion-note>
-            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.from}}</h2>
+            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.args.from}}</h2>
           </div>
           <div col-3 col-md-4 col-sm-3>
             <ion-note>To</ion-note>
-            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.to}}</h2>
+            <h2 style="overflow: hidden; text-overflow: ellipsis;">{{tr.args.to}}</h2>
           </div>
           <div col-3 col-md-1 col-sm-3>
             <ion-note>Amount</ion-note>
-            <h2>{{tr.amount}}</h2>
+            <h2>{{tr.args.value}}</h2>
           </div>
         </ion-row>
 

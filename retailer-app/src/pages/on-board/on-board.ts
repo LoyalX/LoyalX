@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, ToastController, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController, Platform, ViewController, ToastController, Events, LoadingController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { RulesEnginePage } from "../rules-engine/rules-engine";
+import { LoyalXProvider } from '../../providers/loyalx';
+import { UserData } from '../../providers/user-data';
 
 /**
  * Generated class for the OnBoardPage page.
@@ -28,17 +30,22 @@ export class OnBoardPage {
 		public viewCtrl: ViewController,
 		public toastCtrl: ToastController,
 		public formBuilder: FormBuilder,
-		public events: Events,) {
+		public events: Events,
+		public loadingCtrl: LoadingController,
+		public userData: UserData,
+		public loyalXProvider: LoyalXProvider
+	) {
 
 		this.form = formBuilder.group({
 
 			name: ['', Validators.required],
-			website: ['', Validators.required],
-			email: ['', Validators.required],
-			logoURL: ['', Validators.required],
-			tokenIconURL: ['', Validators.required],
-			about: ['', Validators.required],
-
+			metaData: formBuilder.group({
+				website: ['', Validators.required],
+				email: ['', Validators.required],
+				logoURL: ['', Validators.required],
+				tokenIconURL: ['', Validators.required],
+				about: ['', Validators.required]
+			}),
 			tokenInitialAmount: ['', Validators.required],
 			tokenName: ['', Validators.required],
 			tokenDecimal: ['', Validators.required],
@@ -54,23 +61,29 @@ export class OnBoardPage {
 	async onCreateTapped() {
 		if (!this.form.valid) {
 			return;
-		}
-		/*
-
+		};
 		this.isReadyToSave = false; // disable the submit button to prevent sending twice
+		//	const { name, tokenInitialAmount, tokenName, tokenDecimal, tokenSymbol, ...metaData } = this.form.value;
 
-		await this.LoyalXProvider.loyal.OrganizationFactory.createOrganization(this.form.value);
-		
-		this.toastCtrl.create({
-			message: 'Token created successfully',
-			duration: 3000,
-			position: 'bottom'
-		}).present();
+		let loading = this.loadingCtrl.create({
+			content: 'Loading, Please Wait...'
+		});
+		loading.present();
 
-		*/
+		try {
+			let loyalx = await this.loyalXProvider.getInstance();
 
-		this.events.publish('user:signup');
-		this.navCtrl.setRoot('ProfilePage', { isTokensLoading: true });
+			await loyalx.OrganizationFactory.createOrganization(this.form.value);
+
+			this.isReadyToSave = false;
+			this.userData.register();
+			this.navCtrl.setRoot('TransactionsPage', { isTokensLoading: true });
+		}
+		catch (err) {
+			console.error(err);
+		}
+
+		loading.dismiss();
 	}
 
 }

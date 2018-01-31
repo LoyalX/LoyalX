@@ -58,6 +58,8 @@ import { OfferModalPageModule } from '../pages/offer-modal/offer-modal.module';
 
 import { UserData } from '../providers/user-data';
 
+import { LoyalXProvider } from '../providers/loyalx';
+
 
 @NgModule({
 	declarations: [
@@ -122,7 +124,8 @@ import { UserData } from '../providers/user-data';
 		{ provide: ErrorHandler, useClass: IonicErrorHandler },
 		UserData,
 		InAppBrowser,
-		SplashScreen
+		SplashScreen,
+		LoyalXProvider
 	]
 })
 export class AppModule { }

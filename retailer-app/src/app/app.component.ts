@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
 
 import { UserData } from '../providers/user-data';
+import { LoyalXProvider } from '../providers/loyalx';
 
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
@@ -17,6 +18,7 @@ import { OnBoardPage } from '../pages/on-board/on-board';
 import { ProfilePage } from '../pages/profile/profile';
 import { OffersPage } from '../pages/offers/offers';
 import { TransactionsPage } from '../pages/transactions/transactions';
+import { BadgeListPage } from '../pages/badge-list/badge-list';
 import { FeaturesPage } from '../pages/features/features';
 
 export interface PageInterface {
@@ -43,10 +45,11 @@ export class RetailerApp {
 	// the login page disables the left menu
 	appPages: PageInterface[] = [
 		{ title: 'Transactions', name: "TransactionsPage", component: TransactionsPage, tabComponent: TransactionsPage, index: 0, icon: 'cash' },
-		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 1, icon: 'bowtie' },
-		{ title: 'AI rules', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 2, icon: 'analytics' },
-		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 3, icon: 'cart' },
-		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 4, icon: 'person' }
+		{ title: 'Badges', name: "BadgeListPage", component: BadgeListPage, tabComponent: BadgeListPage, index: 1, icon: 'trophy' },
+		{ title: 'Offers', name: "OffersPage", component: OffersPage, tabComponent: OffersPage, index: 2, icon: 'bowtie' },
+		{ title: 'AI rules', name: "RulesEnginePage", component: RulesEnginePage, tabComponent: RulesEnginePage, index: 3, icon: 'analytics' },
+		{ title: 'Features', name: "FeaturesPage", component: FeaturesPage, tabComponent: FeaturesPage, index: 4, icon: 'cart' },
+		{ title: 'Profile', name: "ProfilePage", component: ProfilePage, tabComponent: ProfilePage, index: 5, icon: 'person' }
 	];
 	loggedInPages: PageInterface[] = [
 		{ title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out', logsOut: true }
@@ -65,26 +68,34 @@ export class RetailerApp {
 		public menu: MenuController,
 		public platform: Platform,
 		public storage: Storage,
-		public splashScreen: SplashScreen
+		public splashScreen: SplashScreen,
+		public loyalXProvider: LoyalXProvider
 	) {
+			//<<<<<<<<<<<<<<<<<<<<<<<
+			// this.rootPage = (typeof web3 !== 'undefined') ? ProfilePage : ErrorPage;
+			this.setSplitPaneEnabledState(false);
+			this.enableMenu(false);
 
-		//<<<<<<<<<<<<<<<<<<<<<<<
-		// this.rootPage = (typeof web3 !== 'undefined') ? ProfilePage : ErrorPage;
-		this.rootPage = TransactionsPage;
-		this.platformReady();
+			//this.rootPage = OnBoardPage;
+			this.platformReady();
 
+			// decide which menu items should be hidden by current login status stored in local storage
+			/*this.userData.hasLoggedIn().then(hasLoggedIn => {
+				this.setSplitPaneEnabledState(hasLoggedIn === false);
+				this.enableMenu(hasLoggedIn === false);
+			});*/
 
-		// decide which menu items should be hidden by current login status stored in local storage
-		this.userData.hasLoggedIn().then((hasLoggedIn) => {
-			this.enableMenu(hasLoggedIn === false);
-		});
+			// decide which menu items should be hidden by current register status stored in local storage
+			this.userData.hasRegistered().then(hasRegistered => {
+				this.setSplitPaneEnabledState(hasRegistered === true);
+				this.enableMenu(hasRegistered === true);
+				this.rootPage = hasRegistered ? TransactionsPage : OnBoardPage;
+				//if (hasRegistered === true )this.nav.setRoot(TransactionsPage);
+			});
 
-		this.setSplitPaneEnabledState(true);
-		this.enableMenu(true);
-
-		this.listenToLoginEvents();
-		this.listenToErrorEvents();
-	}
+			this.listenToLoginEvents();
+			this.listenToErrorEvents();
+		}
 
 	openPage(page: PageInterface) {
 		let params = {};
@@ -100,7 +111,7 @@ export class RetailerApp {
 		// don't setRoot again, this maintains the history stack of the
 		// tabs even if changing them from the menu
 		if (this.nav.getActiveChildNavs().length && page.index != undefined) {
-			this.nav.getActiveChildNavs()[0].select(page.index);
+			this.nav.getActiveChildNavs() [0].select(page.index);
 			// Set the root of the nav with params if it's a tab index
 		} else {
 			this.nav.setRoot(page.name, params).catch((err: any) => {
@@ -120,7 +131,7 @@ export class RetailerApp {
 
 	openRegister() {
 		this.nav.setRoot(OnBoardPage);
-		this.events.publish('user:logout');	
+		this.events.publish('user:logout');
 	}
 
 	listenToErrorEvents() {
@@ -137,10 +148,17 @@ export class RetailerApp {
 
 	listenToLoginEvents() {
 		this.events.subscribe('user:login', () => {
+			this.setSplitPaneEnabledState(true);
 			this.enableMenu(true);
 		});
 
 		this.events.subscribe('user:signup', () => {
+			this.setSplitPaneEnabledState(true);
+			this.enableMenu(true);
+		});
+
+		this.events.subscribe("user:register", () => {
+			this.setSplitPaneEnabledState(true);
 			this.enableMenu(true);
 		});
 
@@ -163,14 +181,32 @@ export class RetailerApp {
 	}
 
 	platformReady() {
-		// Call any initial plugins when ready
-		this.platform.ready().then(() => {
-			this.splashScreen.hide();
-		});
+		// Call any initial code/plugins when ready
+		this.platform.ready().then(async function () {
+			/*try {
+				let loyalx = await this.loyalXProvider.getInstance();
+				let organization = await loyalx.OrganizationFactory.findOrganizationByOwner();
+
+				if (organization.address != 0x0) {
+					this.nav.setRoot(TransactionsPage);
+					this.setSplitPaneEnabledState(true);
+					this.enableMenu(true);
+				}
+				else {
+					this.setSplitPaneEnabledState(false);
+					this.enableMenu(false);
+				}
+				this.splashScreen.hide();
+			}
+			catch (err) {
+				alert(err);
+			}*/
+
+		}.bind(this));
 	}
 
 	isActive(page: PageInterface) {
-		let childNav = this.nav.getActiveChildNavs()[0];
+		let childNav = this.nav.getActiveChildNavs() [0];
 
 		// Tabs are a special case because they have their own navigation
 		if (childNav) {
@@ -188,6 +224,5 @@ export class RetailerApp {
 
 	ngAfterViewInit() {
 		this.activePageName = this.nav.getActive() ? this.nav.getActive().name : "";
-		console.log(this.nav.getActive());
 	}
 }

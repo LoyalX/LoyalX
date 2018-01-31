@@ -21,13 +21,16 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
-import { RulesCreatePage } from '../pages/rules-create/rules-create';
 import { RulesCreatePageModule } from '../pages/rules-create/rules-create.module';
 
 import { OffersPage } from '../pages/offers/offers'
 
-import { OfferCreatePage } from '../pages/offer-create/offer-create';
 import { OfferCreatePageModule } from '../pages/offer-create/offer-create.module';
+
+import { BadgeCreatePageModule } from '../pages/badge-create/badge-create.module';
+
+import { BadgeIssuePage } from '../pages/badge-issue/badge-issue';
+import { BadgeIssuePageModule } from '../pages/badge-issue/badge-issue.module'
 
 import { FeatureModalPage } from '../pages/feature-modal/feature-modal';
 import { FeatureModalPageModule } from '../pages/feature-modal/feature-modal.module';
@@ -50,11 +53,18 @@ import { PointTransferPageModule } from '../pages/point-transfer/point-transfer.
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { TransactionsPageModule } from '../pages/transactions/transactions.module';
 
+import { BadgeModalPage } from '../pages/badge-modal/badge-modal';
+import { BadgeModalPageModule } from '../pages/badge-modal/badge-modal.module';
+
+import { BadgeListPage } from '../pages/badge-list/badge-list';
+import { BadgeListPageModule } from '../pages/badge-list/badge-list.module';
+
 import { FeaturesPage } from '../pages/features/features';
 import { FeaturesPageModule } from '../pages/features/features.module';
 
-import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { ProfileEditPageModule } from '../pages/profile-edit/profile-edit.module';
+
+import { PopoverBadgeActionPage } from '../pages/badge-list/badge-list';
 
 @NgModule({
   declarations: [
@@ -63,13 +73,16 @@ import { ProfileEditPageModule } from '../pages/profile-edit/profile-edit.module
     SignupPage,
     TabsPage,
     TutorialPage,
-    OffersPage
+    OffersPage,
+    PopoverBadgeActionPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
     OnBoardPageModule,
     OfferCreatePageModule,
+    BadgeCreatePageModule,
+    BadgeIssuePageModule,
     RulesCreatePageModule,
     ProfileEditPageModule,
     FeatureModalPageModule,
@@ -78,6 +91,8 @@ import { ProfileEditPageModule } from '../pages/profile-edit/profile-edit.module
     ErrorPageModule,
     ProfilePageModule,
     TransactionsPageModule,
+    BadgeModalPageModule,
+    BadgeListPageModule,
     FeaturesPageModule,
     IonicModule.forRoot(RetailerApp, {}, {
       links: [
@@ -91,7 +106,8 @@ import { ProfileEditPageModule } from '../pages/profile-edit/profile-edit.module
         { component: OffersPage, name: 'OffersPage', segment: 'offers' },
         { component: PointTransferPage, name: 'PointTransferPage', segment: 'pointTransfer' },
         { component: ProfilePage, name: 'ProfilePage', segment: 'profile' },
-        { component: TransactionsPage, name: 'TransactionsPage', segment: 'transactions' }
+        { component: TransactionsPage, name: 'TransactionsPage', segment: 'transactions' },
+        { component: BadgeListPage, name: 'BadgeListPage', segment: 'badges' }
       ]
     }),
     IonicStorageModule.forRoot()
@@ -106,13 +122,11 @@ import { ProfileEditPageModule } from '../pages/profile-edit/profile-edit.module
     TutorialPage,
     OffersPage,
     FeatureModalPage,
-    OfferCreatePage,
     PointTransferPage,
     OnBoardPage,
     RulesEnginePage,
     TransactionsPage,
-    RulesCreatePage,
-    ProfileEditPage
+    PopoverBadgeActionPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

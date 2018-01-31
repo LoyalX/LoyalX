@@ -62,5 +62,26 @@
 }
 
 .no-scroll .scroll-content {
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+::-webkit-scrollbar {
+    border: none;
+    width: 0;
+    /* remove scrollbar space */
+    background: transparent;
+    /* make scrollbar invisible */
+}
+
+::-webkit-scrollbar-track {
+    border: none;
+    width: 0;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border: none;
+    width: 0;
+    background: transparent;
+
 }

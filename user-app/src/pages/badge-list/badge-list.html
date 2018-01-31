@@ -5,27 +5,58 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar no-border-bottom>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Badges</ion-title>
   </ion-navbar>
+  <ion-toolbar no-border-top color="primary">
+    <ion-segment [(ngModel)]="selectedBadges">
+      <ion-segment-button value="{{BadgeSegmentChoice.AllBadges}}">
+        {{BadgeSegmentChoice.AllBadges}}
+      </ion-segment-button>
+      <ion-segment-button value="{{BadgeSegmentChoice.earnedBadges}}">
+        {{BadgeSegmentChoice.earnedBadges}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <div [ngSwitch]="selectedBadges">
+    <ion-grid *ngSwitchCase="BadgeSegmentChoice.AllBadges">
+      <ion-row wrap *ngFor="let organization of organizations">
+        <ion-col col-12 col-xl-4 col-lg-6 col-sm-12 *ngFor="let badge of organization.badgeProgram.badges" (click)="presentBadgeModal(badge, organization)">
+          <loyal-badge [image]="badge.metaData?.image" [name]="badge.name" [description]="badge.metaData?.description" [fontColor]="badge.metaData?.fontColor"
+            [backgroundColor]="badge.metaData?.backgroundColor">
+            <ion-badge>
+              {{organization.name}}
+            </ion-badge>
+            <!-- <ion-icon *ngIf="badge.isIssued" name="checkmark" color="favorite" item-start></ion-icon> -->
+            <ion-avatar item-start>
+              <img src="{{badge.metaData?.image}}">
+            </ion-avatar>
+          </loyal-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-grid>
-    <ion-row wrap>
-      <ion-col col-6 col-md-4 col-lg-3 *ngFor="let badge of badges" (click)="presentBadgeModal(badge)">
-        <div text-center>
-          <!--<ion-badge color="primary">
-            {{badge.reason}}
-          </ion-badge>-->
-        </div>
-        <loyal-badge [src]="badge.src" [text]="badge.text" [textColor]="badge.textColor" [backgroundColor]="badge.backgroundColor"></loyal-badge>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+    <ion-grid *ngSwitchCase="BadgeSegmentChoice.earnedBadges">
+      <ion-row wrap *ngFor="let organization of organizations">
+        <ion-col col-12 col-xl-4 col-lg-6 col-sm-12 *ngFor="let issuedbadge of organization.badgeProgram.issuedBadges" (click)="presentBadgeModal(issuedbadge, organization)">
+          <loyal-badge [image]="issuedbadge.metaData?.image" [name]="issuedbadge.name" [description]="issuedbadge.metaData?.description"
+            [fontColor]="issuedbadge.metaData?.fontColor" [backgroundColor]="issuedbadge.metaData?.backgroundColor">
+            <ion-badge>
+              {{organization.name}}
+            </ion-badge>
+            <ion-icon name="checkmark" color="favorite" item-start></ion-icon>
+            <ion-avatar item-start>
+              <img src="{{issuedbadge.metaData?.image}}">
+            </ion-avatar>
+          </loyal-badge>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
