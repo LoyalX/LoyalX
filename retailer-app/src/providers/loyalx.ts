@@ -66,7 +66,7 @@ export class LoyalXProvider {
 				this.loyalx = await this._init();
 			}
 		} catch (err) {
-			throw err;
+			 alert(err);
 		}
 		return this.loyalx;
 	}
