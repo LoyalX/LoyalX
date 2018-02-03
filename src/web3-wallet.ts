@@ -65,10 +65,22 @@ export class Web3Wallet {
 		});
 	}
 
-	private _passwordProvider(callback) {
+	private async _passwordProvider(callback) {
+
 		let password = this._getPassword();
-		if (password) callback(null, password);
-		else callback("Password is required");
+
+		if (password) {
+			
+			let pwDerivedKey = await this._keyFromPassword(password);
+			if (!this._keyStore.isDerivedKeyCorrect(pwDerivedKey)) {
+				callback("Incorrect Password!");
+			} else { // correct password
+				callback(null, password);
+			}
+
+		} else { // !password (empty)
+			callback("Password is required!");
+		}
 	}
 
 	private _keyFromPassword(password: string) {
