@@ -180,29 +180,11 @@ export class RetailerApp {
 		this.menu.enable(state);
 	}
 
-	platformReady() {
-		// Call any initial code/plugins when ready
-		this.platform.ready().then(async function () {
-			/*try {
-				let loyalx = await this.loyalXProvider.getInstance();
-				let organization = await loyalx.OrganizationFactory.findOrganizationByOwner();
-
-				if (organization.address != 0x0) {
-					this.nav.setRoot(TransactionsPage);
-					this.setSplitPaneEnabledState(true);
-					this.enableMenu(true);
-				}
-				else {
-					this.setSplitPaneEnabledState(false);
-					this.enableMenu(false);
-				}
-				this.splashScreen.hide();
-			}
-			catch (err) {
-				alert(err);
-			}*/
-
-		}.bind(this));
+  	platformReady() {
+		// Call any initial plugins when ready
+		this.platform.ready().then(() => {
+			this.splashScreen.hide();
+		});
 	}
 
 	isActive(page: PageInterface) {
