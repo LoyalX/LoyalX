@@ -7,16 +7,10 @@ const SERVERS = {
 		HD_PATH: "m/44'/60'/0'/0" // BIP44 
 	},
 	PRODUCTION: <ServerInfo>{
-		HTTP_PROVIDER: 'http://46.101.58.199:22000',
-		CONTRACTS_URL: 'http://165.165.131.155:3000/',
+		HTTP_PROVIDER: 'https://rinkeby.infura.io/39L4CW0Z7li9TKB58aTN',
+		CONTRACTS_URL: null,
 		NETWORK_ID: null,
 		HD_PATH: "m/44'/60'/0'/0" // BIP44 
-	},
-	ROPSTEN: <ServerInfo>{
-		HTTP_PROVIDER: 'https://ropsten.infura.io/hSW2jjSUcvcnXAKw5357',
-		CONTRACTS_URL: 'http://localhost:3000',
-		NETWORK_ID: null,
-		HD_PATH: "m/44'/60'/0'/0" // BIP44
 	}
 };
 
@@ -24,7 +18,7 @@ export default SERVERS;
 
 export interface ServerInfo {
 	HTTP_PROVIDER: string,
-	CONTRACTS_URL: string,
+	CONTRACTS_URL: string | null,
 	NETWORK_ID: number | null,
 	HD_PATH: string | null
 }
