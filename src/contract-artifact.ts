@@ -1,12 +1,12 @@
 import request = require('request');
 import Config from './config';
 
-import * as BadgeProgram from 'loyalx.sol/build/contracts/BadgeProgram.json';
-import * as Badge from 'loyalx.sol/build/contracts/Badge.json';
-import * as ExtendedRewardProgram from 'loyalx.sol/build/contracts/ExtendedRewardProgram.json';
-import * as OrganizationFactory from 'loyalx.sol/build/contracts/OrganizationFactory.json';
-import * as Organization from 'loyalx.sol/build/contracts/Organization.json';
-import * as RewardProgram from 'loyalx.sol/build/contracts/RewardProgram.json';
+let BadgeProgram = require("loyalx.sol/build/contracts/BadgeProgram.json");
+let  Badge = require('loyalx.sol/build/contracts/Badge.json');
+let ExtendedRewardProgram = require('loyalx.sol/build/contracts/ExtendedRewardProgram.json');
+let  OrganizationFactory = require('loyalx.sol/build/contracts/OrganizationFactory.json');
+let Organization = require('loyalx.sol/build/contracts/Organization.json');
+let RewardProgram = require('loyalx.sol/build/contracts/RewardProgram.json');
 
 export class ContractArtifact {
 
