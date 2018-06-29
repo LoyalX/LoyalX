@@ -15,7 +15,7 @@ export class RewardProgram extends Contract {
 				decimal: await contractInstance.decimals(),
 				symbol: await contractInstance.symbol(),
 				version: await contractInstance.version()
-			}
+			};
 			console.log("getAttribs", result);
 			return result;
 		} catch (err) {
@@ -28,19 +28,10 @@ export class RewardProgram extends Contract {
 	 * get the current user balance
 	 * @returns {Promise<BigNumber>}
 	 */
-	public async balanceOf(_account?: string): Promise<BigNumber> {
-		try {
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var contractInstance = await this.getContractInstance();
-			var account = _account ? _account : (await web3ServiceInstance.getAccount());
-			var result = await contractInstance.balanceOf(account);
-
-			console.log("balanceOf", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async balanceOf(_account?: string, extraParams?): Promise<BigNumber> {
+		var web3ServiceInstance = await (Web3Service.getInstance());
+		var account = _account ? _account : (await web3ServiceInstance.getAccount());
+		return this.genericCall("balanceOf", [account], extraParams);
 	}
 
 	/**
@@ -48,19 +39,8 @@ export class RewardProgram extends Contract {
 	 * @param amount amount of tokens to transfer
 	 * @param toAddress recipient address
 	 */
-	public async transfer(amount: number, toAddress: string): Promise<boolean> {
-		try {
-			var contractInstance = await this.getContractInstance();
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.transfer(toAddress, amount, { from: account });
-
-			console.log("transfer", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async transfer(amount: number, toAddress: string, extraParams?): Promise<boolean> {
+		return this.genericCall("transfer", [amount, toAddress], extraParams);
 	}
 
 	/**
@@ -69,19 +49,8 @@ export class RewardProgram extends Contract {
 	 * @param to address The address which you want to transfer to
 	 * @param value uint256 the amount of tokens to be transferred
 	 */
-	public async transferFrom(from: string, to: string, value: number): Promise<boolean> {
-		try {
-			var contractInstance = await this.getContractInstance();
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.transferFrom(from, to, value, { from: from });
-
-			console.log("transferFrom", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async transferFrom(from: string, to: string, value: number, extraParams?): Promise<boolean> {
+		return this.genericCall("transferFrom", [from, to, value], extraParams);
 	}
 
 	/**
@@ -94,19 +63,8 @@ export class RewardProgram extends Contract {
 	 * @param spender The address which will spend the funds.
 	 * @param value The amount of tokens to be spent.
 	 */
-	public async approve(spender: string, value): Promise<boolean> {
-		try {
-			var contractInstance = await this.getContractInstance();
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.approve(spender, value, { from: account });
-
-			console.log("approve", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async approve(spender: string, value, extraParams?): Promise<boolean> {
+		return this.genericCall("approve", [spender, value], extraParams);
 	}
 
 	/**
@@ -115,19 +73,8 @@ export class RewardProgram extends Contract {
 	 * @param spender address The address which will spend the funds.
 	 * @return A uint256 specifying the amount of tokens still available for the spender.
 	 */
-	public async allowance(owner: string, spender: string): Promise<BigNumber> {
-		try {
-			var contractInstance = await this.getContractInstance();
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.allowance(owner, spender, { from: account });
-
-			console.log("allowance", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async allowance(owner: string, spender: string, extraParams?): Promise<BigNumber> {
+		return this.genericCall("allowance", [owner, spender], extraParams);
 	}
 
 	/**
@@ -136,34 +83,12 @@ export class RewardProgram extends Contract {
 	 * the first transaction is mined)
 	 * From MonolithDAO Token.sol
 	 */
-	public async increaseApproval(spender: string, addedValue: number): Promise<boolean> {
-		try {
-			var contractInstance = await this.getContractInstance();
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.increaseApproval(spender, addedValue, { from: account });
-
-			console.log("increaseApproval", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async increaseApproval(spender: string, addedValue: number, extraParams?): Promise<boolean> {
+		return this.genericCall("increaseApproval", [spender, addedValue], extraParams);
 	}
 
-	public async decreaseApproval(spender: string, subtractedValue: number): Promise<boolean> {
-		try {
-			var contractInstance = await this.getContractInstance();
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var result = await contractInstance.decreaseApproval(spender, subtractedValue, { from: account });
-
-			console.log("decreaseApproval", result);
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+	public async decreaseApproval(spender: string, subtractedValue: number, extraParams?): Promise<boolean> {
+		return this.genericCall("decreaseApproval", [spender, subtractedValue], extraParams);
 	}
 
 	public async getTransactions(filter?: { from?: string, to?: string }): Promise<any[]> {

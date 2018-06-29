@@ -7,6 +7,7 @@ export class ExtendedRewardProgram extends RewardProgram {
 	public get contractName() { return "ExtendedRewardProgram"; }
 
 	public async increaseSupply(value: number, to: string): Promise<boolean> {
+		this.genericCall("increaseSupply",[value, to]);
 		try {
 			var contractInstance = await this.getContractInstance();
 			var web3ServiceInstance = await (Web3Service.getInstance());

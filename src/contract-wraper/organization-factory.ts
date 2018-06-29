@@ -13,53 +13,25 @@ export class OrganizationFactory extends Contract {
 	 * @param retailAmount total points in circulation
 	 * @param retailDecimal how many decimal point
 	 */
-	public async createOrganization({
-        name,
-		metaData = {},
-		country = "",
-		tokenInitialAmount = 1000000000,
-		tokenName,
-		tokenDecimal = 0,
-		tokenSymbol
-	}): Promise<Organization> {
-		tokenInitialAmount *= Math.pow(10, tokenDecimal);
-		try {
-			var web3ServiceInstance = await (Web3Service.getInstance());
-			var account = await web3ServiceInstance.getAccount();
-			var organizationFactoryInst = await this.getContractInstance();
+	public async create({ name = "", metaData = {}, country = "" }, extraParams?): Promise<Organization> {
+		extraParams = extraParams || { gas: 5000000 };
+		extraParams.gas = extraParams.gas || extraParams.gas == 5000000;
 
-			var result = await organizationFactoryInst.createOrganization(
-				name, country, JSON.stringify(metaData),
-				tokenInitialAmount, tokenName, tokenDecimal, tokenSymbol,
-				{ from: account, gas: 5000000 }
-			);
-
-			console.log("createOrganization", result);
-			return new Organization(result);
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
-		}
+		return this.genericCall("create", [name, country, JSON.stringify(metaData)], extraParams);
 	}
 
 	/**
 	 * get all token's addresses
 	 * @returns {Promise<Organization[]>}
 	 */
-	public async getOrganizations(): Promise<Organization[]> {
-		try {
-			var organizationFactoryInst = await this.getContractInstance();
-			var result = await organizationFactoryInst.getOrganizations();
+	public async getOrganizations(extraParams?): Promise<Organization[]> {
 
-			console.log("getOrganizationsAddresses", result);
-			for (const key in result) {
-				result[key] = new Organization(result[key]);
-			}
-			return result;
-		} catch (err) {
-			console.warn(err.message);
-			throw err;
+		var result = this.genericCall("getOrganizations", [], extraParams)
+
+		for (const key in result) {
+			result[key] = new Organization(result[key]);
 		}
+		return result;
 	}
 
 
