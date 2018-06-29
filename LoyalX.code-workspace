@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": "smart-contracts"
+		},
+		{
+			"path": "api-js"
+		},
+		{
+			"path": "user-app"
+		},
+		{
+			"path": "retailer-app"
+		},
+		{
+			"path": "dynamic-ui"
+		},
+		{
+			"path": "ai"
+		}
+	],
+	"settings": {}
+}

@@ -50,7 +50,7 @@
         "ionic-angular": "3.7.1",
         "ionic-plugin-keyboard": "^2.2.1",
         "ionicons": "3.0.0",
-        "loyalx.js": "git+https://github.com/LoyalX/LoyalX.js.git",
+        "loyalx.js": "file:../api-js",
         "npm": "^5.6.0",
         "rxjs": "5.4.3",
         "simple-plist": "^0.2.1",

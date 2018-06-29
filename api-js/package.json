@@ -14,14 +14,17 @@
 	],
 	"scripts": {
 		"build": "tsc",
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"run": "ts-node ./src/index.ts",
+		"debug": "ts-node ./src/debug.ts",
+		"pretest": "npm run build",
+		"test": "mocha || exit 0",
 		"postinstall": "npm run build"
 	},
 	"dependencies": {
 		"@types/node": "^8.5.2",
 		"bignumber.js": "^4.1.0",
 		"eth-lightwallet": "^3.0.0",
-		"loyalx.sol": "git+https://github.com/LoyalX/LoyalX.sol.git",
+		"loyalx.sol": "file:../smart-contracts",
 		"request": "^2.83.0",
 		"store": "^2.0.12",
 		"truffle-contract": "^3.0.1",
@@ -29,6 +32,8 @@
 		"web3-provider-engine": "^13.4.0"
 	},
 	"devDependencies": {
+		"chai": "^4.1.2",
+		"mocha": "^5.2.0",
 		"typescript": "^2.6.1"
 	},
 	"repository": {

@@ -7,7 +7,7 @@ This repo consist of multiple apps please check each readme separately
 ## Table of Contents
 
  - [JS API](https://github.com/LoyalX/LoyalX-App/tree/master/api-js)
- - [Snart Contracts](https://github.com/LoyalX/LoyalX-App/tree/master/smart-contracts)
+ - [Smart Contracts](https://github.com/LoyalX/LoyalX-App/tree/master/smart-contracts)
  - [REST API for AI Engine](https://github.com/LoyalX/LoyalX-App/tree/master/ai)
  - [Retailer Application](https://github.com/LoyalX/LoyalX-App/tree/master/user-app)
  - [User Application](https://github.com/LoyalX/LoyalX-App/tree/master/retailer-app)
