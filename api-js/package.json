@@ -1,0 +1,42 @@
+{
+	"name": "loyalx.js",
+	"version": "0.1.0",
+	"description": "a javascript api to interface with LoyalX protocol",
+	"author": "Marc Wafik",
+	"license": "GNU LGPLv3",
+	"build": "./lib/index.js",
+	"main": "./lib/index.js",
+	"types": "./lib/index.d.ts",
+	"keywords": [
+		"loyalx",
+		"reward point",
+		"jsapi"
+	],
+	"scripts": {
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"postinstall": "npm run build"
+	},
+	"dependencies": {
+		"@types/node": "^8.5.2",
+		"bignumber.js": "^4.1.0",
+		"eth-lightwallet": "^3.0.0",
+		"loyalx.sol": "git+https://github.com/LoyalX/LoyalX.sol.git",
+		"request": "^2.83.0",
+		"store": "^2.0.12",
+		"truffle-contract": "^3.0.1",
+		"web3": "^1.0.0-beta.26",
+		"web3-provider-engine": "^13.4.0"
+	},
+	"devDependencies": {
+		"typescript": "^2.6.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MarcWafik/LoyalX.js.git"
+	},
+	"bugs": {
+		"url": "https://github.com/MarcWafik/LoyalX.js/issues"
+	},
+	"homepage": "https://github.com/MarcWafik/LoyalX.js#readme"
+}
